@@ -1,0 +1,7 @@
+{
+  "name": "gcc_mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
