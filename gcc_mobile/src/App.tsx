@@ -8,20 +8,16 @@ import {
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
-  IonTabs,
-  IonButtons,
-  IonHeader,
-  IonImg
+  IonTabs
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
+import { ellipse, triangle, helpCircle, square } from 'ionicons/icons';
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
+
 import Tab3 from './pages/Tab3';
 import Tab4 from './pages/Tab4';
 import Tab5 from './pages/Tab5';
-
-
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -41,25 +37,28 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import FaqTab from './pages/FaqTab';
 
 
 const App: React.FC = () => (
-  
+
   <IonApp>
-    
+
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
           <Route path="/tab1" component={Tab1} exact={true} />
           <Route path="/tab2" component={Tab2} exact={true} />
-          <Route path="/tab3" component={Tab3} exact={true}/>
+
+          <Route path="/faqs" component={FaqTab} />
+          <Route path="/tab3" component={Tab3} exact={true} />
           <Route path="/tab4" component={Tab4} exact={true} />
-          <Route path="/tab5" component={Tab5}  />
+          <Route path="/tab5" component={Tab5} />
           <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
-          
-        
+
+
         </IonRouterOutlet>
-        
+
         <IonTabBar slot="bottom">
           <IonTabButton tab="tab1" href="/tab1">
             <IonIcon icon={triangle} />
@@ -69,25 +68,28 @@ const App: React.FC = () => (
             <IonIcon icon={ellipse} />
             <IonLabel>Leaderboard</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
+
+          <IonTabButton tab="faqs" href="/faqs">
+            <IonIcon icon={helpCircle} />
+            <IonLabel>F.A.Q.</IonLabel>
+          </IonTabButton>
+
+          {/* <IonTabButton tab="tab3" href="/tab3">
             <IonIcon icon={square} />
             <IonLabel>Refer a friend</IonLabel>
-          </IonTabButton>
+          </IonTabButton> */}
           <IonTabButton tab="tab4" href="/tab4">
             <IonIcon icon={ellipse} />
             <IonLabel>Questions</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab5" href="/tab5">
+          {/* <IonTabButton tab="tab5" href="/tab5">
             <IonIcon icon={triangle} />
             <IonLabel>News</IonLabel>
-          </IonTabButton>
+          </IonTabButton> */}
         </IonTabBar>
       </IonTabs>
     </IonReactRouter>
   </IonApp>
 );
-
-
-
 
 export default App;
