@@ -1,7 +1,7 @@
 import { Faq } from '../model/Faq'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import { IonContent, IonCard, IonCardContent, IonIcon, IonItem, IonLabel, IonNote } from '@ionic/react'
+import { IonContent, IonCard, IonCardContent, IonIcon, IonItem, IonLabel } from '@ionic/react'
 import React from 'react'
 import { arrowDownCircleOutline, arrowForwardCircleOutline } from 'ionicons/icons'
 
