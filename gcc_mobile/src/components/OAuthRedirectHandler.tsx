@@ -38,10 +38,10 @@ const OAuthRedirectHandler: React.FC<RouteComponentProps> = ({ location }) => {
   }, [])
 
   if (!code) {
-    return <Redirect to="/tab1" />;
+    return <Redirect to="/profile" />;
   }
 
-  return loading ? <div>Loading...</div> : <Redirect to="/tab1" />;
+  return loading ? <div>Loading...</div> : <Redirect to="/profile" />;
 }
 
 export default OAuthRedirectHandler;

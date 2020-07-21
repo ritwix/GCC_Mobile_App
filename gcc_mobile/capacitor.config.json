@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "gcc_mobile",
+  "appName": "GCC_React",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",
