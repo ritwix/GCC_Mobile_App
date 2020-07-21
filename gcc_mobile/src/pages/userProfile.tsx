@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import { IonContent, IonHeader, IonPage, IonIcon, IonTitle, IonToolbar, IonImg, IonGrid, IonRow, IonCol, IonAvatar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonIcon, IonTitle, IonToolbar, IonImg, IonGrid, IonRow, IonCol } from '@ionic/react';
+import { Score, Contestant } from '../ducks/individualleaderboard'
+import { User } from '../ducks/userProfile'
 
 type Props = {
     user: User
@@ -17,11 +19,12 @@ const BannerProfile = ({user}: Props) => (
     <IonGrid>
        <IonRow>
             <IonCol size="3">
-                {/* <IonAvatar  src={user.gitAvatar} circular />     */}
                 <img src={user.gitAvatar} />
             </IonCol>
             <IonCol size="6">
                 <IonHeader>{user.name}</IonHeader>
+                <IonHeader>{user.positionWithinTeam} {user.team}</IonHeader>
+                <IonHeader>{user.region}</IonHeader>
                     {/* <Header.Content as="h2">{user.name}</Header.Content>
                     <Header.Subheader>{positionWithinTeam(user.positionWithinTeam, user.team)}</Header.Subheader>
                     <Header.Subheader>{`#${user.position} in ${getFullNameForServerName(user.region)}`}</Header.Subheader> */}                
@@ -50,54 +53,54 @@ const socialMedia = (contestantLoggedIn: string, userId: string) => {
 }
 
 export const tableHeader = () => (
-    <Table.Header>
-        <Table.HeaderCell>
+    <IonRow>
+        <IonCol>
             Question
-        </Table.HeaderCell>
-        <Table.HeaderCell>
+        </IonCol>
+        <IonCol>
             Correct
-        </Table.HeaderCell>
-        <Table.HeaderCell>
+        </IonCol>
+        <IonCol>
             Incorrect
-        </Table.HeaderCell>
-        <Table.HeaderCell>
+        </IonCol>
+        <IonCol>
             Timed Out
-        </Table.HeaderCell>
-        <Table.HeaderCell>
+        </IonCol>
+        <IonCol>
             Total
-        </Table.HeaderCell>
-    </Table.Header>
+        </IonCol>
+    </IonRow>
 )
 
 const tableContent = (score: Score) => (
-    <Table.Row>
-        <Table.Cell className={'csBold'}>
+    <IonRow>
+        <IonCol className={'csBold'}>
             {score.questionNumber}
-        </Table.Cell>
-        <Table.Cell>
+        </IonCol>
+        <IonCol>
             {score.correct}
-        </Table.Cell>
-        <Table.Cell>
+        </IonCol>
+        <IonCol>
             {score.incorrect}
-        </Table.Cell>
-        <Table.Cell>
+        </IonCol>
+        <IonCol>
             {score.timedOut}
-        </Table.Cell>
-        <Table.Cell className={'csBold'}>
+        </IonCol>
+        <IonCol className={'csBold'}>
             {score.total.toFixed(2)}
-        </Table.Cell>
-    </Table.Row>
+        </IonCol>
+    </IonRow>
 )
 
 const TestTable = (scores: Score[]) => (
-    <Table basic unstackable>
+    <IonGrid>
         {tableHeader()}
         {scores.map(tableContent)}
-    </Table>
+    </IonGrid>
 )
 
 const UserPage: React.FC = () => {
-// const UserPage = ({ details, userId, region, reloadUser, match, userLoading, currentGraph, changeGraph, loggedInContestant }: Props) => {
+// const UserPage: React.FC = ({ details, userId, region, reloadUser, match, userLoading, currentGraph, changeGraph, loggedInContestant }: Props) => {
     // if (details == null || userId !== match.params.id) {
     //     if (!userLoading) {
     //         reloadUser(region, match.params.id)
@@ -109,6 +112,7 @@ const UserPage: React.FC = () => {
     //     )
     // }
     // const user = details as User
+    const user : User;
     return (
         <IonPage>
             <IonContent>
@@ -120,18 +124,18 @@ const UserPage: React.FC = () => {
                 </IonGrid> */}
             <IonGrid>
                 <IonRow>
-                    <IonCol width={7} floated='left'>
+                    <IonCol size="7">
                         <IonGrid>
                             <IonRow>
                                 <BannerProfile user={user} />
                             </IonRow>
                             <IonRow>
-                                {TestTable(user.scores)}
+                                {/* {TestTable(user.scores)} */}
                             </IonRow>
-                            {socialMedia(loggedInContestant, userId)}
+                            {/* {socialMedia(loggedInContestant, userId)} */}
                         </IonGrid>
                     </IonCol>
-                    <IonCol width={8} floated='right'>
+                    {/* <IonCol width={8} floated='right'>
                         {renderGraph(currentGraph, match.params.id)}
                         <Pager
                             handlePrevious={() => changeGraph(currentGraph - 1, match.params.id)}
@@ -140,7 +144,7 @@ const UserPage: React.FC = () => {
                             currentItem={currentGraph}
                             total={3}
                         />
-                    </IonCol>
+                    </IonCol> */}
                 </IonRow>
             </IonGrid>
 
