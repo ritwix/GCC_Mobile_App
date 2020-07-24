@@ -14,6 +14,8 @@ import { ellipse, square, triangle } from 'ionicons/icons';
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
+import IndLeaderboard from './pages/IndividualLeaderboard';
+import UniLeaderboard from './pages/TeamLeaderboard';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -42,6 +44,7 @@ const App: React.FC = () => (
           <Route path="/tab1" component={Tab1} exact={true} />
           <Route path="/tab2" component={Tab2} exact={true} />
           <Route path="/tab3" component={Tab3} />
+          <Route path="/Leaderboard" component={UniLeaderboard} />
           <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
@@ -56,6 +59,10 @@ const App: React.FC = () => (
           <IonTabButton tab="tab3" href="/tab3">
             <IonIcon icon={square} />
             <IonLabel>Tab 3</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="Leaderboard" href="/Leaderboard">
+            <IonIcon icon={square} />
+            <IonLabel>Leaderboard</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
