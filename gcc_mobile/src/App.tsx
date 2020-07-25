@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { constructor } from 'react';
 import './App.css';
 import { Redirect, Route } from 'react-router-dom';
 import {
@@ -14,12 +14,12 @@ import {
   IonImg
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
+import { ellipse, square, triangle, downloadSharp } from 'ionicons/icons';
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
-import Tab4 from './pages/Tab4';
-import Tab5 from './pages/Tab5';
+import Questions from './pages/Questions';
+import HowToPlay from './pages/HowToPlay';
 
 
 
@@ -42,6 +42,10 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
+/*screen orientation*/
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+
+
 
 const App: React.FC = () => (
   
@@ -53,8 +57,8 @@ const App: React.FC = () => (
           <Route path="/tab1" component={Tab1} exact={true} />
           <Route path="/tab2" component={Tab2} exact={true} />
           <Route path="/tab3" component={Tab3} exact={true}/>
-          <Route path="/tab4" component={Tab4} exact={true} />
-          <Route path="/tab5" component={Tab5}  />
+          <Route path="/Questions" component={Questions} exact={true} />
+          <Route path="/HowToPlay" component={HowToPlay}  />
           <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
           
         
@@ -73,13 +77,13 @@ const App: React.FC = () => (
             <IonIcon icon={square} />
             <IonLabel>Refer a friend</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab4" href="/tab4">
+          <IonTabButton tab="Questions" href="/Questions">
             <IonIcon icon={ellipse} />
             <IonLabel>Questions</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab5" href="/tab5">
+          <IonTabButton tab="HowToPlay" href="/HowToPlay">
             <IonIcon icon={triangle} />
-            <IonLabel>News</IonLabel>
+            <IonLabel>How to play</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

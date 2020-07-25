@@ -1,0 +1,29 @@
+.csBold {
+    display: block;
+    font-family: CS-Body;
+    font-weight: 700;
+    color: #000;
+  }
+  
+  .title{
+    font-size: 30px;
+}
+
+.BulletPoints{
+  display: block;
+  font-weight: 700;
+  font-size: larger;
+}
+
+.Points{
+  padding-left: 20px;
+}
+
+.GreyBar{
+  background-color: #f1f2f2;
+}
+
+.GreyBarColumn{
+  display:block;
+  font-weight: 600;
+}
