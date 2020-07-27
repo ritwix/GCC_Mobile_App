@@ -10,8 +10,8 @@ import ReactMarkdown from "react-markdown";
 const sendGetRequest = () => {
 
   return axios({
-    url: "https://cscc-gl.herokuapp.com/allquestions", //last year questions
-   // url: "https://gcc-global-dev.herokuapp.com/allquestions", //  this year questions
+    //url: "https://cscc-gl.herokuapp.com/allquestions", //last year questions
+    url: "https://gcc-global-dev.herokuapp.com/allquestions", //  this year questions
     method: 'get'
   }).then(response => {
 
