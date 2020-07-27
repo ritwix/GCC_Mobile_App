@@ -1,6 +1,6 @@
 import React, { constructor } from 'react';
 import './App.css';
-import { Redirect, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import {
   IonApp,
   IonIcon,
@@ -8,20 +8,21 @@ import {
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
-  IonTabs,
-  IonButtons,
-  IonHeader,
-  IonImg
+  IonTabs
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle, downloadSharp } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
+
+import { ellipse, triangle, helpCircle } from 'ionicons/icons';
+
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
 import Questions from './pages/Questions';
 import HowToPlay from './pages/HowToPlay';
+import Profile from './pages/Profile';
 
 
+import OAuthRedirectHandler from './components/OAuthRedirectHandler';
+import { UserContextInit } from './context/user';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -42,42 +43,43 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-/*screen orientation*/
-import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 
+import FaqTab from './pages/FaqTab';
 
 const App: React.FC = () => (
-  
-  <IonApp>
-    
-    <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route path="/tab1" component={Tab1} exact={true} />
-          <Route path="/tab2" component={Tab2} exact={true} />
-          <Route path="/tab3" component={Tab3} exact={true}/>
-          <Route path="/Questions" component={Questions} exact={true} />
+  <UserContextInit>
+    <IonApp>
+      <IonReactRouter>
+        <IonTabs>
+          <IonRouterOutlet>
+            <Route path="/profile" component={Profile} exact={true} />
+            <Route path="/tab2" component={Tab2} exact={true} />
+            <Route path="/faqs" component={FaqTab} />
+            <Route path="/tab3" component={Tab3} exact={true} />
+            <Route path="/Questions" component={Questions} exact={true} />
           <Route path="/HowToPlay" component={HowToPlay}  />
-          <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
-          
-        
-        </IonRouterOutlet>
-        
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon icon={triangle} />
-            <IonLabel>My profile</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon icon={ellipse} />
-            <IonLabel>Leaderboard</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
+            <Route path="/" component={OAuthRedirectHandler} />
+          </IonRouterOutlet>
+
+          <IonTabBar slot="bottom">
+            <IonTabButton tab="profile" href="/profile">
+              <IonIcon icon={triangle} />
+              <IonLabel>My profile</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="tab2" href="/tab2">
+              <IonIcon icon={ellipse} />
+              <IonLabel>Leaderboard</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="faqs" href="/faqs">
+              <IonIcon icon={helpCircle} />
+              <IonLabel>F.A.Q.</IonLabel>
+            </IonTabButton>
+            {/* <IonTabButton tab="tab3" href="/tab3">
             <IonIcon icon={square} />
             <IonLabel>Refer a friend</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="Questions" href="/Questions">
+          </IonTabButton> */}
+            <IonTabButton tab="Questions" href="/Questions">
             <IonIcon icon={ellipse} />
             <IonLabel>Questions</IonLabel>
           </IonTabButton>
@@ -85,13 +87,11 @@ const App: React.FC = () => (
             <IonIcon icon={triangle} />
             <IonLabel>How to play</IonLabel>
           </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
-  </IonApp>
+          </IonTabBar>
+        </IonTabs>
+      </IonReactRouter>
+    </IonApp>
+  </UserContextInit>
 );
-
-
-
 
 export default App;
