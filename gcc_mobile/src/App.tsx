@@ -8,18 +8,17 @@ import {
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
-  IonTabs
+  IonTabs,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
 import { ellipse, triangle, helpCircle } from 'ionicons/icons';
 
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import Leaderboard from './pages/Leaderboard';
+import ReferAFriend from './pages/ReferAFriend';
 import Questions from './pages/Questions';
 import HowToPlay from './pages/HowToPlay';
 import Profile from './pages/Profile';
-
 
 import OAuthRedirectHandler from './components/OAuthRedirectHandler';
 import { UserContextInit } from './context/user';
@@ -43,8 +42,6 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-
-
 import FaqTab from './pages/FaqTab';
 
 const App: React.FC = () => (
@@ -54,11 +51,11 @@ const App: React.FC = () => (
         <IonTabs>
           <IonRouterOutlet>
             <Route path="/profile" component={Profile} exact={true} />
-            <Route path="/tab2" component={Tab2} exact={true} />
+            <Route path="/leaderboard" component={Leaderboard} exact={true} />
             <Route path="/faqs" component={FaqTab} />
-            <Route path="/tab3" component={Tab3} exact={true} />
-            <Route path="/Questions" component={Questions} exact={true} />
-          <Route path="/HowToPlay" component={HowToPlay}  />
+            <Route path="/referAFriend" component={ReferAFriend} exact={true} />
+            <Route path="/questions" component={Questions} exact={true} />
+            <Route path="/howToPlay" component={HowToPlay} />
             <Route path="/" component={OAuthRedirectHandler} />
           </IonRouterOutlet>
 
@@ -67,7 +64,7 @@ const App: React.FC = () => (
               <IonIcon icon={triangle} />
               <IonLabel>My profile</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="tab2" href="/tab2">
+            <IonTabButton tab="leaderboard" href="/leaderboard">
               <IonIcon icon={ellipse} />
               <IonLabel>Leaderboard</IonLabel>
             </IonTabButton>
@@ -75,18 +72,18 @@ const App: React.FC = () => (
               <IonIcon icon={helpCircle} />
               <IonLabel>F.A.Q.</IonLabel>
             </IonTabButton>
-            {/* <IonTabButton tab="tab3" href="/tab3">
+            {/* <IonTabButton tab="referAFriend" href="/referAFriend">
             <IonIcon icon={square} />
             <IonLabel>Refer a friend</IonLabel>
           </IonTabButton> */}
-            <IonTabButton tab="Questions" href="/Questions">
-            <IonIcon icon={ellipse} />
-            <IonLabel>Questions</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="HowToPlay" href="/HowToPlay">
-            <IonIcon icon={triangle} />
-            <IonLabel>How to play</IonLabel>
-          </IonTabButton>
+            <IonTabButton tab="Questions" href="/questions">
+              <IonIcon icon={ellipse} />
+              <IonLabel>Questions</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="HowToPlay" href="/howToPlay">
+              <IonIcon icon={triangle} />
+              <IonLabel>How to play</IonLabel>
+            </IonTabButton>
           </IonTabBar>
         </IonTabs>
       </IonReactRouter>
