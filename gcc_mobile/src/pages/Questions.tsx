@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   IonContent,
   IonButton,
@@ -19,17 +19,17 @@ import {
   IonText,
   IonItemSliding,
   IonImg,
-} from "@ionic/react";
-import "./Questions.css";
-import axios from "axios";
-import logo from "../CSBlue.png";
-import ReactMarkdown from "react-markdown";
+} from '@ionic/react';
+import './Questions.css';
+import axios from 'axios';
+import logo from '../CSBlue.png';
+import ReactMarkdown from 'react-markdown';
 
 const sendGetRequest = () => {
   return axios({
-    url: "https://cscc-gl.herokuapp.com/allquestions", //last year questions
-    // url: "https://gcc-global-dev.herokuapp.com/allquestions", //  this year questions
-    method: "get",
+    //url: "https://cscc-gl.herokuapp.com/allquestions", //last year questions
+    url: 'https://gcc-global-dev.herokuapp.com/allquestions', //  this year questions
+    method: 'get',
   }).then((response) => {
     console.log(response);
     return response.data;
@@ -44,8 +44,8 @@ const DisplayQuestion = (props: { visib: number; q: number }) => {
       <>
         <IonList color="primary">
           {question.map((q) => {
-            return q["questionNumber"] == props.q ? (
-              <ReactMarkdown source={q["questionText"]} />
+            return q['questionNumber'] == props.q ? (
+              <ReactMarkdown source={q['questionText']} />
             ) : null;
           })}
         </IonList>
