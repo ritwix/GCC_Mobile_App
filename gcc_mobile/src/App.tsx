@@ -12,7 +12,7 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
-import { ellipse, triangle, helpCircle } from 'ionicons/icons';
+import { ellipse, triangle, helpCircle, newspaperOutline } from 'ionicons/icons';
 
 import Leaderboard from './pages/Leaderboard';
 import ReferAFriend from './pages/ReferAFriend';
@@ -45,6 +45,8 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 
 import FaqTab from './pages/FaqTab';
+import NewsTab from './pages/NewsTab';
+import NewsTabDetail from './pages/NewsTabDetail';
 
 const App: React.FC = () => (
   <UserContextInit>
@@ -58,7 +60,9 @@ const App: React.FC = () => (
               component={UniLeaderboard}
               exact={true}
             />
-            <Route path="/faqs" component={FaqTab} />
+            <Route path="/faqs" component={FaqTab} exact={true}/>
+            <Route path="/:tab(news)" component={NewsTab} exact={true}/>
+            <Route path="/:tab(news)/:id" component={NewsTabDetail}/>
             <Route path="/referAFriend" component={ReferAFriend} exact={true} />
             <Route path="/questions" component={Questions} exact={true} />
             <Route path="/howToPlay" component={HowToPlay} />
@@ -77,6 +81,10 @@ const App: React.FC = () => (
             <IonTabButton tab="faqs" href="/faqs">
               <IonIcon icon={helpCircle} />
               <IonLabel>F.A.Q.</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="news" href="/news">
+              <IonIcon icon={newspaperOutline} />
+              <IonLabel>News</IonLabel>
             </IonTabButton>
             {/* <IonTabButton tab="referAFriend" href="/referAFriend">
             <IonIcon icon={square} />

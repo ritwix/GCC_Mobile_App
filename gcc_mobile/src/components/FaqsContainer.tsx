@@ -33,12 +33,18 @@ const FaqsContainer: React.FC = () => {
     const [faqs, setFaqs] = useState<Faq[]>()
 
     useEffect(() => {
+        getFaqs();
+    }, [])
+
+    const getFaqs = () => {
+        setFaqs([]);
+
         axios.get<Faq[]>(API_URL)
             .then(({ data }) => {
                 setFaqs(data)
                 console.log(data)
             })
-    }, [])
+    }
 
     return (
         <IonContent>
