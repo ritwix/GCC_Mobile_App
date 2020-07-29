@@ -19,6 +19,8 @@ import ReferAFriend from './pages/ReferAFriend';
 import Questions from './pages/Questions';
 import HowToPlay from './pages/HowToPlay';
 import Profile from './pages/Profile';
+import IndLeaderboard from './pages/IndividualLeaderboard';
+import UniLeaderboard from './pages/TeamLeaderboard';
 
 import OAuthRedirectHandler from './components/OAuthRedirectHandler';
 import { UserContextInit } from './context/user';
@@ -51,7 +53,11 @@ const App: React.FC = () => (
         <IonTabs>
           <IonRouterOutlet>
             <Route path="/profile" component={Profile} exact={true} />
-            <Route path="/leaderboard" component={Leaderboard} exact={true} />
+            <Route
+              path="/leaderboard"
+              component={UniLeaderboard}
+              exact={true}
+            />
             <Route path="/faqs" component={FaqTab} />
             <Route path="/referAFriend" component={ReferAFriend} exact={true} />
             <Route path="/questions" component={Questions} exact={true} />
