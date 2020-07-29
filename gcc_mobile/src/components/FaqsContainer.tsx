@@ -40,17 +40,25 @@ const FaqsContainer: React.FC = () => {
             })
     }, [])
 
-    return (
-        <IonContent>
-            {
-                faqs?.map((faq) => (
-                    <FaqContainer faq={faq}>
+    if (faqs?.length > 0) {
+        return (
+            <IonContent>
+                {
+                    faqs?.map((faq) => (
+                        <FaqContainer faq={faq}>
 
-                    </FaqContainer>
-                ))
-            }
-        </IonContent>
-    );
+                        </FaqContainer>
+                    ))
+                }
+            </IonContent>
+        );
+    } else {
+        return (
+            <IonContent>
+                <IonLabel>No FAQs found. Please try after some time...</IonLabel>
+            </IonContent>
+        )
+    }
 };
 
 export default FaqsContainer;
