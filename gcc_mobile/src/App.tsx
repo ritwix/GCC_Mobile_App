@@ -12,15 +12,18 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
-import { ellipse, triangle, helpCircle, newspaperOutline } from 'ionicons/icons';
+import {
+  ellipse,
+  triangle,
+  helpCircle,
+  newspaperOutline,
+} from 'ionicons/icons';
 
-import Leaderboard from './pages/Leaderboard';
 import ReferAFriend from './pages/ReferAFriend';
 import Questions from './pages/Questions';
 import HowToPlay from './pages/HowToPlay';
 import Profile from './pages/Profile';
-import IndLeaderboard from './pages/IndividualLeaderboard';
-import UniLeaderboard from './pages/TeamLeaderboard';
+import TeamLeaderboard from './pages/TeamLeaderboard';
 
 import OAuthRedirectHandler from './components/OAuthRedirectHandler';
 import { UserContextInit } from './context/user';
@@ -57,12 +60,12 @@ const App: React.FC = () => (
             <Route path="/profile" component={Profile} exact={true} />
             <Route
               path="/leaderboard"
-              component={UniLeaderboard}
+              component={TeamLeaderboard}
               exact={true}
             />
-            <Route path="/faqs" component={FaqTab} exact={true}/>
-            <Route path="/:tab(news)" component={NewsTab} exact={true}/>
-            <Route path="/:tab(news)/:id" component={NewsTabDetail}/>
+            <Route path="/faqs" component={FaqTab} exact={true} />
+            <Route path="/:tab(news)" component={NewsTab} exact={true} />
+            <Route path="/:tab(news)/:id" component={NewsTabDetail} />
             <Route path="/referAFriend" component={ReferAFriend} exact={true} />
             <Route path="/questions" component={Questions} exact={true} />
             <Route path="/howToPlay" component={HowToPlay} />

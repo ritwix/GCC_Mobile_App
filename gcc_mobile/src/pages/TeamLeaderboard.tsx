@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import {
   IonContent,
@@ -6,12 +6,9 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  IonGrid,
-  IonRow,
-  IonCol,
 } from '@ionic/react';
-import './IndividualLeaderboard.css';
-import { TeamLeaderContainer } from '../components/LeaderboardContainer';
+import './TeamLeaderboard.css';
+import Table from '../components/Table';
 
 const GetTeamLeader = (from: number) => {
   return axios({
@@ -24,45 +21,130 @@ const GetTeamLeader = (from: number) => {
   });
 };
 
+enum Leaderboard {
+  individual,
+  city,
+}
+
+const mockData = {
+  [Leaderboard.individual]: {
+    headers: ['Rank', 'Name', 'Score'],
+    data: [
+      {
+        Rank: '1',
+        Name: 'Team A',
+        Score: '100',
+      },
+      {
+        Rank: '2',
+        Name: 'Team B',
+        Score: '90',
+      },
+      {
+        Rank: '3',
+        Name: 'Team C',
+        Score: '50',
+      },
+      {
+        Rank: '4',
+        Name: 'Team D',
+        Score: '40',
+      },
+      {
+        Rank: '5',
+        Name: 'Team E',
+        Score: '35',
+      },
+      {
+        Rank: '6',
+        Name: 'Team F',
+        Score: '20',
+      },
+    ],
+  },
+  [Leaderboard.city]: {
+    headers: ['Rank', 'City', 'Score'],
+    data: [
+      {
+        Rank: '1',
+        City: 'Hong Kong',
+        Score: '100',
+      },
+      {
+        Rank: '2',
+        City: 'Pune',
+        Score: '90',
+      },
+      {
+        Rank: '3',
+        City: 'London',
+        Score: '50',
+      },
+      {
+        Rank: '4',
+        City: 'New York',
+        Score: '40',
+      },
+      {
+        Rank: '5',
+        City: 'Wakanda',
+        Score: '35',
+      },
+    ],
+  },
+};
+
+const selectedBtnStyle = {
+  backgroundColor: 'black',
+  color: 'white',
+};
+
 const TeamLeaderboard: React.FC = () => {
-  const [TeamItems, setTeamItems] = React.useState([]);
-  useEffect(() => {
-    GetTeamLeader(0).then((data) => setTeamItems(data.contestants));
-  }, []);
+  // disable for now due to no cross origin policy error
+  // const [TeamItems, setTeamItems] = React.useState([]);
+  // useEffect(() => {
+  //   GetTeamLeader(0).then((data) => setTeamItems(data.contestants));
+  // }, []);
+
+  const [leaderboard, setLeaderboard] = useState<Leaderboard>(
+    Leaderboard.individual
+  );
+
+  const headers = mockData[leaderboard].headers;
+  const data = mockData[leaderboard].data;
 
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>University Leaderboard</IonTitle>
+          <IonTitle>Leaderboard</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent>
+      <IonContent className="content">
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Team Leaderboard</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonGrid>
-          <IonRow className="ind_leaderboard_header">
-            <IonCol>Rank</IonCol>
-            <IonCol>University</IonCol>
-            <IonCol>Score</IonCol>
-          </IonRow>
-          <TeamLeaderContainer Rank="1" Score="100" Team="HKUST" />
-          <TeamLeaderContainer Rank="2" Score="99" Team="MIT" />
-          <TeamLeaderContainer Rank="2**32" Score="-2**32+1" Team="HKU" />
-          {/* {TeamItems.map((item) => {
-            return (
-              <TeamLeaderContainer
-                key={item['id']}
-                Rank={item['pos']}
-                Team={item['id']}
-                Score={item['total']}
-              />
-            );
-          })} */}
-        </IonGrid>
+        <div className="content">
+          <button
+            className="cs-button"
+            style={
+              leaderboard === Leaderboard.individual ? selectedBtnStyle : {}
+            }
+            onClick={() => setLeaderboard(Leaderboard.individual)}
+          >
+            Individual
+          </button>
+          <button
+            className="cs-button"
+            style={leaderboard === Leaderboard.city ? selectedBtnStyle : {}}
+            onClick={() => setLeaderboard(Leaderboard.city)}
+          >
+            City
+          </button>
+          <Table headers={headers} data={data} />
+        </div>
       </IonContent>
     </IonPage>
   );
