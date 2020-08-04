@@ -6,21 +6,12 @@ import {
   IonTitle,
   IonToolbar,
   IonGrid,
-  IonList,
-  IonItem,
   IonCol,
   IonRow,
-  IonLabel,
-  IonListHeader,
-  IonCardHeader,
   IonImg,
-  IonTextarea,
   IonText,
 } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
 import './HowToPlay.css';
-import logo from '../CSBlue.png';
-import { grid } from 'ionicons/icons';
 import prizes from '../image/icons_large_merit.png';
 import questions from '../image/icons_large_question.png';
 import globe from '../image/brandnet/icons_large_global.png';
@@ -99,100 +90,40 @@ const HowToPlay: React.FC = () => {
         <br />
         <br />
 
-        <IonGrid className="GreyBar">
-          <IonRow>
-            <IonCol size="3">
-              <IonGrid>
-                <IonRow>
-                  <IonCol size="2">
-                    <IonImg
-                      src={calendar}
-                      style={{ height: '50px', float: 'right' }}
-                    />
-                  </IonCol>
-                  <IonCol size="4" style={{ paddingLeft: '0' }}>
-                    <IonText className="GreyBarColumn">
-                      {' '}
-                      1 <br /> Week
-                    </IonText>
-                  </IonCol>
-                </IonRow>
-              </IonGrid>
-            </IonCol>
-            <IonCol size="3">
-              <IonGrid>
-                <IonRow>
-                  <IonCol size="2">
-                    <IonImg
-                      src={globe}
-                      style={{ height: '50px', float: 'right' }}
-                    />
-                  </IonCol>
-                  <IonCol size="4" style={{ paddingLeft: '0' }}>
-                    <IonText className="GreyBarColumn">
-                      {' '}
-                      6 <br /> Regions
-                    </IonText>
-                  </IonCol>
-                </IonRow>
-              </IonGrid>
-            </IonCol>
-            <IonCol size="3">
-              <IonGrid>
-                <IonRow>
-                  <IonCol size="2">
-                    <IonImg
-                      src={questions}
-                      style={{ height: '50px', float: 'right' }}
-                    />
-                  </IonCol>
-                  <IonCol size="4" style={{ paddingLeft: '0' }}>
-                    <IonText className="GreyBarColumn">
-                      {' '}
-                      6 <br /> Questions
-                    </IonText>
-                  </IonCol>
-                </IonRow>
-              </IonGrid>
-            </IonCol>
-            <IonCol size="3">
-              <IonGrid>
-                <IonRow>
-                  <IonCol size="2">
-                    <IonImg
-                      src={prizes}
-                      style={{ height: '50px', float: 'right' }}
-                    />
-                  </IonCol>
-                  <IonCol size="4" style={{ paddingLeft: '0' }}>
-                    <IonText className="GreyBarColumn">
-                      {' '}
-                      3 <br /> Prizes
-                    </IonText>
-                  </IonCol>
-                </IonRow>
-              </IonGrid>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol size="3">
+        <div className="GreyBar">
+          <div>
+            <IonImg src={calendar} style={{ height: '50px' }} />
+            <div className="header"> 1 Week </div>
+            <div>
               The challenge will run for 1 week, from December 11th to December
               18th.
-            </IonCol>
-            <IonCol size="3">
+            </div>
+          </div>
+          <div>
+            <IonImg src={globe} style={{ height: '50px' }} />
+            <div className="header">6 Regions</div>
+            <div>
               Competition is run across Hong Kong & Singapore, India, Poland,
               Switzerland, UK & Ireland, and US.
-            </IonCol>
-            <IonCol size="3">
+            </div>
+          </div>
+          <div>
+            <IonImg src={questions} style={{ height: '50px' }} />
+            <div className="header">6 Questions</div>
+            <div>
               Six original questions for you to answer using any of four popular
               programming languages.
-            </IonCol>
-            <IonCol size="3">
+            </div>
+          </div>
+          <div>
+            <IonImg src={prizes} style={{ height: '50px' }} />
+            <div className="header">3 Prizes</div>
+            <div>
               There are prizes for the best individual, best team (of up to
               three), as well as the best overall region.
-            </IonCol>
-          </IonRow>
-        </IonGrid>
+            </div>
+          </div>
+        </div>
 
         <br />
         <br />

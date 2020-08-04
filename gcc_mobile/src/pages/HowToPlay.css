@@ -20,7 +20,21 @@
 }
 
 .GreyBar {
+  padding: 10px;
   background-color: #f1f2f2;
+}
+
+.GreyBar > div {
+  text-align: center;
+}
+
+.GreyBar > div:not(:last-child) {
+  margin-bottom: 2em;
+}
+
+.GreyBar .header {
+  font-weight: bold;
+  margin-top: 1em;
 }
 
 .GreyBarColumn {
