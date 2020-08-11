@@ -90,6 +90,7 @@ const HowToPlay: React.FC = () => {
         <br />
         <br />
 
+
         <div className="GreyBar">
           <div>
             <IonImg src={calendar} style={{ height: '50px' }} />
@@ -125,6 +126,7 @@ const HowToPlay: React.FC = () => {
           </div>
         </div>
 
+
         <br />
         <br />
 
@@ -133,7 +135,19 @@ const HowToPlay: React.FC = () => {
         >
           Prizes
         </IonText>
-        <IonText>TBA</IonText>
+
+        <IonText >
+            <h2 style={{paddingLeft:20 , backgroundColor: '#f1f2f2'}}> Global Prizes</h2>
+            <div style={{paddingLeft:20}}> Global Challenge Winner</div>
+            <br></br>
+            <div className='Prizes'>1.Macbook Pro</div>
+            <h2 style={{paddingLeft:20, backgroundColor: '#f1f2f2'}}>Regional Prizes</h2>
+            <div style={{paddingLeft:20}}>The top three coders from each region will win the following prizes:</div>
+            <br></br>
+                <div  className='Prizes' >1. iPhone</div>
+                <div className='Prizes'>2. Smartwatch</div>
+                <div className='Prizes'>3. Portable bluetooth speaker</div>
+        </IonText>
 
         <br />
         <br />
@@ -144,7 +158,7 @@ const HowToPlay: React.FC = () => {
           <div>About the Coding Challenge</div>
         </IonText>
         <IonText>
-          <p>
+          <p style={{paddingLeft:20}}>
             The Global Coding Challenge is an online coding competition between
             TAs across the globe. Over 1 week, between 11th Dec and 18th Dec,
             TAs will be able to attempt solutions to siz coding problems. TAs
@@ -156,7 +170,8 @@ const HowToPlay: React.FC = () => {
             Global Coding Champion will be announced.
           </p>
 
-          <p>
+          <p style={{paddingLeft:20}}>
+
             The competition has been entirely designed, built and run by our
             technology graduates and interns.
           </p>
