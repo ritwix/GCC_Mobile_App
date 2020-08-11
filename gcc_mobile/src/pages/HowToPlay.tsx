@@ -90,6 +90,7 @@ const HowToPlay: React.FC = () => {
         <br />
         <br />
 
+
         <div className="GreyBar">
           <div>
             <IonImg src={calendar} style={{ height: '50px' }} />
@@ -125,6 +126,7 @@ const HowToPlay: React.FC = () => {
           </div>
         </div>
 
+
         <br />
         <br />
 
@@ -133,6 +135,7 @@ const HowToPlay: React.FC = () => {
         >
           Prizes
         </IonText>
+
         <IonText >
             <h2 style={{paddingLeft:20 , backgroundColor: '#f1f2f2'}}> Global Prizes</h2>
             <div style={{paddingLeft:20}}> Global Challenge Winner</div>
@@ -168,6 +171,7 @@ const HowToPlay: React.FC = () => {
           </p>
 
           <p style={{paddingLeft:20}}>
+
             The competition has been entirely designed, built and run by our
             technology graduates and interns.
           </p>
