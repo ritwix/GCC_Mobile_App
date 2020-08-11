@@ -1,29 +1,49 @@
 .csBold {
-    display: block;
-    font-family: CS-Body;
-    font-weight: 700;
-    color: #000;
-  }
-  
-  .title{
-    font-size: 30px;
+  display: block;
+  font-family: CS-Body;
+  font-weight: 700;
+  color: #000;
 }
 
-.BulletPoints{
+.title {
+  font-size: 30px;
+}
+
+.BulletPoints {
   display: block;
   font-weight: 700;
   font-size: larger;
 }
 
-.Points{
+.Points {
   padding-left: 20px;
 }
 
-.GreyBar{
+.GreyBar {
+  padding: 10px;
   background-color: #f1f2f2;
 }
 
-.GreyBarColumn{
-  display:block;
+.GreyBar > div {
+  text-align: center;
+}
+
+.GreyBar > div:not(:last-child) {
+  margin-bottom: 2em;
+}
+
+.GreyBar .header {
+  font-weight: bold;
+  margin-top: 1em;
+}
+
+.GreyBarColumn {
+  display: block;
   font-weight: 600;
+}
+
+.Prizes{
+  padding-left: 20px;
+  font-weight: bold;
+  font-size: larger;
 }
