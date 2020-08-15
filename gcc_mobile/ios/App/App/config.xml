@@ -3,11 +3,12 @@
   <access origin="*" />
   
   <feature name="InAppBrowser">
-    <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser"/>
+    <param name="ios-package" value="CDVWKInAppBrowser"/>
+    <param name="onload" value="true"/>
   </feature>
 
   <feature name="CDVOrientation">
-    <param name="android-package" value="cordova.plugins.screenorientation.CDVOrientation"/>
+    <param name="ios-package" value="CDVOrientation"/>
   </feature>
 
   

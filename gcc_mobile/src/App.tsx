@@ -1,6 +1,6 @@
-import React, { constructor } from 'react';
+import React from 'react';
 import './App.css';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import {
   IonApp,
   IonIcon,
@@ -25,7 +25,6 @@ import HowToPlay from './pages/HowToPlay';
 import Profile from './pages/Profile';
 import TeamLeaderboard from './pages/TeamLeaderboard';
 
-import OAuthRedirectHandler from './components/OAuthRedirectHandler';
 import { UserContextInit } from './context/user';
 
 /* Core CSS required for Ionic components to work properly */
@@ -69,7 +68,11 @@ const App: React.FC = () => (
             <Route path="/referAFriend" component={ReferAFriend} exact={true} />
             <Route path="/questions" component={Questions} exact={true} />
             <Route path="/howToPlay" component={HowToPlay} />
-            <Route path="/" component={OAuthRedirectHandler} />
+            <Route
+              path="/"
+              render={() => <Redirect to="/profile" />}
+              exact={true}
+            />
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom">
@@ -89,10 +92,6 @@ const App: React.FC = () => (
               <IonIcon icon={newspaperOutline} />
               <IonLabel>News</IonLabel>
             </IonTabButton>
-            {/* <IonTabButton tab="referAFriend" href="/referAFriend">
-            <IonIcon icon={square} />
-            <IonLabel>Refer a friend</IonLabel>
-          </IonTabButton> */}
             <IonTabButton tab="Questions" href="/questions">
               <IonIcon icon={ellipse} />
               <IonLabel>Questions</IonLabel>
