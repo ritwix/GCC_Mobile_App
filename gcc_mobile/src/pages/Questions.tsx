@@ -127,6 +127,36 @@ const Questions: React.FC = () => {
             <IonLabel position="fixed">Question 6</IonLabel>
             <DisplayQuestion visib={visible} q={6} />
           </IonItem>
+          <IonItem
+            button
+            onClick={() => {
+              visible !== 7 ? setVisible(7) : setVisible(0);
+            }}
+          >
+            <IonLabel position="fixed">Question 7</IonLabel>
+
+            <DisplayQuestion visib={visible} q={7} />
+          </IonItem>
+          <IonItem
+            button
+            onClick={() => {
+              visible !== 8 ? setVisible(8) : setVisible(0);
+            }}
+          >
+            <IonLabel position="fixed">Question 8</IonLabel>
+
+            <DisplayQuestion visib={visible} q={8} />
+          </IonItem>
+          <IonItem
+            button
+            onClick={() => {
+              visible !== 9 ? setVisible(9) : setVisible(0);
+            }}
+          >
+            <IonLabel position="fixed">Question 9</IonLabel>
+
+            <DisplayQuestion visib={visible} q={9} />
+          </IonItem>
         </IonList>
       </IonContent>
     </IonPage>
