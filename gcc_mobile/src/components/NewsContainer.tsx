@@ -3,19 +3,23 @@ import { Headlines, Region, Headline } from '../model/News';
 import { IonContent, IonSelect, IonSelectOption, IonLabel } from '@ionic/react';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-
+import { useHistory } from 'react-router-dom';
 interface HeadlineProps {
   headline: Headline;
 }
 
 const HeadlineContainer: React.FC<HeadlineProps> = ({ headline }) => {
+  const history = useHistory();
   return (
-    <li className="news-item">
+    <li
+      className="news-item"
+      onClick={() => {
+        history.push(`/news/${headline.id}`);
+      }}
+    >
       <h2>{headline.title}</h2>
-      <h3>{headline.author}</h3>
+      <h3>Author: {headline.author}</h3>
       <p>{headline.blurb}</p>
-      <Link to={`/news/${headline.id}`}>Read more</Link>
     </li>
   );
 };
