@@ -1,31 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   IonContent,
-  IonButton,
   IonHeader,
   IonPage,
   IonTitle,
   IonToolbar,
-  IonButtons,
-  IonList,
-  IonItem,
-  IonLabel,
-  IonSelect,
-  IonSelectOption,
-  IonRouterOutlet,
-  IonTextarea,
-  IonToggle,
-  IonTab,
-  IonText,
-  IonItemSliding,
-  IonImg,
 } from '@ionic/react';
 import './Questions.css';
 import axios from 'axios';
-import logo from '../CSBlue.png';
+import { arrowDown, arrowForward } from 'ionicons/icons';
 import ReactMarkdown from 'react-markdown';
+import { IonIcon } from '@ionic/react';
 
-const sendGetRequest = () => {
+type Question = {
+  active: boolean;
+  id: string;
+  questionNumber: number;
+  questionText: string;
+};
+
+const fetchQuestions = () => {
   return axios({
     //url: "https://cscc-gl.herokuapp.com/allquestions", //last year questions
     url: 'https://gcc-global-dev.herokuapp.com/allquestions', //  this year questions
@@ -36,28 +30,34 @@ const sendGetRequest = () => {
   });
 };
 
-const DisplayQuestion = (props: { visib: number; q: number }) => {
-  const [question, setQuestion] = useState([]);
-  if (props.visib == props.q) {
-    sendGetRequest().then((data) => setQuestion(data));
-    return (
-      <>
-        <IonList color="primary">
-          {question.map((q) => {
-            return q['questionNumber'] == props.q ? (
-              <ReactMarkdown source={q['questionText']} />
-            ) : null;
-          })}
-        </IonList>
-      </>
-    );
-  } else {
-    return <></>;
-  }
+const Question: React.FC<{ question: Question }> = (props) => {
+  const { question } = props;
+  const [visible, setVisible] = useState(false);
+  return (
+    <li
+      className="question-item"
+      onClick={() => {
+        setVisible((visible) => !visible);
+      }}
+    >
+      <div className="question-number">
+        <h3>Question {question.questionNumber}</h3>
+        <IonIcon icon={arrowDown} hidden={!visible} />
+        <IonIcon icon={arrowForward} hidden={visible} />
+      </div>
+
+      {visible && <ReactMarkdown source={question.questionText} />}
+    </li>
+  );
 };
 
 const Questions: React.FC = () => {
-  const [visible, setVisible] = useState(0);
+  const [questions, setQuestions] = useState<Question[]>([]);
+
+  useEffect(() => {
+    fetchQuestions().then((questions) => setQuestions(questions));
+  }, []);
+
   return (
     <IonPage>
       <IonHeader>
@@ -71,93 +71,11 @@ const Questions: React.FC = () => {
             <IonTitle size="large">Questions</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonList>
-          <IonItem
-            button
-            onClick={() => {
-              visible !== 1 ? setVisible(1) : setVisible(0);
-            }}
-          >
-            <IonLabel position="fixed">Question 1</IonLabel> <br />
-            <DisplayQuestion visib={visible} q={1} />
-          </IonItem>
-          <IonItem
-            button
-            onClick={() => {
-              visible !== 2 ? setVisible(2) : setVisible(0);
-            }}
-          >
-            <IonLabel position="fixed">Question 2</IonLabel>
-
-            <DisplayQuestion visib={visible} q={2} />
-          </IonItem>
-          <IonItem
-            button
-            onClick={() => {
-              visible !== 3 ? setVisible(3) : setVisible(0);
-            }}
-          >
-            <IonLabel position="fixed">Question 3</IonLabel>
-            <DisplayQuestion visib={visible} q={3} />
-          </IonItem>
-          <IonItem
-            button
-            onClick={() => {
-              visible !== 4 ? setVisible(4) : setVisible(0);
-            }}
-          >
-            <IonLabel position="fixed">Question 4</IonLabel>
-            <DisplayQuestion visib={visible} q={4} />
-          </IonItem>
-          <IonItem
-            button
-            onClick={() => {
-              visible !== 5 ? setVisible(5) : setVisible(0);
-            }}
-          >
-            <IonLabel position="fixed">Question 5</IonLabel>
-            <DisplayQuestion visib={visible} q={5} />
-          </IonItem>
-          <IonItem
-            button
-            onClick={() => {
-              visible !== 6 ? setVisible(6) : setVisible(0);
-            }}
-          >
-            <IonLabel position="fixed">Question 6</IonLabel>
-            <DisplayQuestion visib={visible} q={6} />
-          </IonItem>
-          <IonItem
-            button
-            onClick={() => {
-              visible !== 7 ? setVisible(7) : setVisible(0);
-            }}
-          >
-            <IonLabel position="fixed">Question 7</IonLabel>
-
-            <DisplayQuestion visib={visible} q={7} />
-          </IonItem>
-          <IonItem
-            button
-            onClick={() => {
-              visible !== 8 ? setVisible(8) : setVisible(0);
-            }}
-          >
-            <IonLabel position="fixed">Question 8</IonLabel>
-
-            <DisplayQuestion visib={visible} q={8} />
-          </IonItem>
-          <IonItem
-            button
-            onClick={() => {
-              visible !== 9 ? setVisible(9) : setVisible(0);
-            }}
-          >
-            <IonLabel position="fixed">Question 9</IonLabel>
-
-            <DisplayQuestion visib={visible} q={9} />
-          </IonItem>
-        </IonList>
+        <ul>
+          {questions.map((question) => (
+            <Question key={question.id} question={question} />
+          ))}
+        </ul>
       </IonContent>
     </IonPage>
   );

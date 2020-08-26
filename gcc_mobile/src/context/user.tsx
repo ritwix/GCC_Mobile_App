@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
 
-type User = {
-  loggedInGitHub: boolean,
-  githubUsername: string,
-  qrCodeLink: string,
-  contestantId: string,
-  githubAvatar: string,
+export type User = {
+  loggedInGitHub: boolean;
+  githubUsername: string;
+  qrCodeLink: string;
+  contestantId: string;
+  githubAvatar: string;
 };
 
 interface UserContextType {
@@ -16,13 +16,13 @@ interface UserContextType {
 const UserContext = React.createContext<UserContextType>({
   user: null,
   setUser: () => {
-    throw new Error('setUser has not been initialized properly.')
+    throw new Error('setUser has not been initialized properly.');
   },
 });
 
 export const useUserContext = (): UserContextType => useContext(UserContext);
 
-export const UserContextInit: React.FC = props => {
+export const UserContextInit: React.FC = (props) => {
   const { children } = props;
   const [user, setUser] = useState<User | null>(null);
   return (
@@ -30,8 +30,9 @@ export const UserContextInit: React.FC = props => {
       value={{
         user,
         setUser,
-      }}>
+      }}
+    >
       {children}
     </UserContext.Provider>
-  )
+  );
 };

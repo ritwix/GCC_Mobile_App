@@ -1,34 +1,26 @@
 import './NewsContainer.css';
 import { Headlines, Region, Headline } from '../model/News';
-import {
-  IonContent,
-  IonSelect,
-  IonSelectOption,
-  IonItem,
-  IonList,
-  IonLabel,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardSubtitle,
-  IonCardContent,
-} from '@ionic/react';
+import { IonContent, IonSelect, IonSelectOption, IonLabel } from '@ionic/react';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import { useHistory } from 'react-router-dom';
 interface HeadlineProps {
   headline: Headline;
 }
 
 const HeadlineContainer: React.FC<HeadlineProps> = ({ headline }) => {
+  const history = useHistory();
   return (
-    <IonCard routerLink={`/news/${headline.id}`}>
-      <IonCardHeader>
-        <IonCardTitle>{headline.title}</IonCardTitle>
-        <IonCardSubtitle>{headline.author}</IonCardSubtitle>
-      </IonCardHeader>
-      <IonCardContent>{headline.blurb}</IonCardContent>
-    </IonCard>
+    <li
+      className="news-item"
+      onClick={() => {
+        history.push(`/news/${headline.id}`);
+      }}
+    >
+      <h2>{headline.title}</h2>
+      <h3>Author: {headline.author}</h3>
+      <p>{headline.blurb}</p>
+    </li>
   );
 };
 
@@ -58,26 +50,30 @@ const NewsContainer: React.FC = () => {
 
   return (
     <IonContent>
-      <IonList>
-        <IonItem>
-          <IonLabel>Region</IonLabel>
-          <IonSelect
-            value={region}
-            placeholder="Select Region"
-            onIonChange={(e) => onRegionChanged(e.detail.value)}
-          >
-            {regions.map((r) => (
-              <IonSelectOption value={r}>{r}</IonSelectOption>
-            ))}
-          </IonSelect>
-        </IonItem>
-      </IonList>
-      <br />
+      <div className="region-select-group">
+        <IonLabel>Select Region: </IonLabel>
+        <IonSelect
+          value={region}
+          placeholder="Select Region"
+          onIonChange={(e) => onRegionChanged(e.detail.value)}
+        >
+          {regions.map((r) => (
+            <IonSelectOption value={r}>{r}</IonSelectOption>
+          ))}
+        </IonSelect>
+      </div>
+
       {headlines?.length === 0 && (
         <IonLabel>No Headlines found for your region.</IonLabel>
       )}
-      {(headlines || []).length > 0 &&
-        headlines?.map((h) => <HeadlineContainer key={h.id} headline={h} />)}
+
+      {(headlines || []).length > 0 && (
+        <ul>
+          {headlines?.map((h) => (
+            <HeadlineContainer key={h.id} headline={h} />
+          ))}
+        </ul>
+      )}
     </IonContent>
   );
 };
