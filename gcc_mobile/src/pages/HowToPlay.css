@@ -49,3 +49,24 @@
   font-size: larger;
 }
 
+.question-number {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.extra-info{
+  width: 50%;
+  background-color: #f1f2f2;
+  border-radius: .25rem;
+  border-style: solid;
+  border-color: #f1f2f2;
+  padding-inline-start: 20px;
+}
+
+.buttn{
+  text-transform: none;
+  padding-inline-start: 20px;
+  font-weight: bold;
+}
