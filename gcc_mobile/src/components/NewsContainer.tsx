@@ -37,7 +37,7 @@ const NewsContainer: React.FC = () => {
     console.log('Region changed: ' + value);
     setRegion(value);
     setHeadlines([]);
-    // TODO: change to pagination
+    // TODO: change to pagination @im-pratham
     axios
       .get<Headlines>(
         `https://gcc-global-dev.herokuapp.com/news/headlines/${value}?from=0&limit=100`
