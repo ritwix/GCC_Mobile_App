@@ -1,0 +1,9 @@
+.faq-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.faq-item__hidden {
+  padding: 1rem;
+}

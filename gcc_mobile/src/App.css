@@ -1,3 +1,64 @@
-style{
-    background-color:rebeccapurple;
+@font-face {
+  font-family: 'CS-Bold';
+  src: url('assets/fonts/CSTypeEP-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'CS-Body';
+  src: url('assets/fonts/CSTypeEP-Roman.ttf');
+}
+
+@font-face {
+  font-family: 'CS-Header';
+  src: url('assets/fonts/CreditSuisseHeadline-Regular.ttf');
+}
+
+/* default styles */
+
+h1 {
+  font-size: 38px !important;
+}
+
+h2 {
+  font-size: 34px !important;
+}
+
+h3 {
+  font-size: 18px !important;
+  font-family: 'CS-Body' !important;
+  font-weight: 700;
+}
+
+h4 {
+  font-family: 'CS-Body' !important;
+  font-size: 16px !important;
+}
+
+h5 {
+  font-family: 'CS-Body' !important;
+}
+
+* {
+  font-family: 'CS-Body', Arial, Helvetica, sans-serif !important;
+}
+
+/* CS components */
+
+.cs-button {
+  background-color: black;
+  color: white;
+  height: 40px;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 0 1rem;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  border-bottom: 1px solid #dadada !important;
 }

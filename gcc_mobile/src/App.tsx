@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import {
   IonApp,
   IonIcon,
@@ -8,18 +8,23 @@ import {
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
-  IonTabs
+  IonTabs,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, triangle, helpCircle } from 'ionicons/icons';
 
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
-import Tab4 from './pages/Tab4';
-import Tab5 from './pages/Tab5';
+import {
+  ellipse,
+  triangle,
+  helpCircle,
+  newspaperOutline,
+} from 'ionicons/icons';
+
+import ReferAFriend from './pages/ReferAFriend';
+import Questions from './pages/Questions';
+import HowToPlay from './pages/HowToPlay';
 import Profile from './pages/Profile';
+import TeamLeaderboard from './pages/TeamLeaderboard';
 
-import OAuthRedirectHandler from './components/OAuthRedirectHandler';
 import { UserContextInit } from './context/user';
 
 /* Core CSS required for Ionic components to work properly */
@@ -40,7 +45,10 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+
 import FaqTab from './pages/FaqTab';
+import NewsTab from './pages/NewsTab';
+import NewsTabDetail from './pages/NewsTabDetail';
 
 const App: React.FC = () => (
   <UserContextInit>
@@ -49,12 +57,22 @@ const App: React.FC = () => (
         <IonTabs>
           <IonRouterOutlet>
             <Route path="/profile" component={Profile} exact={true} />
-            <Route path="/tab2" component={Tab2} exact={true} />
-            <Route path="/faqs" component={FaqTab} />
-            <Route path="/tab3" component={Tab3} exact={true} />
-            <Route path="/tab4" component={Tab4} exact={true} />
-            <Route path="/tab5" component={Tab5} />
-            <Route path="/" component={OAuthRedirectHandler} />
+            <Route
+              path="/leaderboard"
+              component={TeamLeaderboard}
+              exact={true}
+            />
+            <Route path="/faqs" component={FaqTab} exact={true} />
+            <Route path="/:tab(news)" component={NewsTab} exact={true} />
+            <Route path="/:tab(news)/:id" component={NewsTabDetail} />
+            <Route path="/referAFriend" component={ReferAFriend} exact={true} />
+            <Route path="/questions" component={Questions} exact={true} />
+            <Route path="/howToPlay" component={HowToPlay} />
+            <Route
+              path="/"
+              render={() => <Redirect to="/profile" />}
+              exact={true}
+            />
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom">
@@ -62,7 +80,7 @@ const App: React.FC = () => (
               <IonIcon icon={triangle} />
               <IonLabel>My profile</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="tab2" href="/tab2">
+            <IonTabButton tab="leaderboard" href="/leaderboard">
               <IonIcon icon={ellipse} />
               <IonLabel>Leaderboard</IonLabel>
             </IonTabButton>
@@ -70,18 +88,18 @@ const App: React.FC = () => (
               <IonIcon icon={helpCircle} />
               <IonLabel>F.A.Q.</IonLabel>
             </IonTabButton>
-            {/* <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={square} />
-            <IonLabel>Refer a friend</IonLabel>
-          </IonTabButton> */}
-            <IonTabButton tab="tab4" href="/tab4">
+            <IonTabButton tab="news" href="/news">
+              <IonIcon icon={newspaperOutline} />
+              <IonLabel>News</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="Questions" href="/questions">
               <IonIcon icon={ellipse} />
               <IonLabel>Questions</IonLabel>
             </IonTabButton>
-            {/* <IonTabButton tab="tab5" href="/tab5">
-            <IonIcon icon={triangle} />
-            <IonLabel>News</IonLabel>
-          </IonTabButton> */}
+            <IonTabButton tab="HowToPlay" href="/howToPlay">
+              <IonIcon icon={triangle} />
+              <IonLabel>How to play</IonLabel>
+            </IonTabButton>
           </IonTabBar>
         </IonTabs>
       </IonReactRouter>

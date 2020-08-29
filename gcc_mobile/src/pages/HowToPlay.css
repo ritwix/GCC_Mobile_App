@@ -1,0 +1,72 @@
+.csBold {
+  display: block;
+  font-family: CS-Body;
+  font-weight: 700;
+  color: #000;
+}
+
+.title {
+  font-size: 30px;
+}
+
+.BulletPoints {
+  display: block;
+  font-weight: 700;
+  font-size: larger;
+}
+
+.Points {
+  padding-left: 20px;
+}
+
+.GreyBar {
+  padding: 10px;
+  background-color: #f1f2f2;
+}
+
+.GreyBar > div {
+  text-align: center;
+}
+
+.GreyBar > div:not(:last-child) {
+  margin-bottom: 2em;
+}
+
+.GreyBar .header {
+  font-weight: bold;
+  margin-top: 1em;
+}
+
+.GreyBarColumn {
+  display: block;
+  font-weight: 600;
+}
+
+
+.Prizes{
+  padding-left: 20px;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.question-number {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.extra-info{
+  width: 50%;
+  background-color: #f1f2f2;
+  border-radius: .25rem;
+  border-style: solid;
+  border-color: #f1f2f2;
+  padding-inline-start: 20px;
+}
+
+.buttn{
+  text-transform: none;
+  padding-inline-start: 20px;
+  font-weight: bold;
+}

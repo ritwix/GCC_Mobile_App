@@ -1,0 +1,8 @@
+.ind_leaderboard_header {
+  border-bottom: 1px solid black;
+}
+
+.ind_leaderboard_content {
+  color: 'rgba(0,0,0,.87)';
+  border-bottom: 1px solid gray;
+}
