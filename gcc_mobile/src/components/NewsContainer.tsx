@@ -64,7 +64,9 @@ const NewsContainer: React.FC = () => {
       </div>
 
       {headlines?.length === 0 && (
-        <IonLabel>No Headlines found for your region.</IonLabel>
+        <IonContent>
+          <IonLabel>No Headlines found for your region.</IonLabel>
+        </IonContent>
       )}
 
       {(headlines || []).length > 0 && (
