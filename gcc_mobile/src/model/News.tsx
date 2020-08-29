@@ -22,13 +22,14 @@ export interface Article extends Headline {
     body: string
     prettyPrintedTime: string
 }
-
+// TODO: Add correct region keys
 export enum Region {
     UK = 'UK',
-    AMER = 'AMER',
+    AMC = 'AMC',
     INDIA = 'INDIA',
-    POLAND = 'POLAND',
+    EUROPE = 'EUROPE',
+    SEA = 'SEA',
     SWIS = 'SWIS',
-    APAC = 'APAC',
+    ROW = 'ROW',
     GLOBAL = 'GLOBAL'
 }
