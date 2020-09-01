@@ -1,28 +1,14 @@
 import React from 'react';
-import {
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-} from '@ionic/react';
+import { IonContent, IonPage } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './ReferAFriend.css';
+import PageHeader from '../components/PageHeader';
 
 const ReferAFriend: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Refer a friend</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <PageHeader title="Refer a friend" />
       <IonContent>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 3</IonTitle>
-          </IonToolbar>
-        </IonHeader>
         <ExploreContainer name="Tab 3 page" />
       </IonContent>
     </IonPage>

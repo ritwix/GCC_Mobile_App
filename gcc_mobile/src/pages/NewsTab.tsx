@@ -8,21 +8,13 @@ import {
 } from '@ionic/react';
 import React from 'react';
 import NewsContainer from '../components/NewsContainer';
+import PageHeader from '../components/PageHeader';
 
 const NewsTab: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>News</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <PageHeader title="News" />
       <IonContent>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">News</IonTitle>
-          </IonToolbar>
-        </IonHeader>
         <NewsContainer />
       </IonContent>
     </IonPage>

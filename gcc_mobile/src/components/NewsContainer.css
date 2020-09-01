@@ -1,5 +1,13 @@
 .news-item {
   padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.news-item img {
+  width: 24px;
+  height: 24px;
 }
 
 .region-select-group {
