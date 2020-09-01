@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import {
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-} from '@ionic/react';
+import { IonContent, IonPage } from '@ionic/react';
 import './TeamLeaderboard.css';
 import Table from '../components/Table';
+import PageHeader from '../components/PageHeader';
 
 const GetTeamLeader = (from: number) => {
   return axios({
@@ -115,17 +110,8 @@ const TeamLeaderboard: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Leaderboard</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <PageHeader title="Leaderboard" />
       <IonContent className="content">
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Team Leaderboard</IonTitle>
-          </IonToolbar>
-        </IonHeader>
         <div className="content">
           <button
             className="cs-button"

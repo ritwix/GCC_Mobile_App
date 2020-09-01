@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import {
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-  IonImg,
-} from '@ionic/react';
+
+import { IonContent, IonPage } from '@ionic/react';
+
 import './Questions.css';
 import axios from 'axios';
 import { arrowDown, arrowForward } from 'ionicons/icons';
 import ReactMarkdown from 'react-markdown';
 import { IonIcon } from '@ionic/react';
+import PageHeader from '../components/PageHeader';
 
 import CSBlue from '../CSBlue.png'
 
@@ -63,19 +59,10 @@ const Questions: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>
-          Questions 
-            </IonTitle>
-        </IonToolbar>
-      </IonHeader>
+
+      <PageHeader title="Questions" />
+
       <IonContent>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Questions</IonTitle>
-          </IonToolbar>
-        </IonHeader>
         <ul>
           {questions.map((question) => (
             <Question key={question.id} question={question} />

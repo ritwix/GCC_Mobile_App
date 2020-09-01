@@ -1,16 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import {
-  IonAvatar,
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-} from '@ionic/react';
-import './Profile.css';
+import { IonAvatar, IonContent, IonPage } from '@ionic/react';
 import { useUserContext } from '../context/user';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import PageHeader from '../components/PageHeader';
 
 const CLIENT_ID = {
   LOCAL: '3a4fd05f700987052d1e', // GCC-2020-Local Client ID
@@ -78,17 +71,8 @@ const Profile: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Profile</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <PageHeader title="Profile" />
       <IonContent>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Profile</IonTitle>
-          </IonToolbar>
-        </IonHeader>
         <div className="container">
           {user?.loggedInGitHub ? (
             <>
