@@ -79,8 +79,10 @@ const NewsContainer: React.FC = () => {
         </IonSelect>
       </div>
 
-      {mockHeadlines?.length === 0 && (
-        <IonLabel>No Headlines found for your region.</IonLabel>
+      {headlines?.length === 0 && (
+        <IonContent>
+          <IonLabel>No Headlines found for your region.</IonLabel>
+        </IonContent>
       )}
 
       {(mockHeadlines || []).length > 0 && (
