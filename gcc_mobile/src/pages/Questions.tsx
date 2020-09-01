@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
+
 import { IonContent, IonPage } from '@ionic/react';
+
 import './Questions.css';
 import axios from 'axios';
 import { arrowDown, arrowForward } from 'ionicons/icons';
 import ReactMarkdown from 'react-markdown';
 import { IonIcon } from '@ionic/react';
 import PageHeader from '../components/PageHeader';
+
+import CSBlue from '../CSBlue.png'
 
 type Question = {
   active: boolean;
@@ -55,7 +59,9 @@ const Questions: React.FC = () => {
 
   return (
     <IonPage>
+
       <PageHeader title="Questions" />
+
       <IonContent>
         <ul>
           {questions.map((question) => (

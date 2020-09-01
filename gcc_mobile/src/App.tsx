@@ -9,15 +9,21 @@ import {
   IonTabBar,
   IonTabButton,
   IonTabs,
+  IonImg,
+  IonContent,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
 import {
-  ellipse,
-  triangle,
   helpCircle,
   newspaperOutline,
+  trophy,
+  person,
+  ribbon,
+  alertCircle,
 } from 'ionicons/icons';
+
+
 
 import ReferAFriend from './pages/ReferAFriend';
 import Questions from './pages/Questions';
@@ -50,8 +56,13 @@ import FaqTab from './pages/FaqTab';
 import NewsTab from './pages/NewsTab';
 import NewsTabDetail from './pages/NewsTabDetail';
 
+
+/* Screen orientation fixed to landscape*/
+window.screen.orientation.lock('landscape');
+
 const App: React.FC = () => (
   <UserContextInit>
+    
     <IonApp>
       <IonReactRouter>
         <IonTabs>
@@ -75,13 +86,13 @@ const App: React.FC = () => (
             />
           </IonRouterOutlet>
 
-          <IonTabBar slot="bottom">
+          <IonTabBar slot="bottom" >
             <IonTabButton tab="profile" href="/profile">
-              <IonIcon icon={triangle} />
+              <IonIcon icon={person} />
               <IonLabel>My profile</IonLabel>
             </IonTabButton>
             <IonTabButton tab="leaderboard" href="/leaderboard">
-              <IonIcon icon={ellipse} />
+              <IonIcon icon={ribbon} />
               <IonLabel>Leaderboard</IonLabel>
             </IonTabButton>
             <IonTabButton tab="faqs" href="/faqs">
@@ -93,11 +104,11 @@ const App: React.FC = () => (
               <IonLabel>News</IonLabel>
             </IonTabButton>
             <IonTabButton tab="Questions" href="/questions">
-              <IonIcon icon={ellipse} />
+              <IonIcon icon={trophy} />
               <IonLabel>Questions</IonLabel>
             </IonTabButton>
             <IonTabButton tab="HowToPlay" href="/howToPlay">
-              <IonIcon icon={triangle} />
+              <IonIcon icon={alertCircle} />
               <IonLabel>How to play</IonLabel>
             </IonTabButton>
           </IonTabBar>
