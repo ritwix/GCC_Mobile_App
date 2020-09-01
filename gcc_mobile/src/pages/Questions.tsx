@@ -5,12 +5,15 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  IonImg,
 } from '@ionic/react';
 import './Questions.css';
 import axios from 'axios';
 import { arrowDown, arrowForward } from 'ionicons/icons';
 import ReactMarkdown from 'react-markdown';
 import { IonIcon } from '@ionic/react';
+
+import CSBlue from '../CSBlue.png'
 
 type Question = {
   active: boolean;
@@ -62,7 +65,9 @@ const Questions: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Questions</IonTitle>
+          <IonTitle>
+          Questions 
+            </IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
