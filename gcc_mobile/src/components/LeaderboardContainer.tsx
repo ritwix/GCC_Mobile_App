@@ -2,32 +2,36 @@ import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonGrid, IonRow, IonCol } from '@ionic/react';
 
 interface IndContainerProps {
-    Rank: string;
+    Rank: number;
     Name: string;
+    Region: string;
+    University: string;
     Score: string;
 }
 
-interface TeamContainerProps {
-    Rank: string;
-    Team: string;
+interface UnivContainerProps {
+    Rank: number;
+    University: string;
     Score: string;
 }
 
-export const IndLeaderContainer: React.FC<IndContainerProps> = ({ Rank, Name, Score }) => {
+export const IndLeaderContainer: React.FC<IndContainerProps> = ({ Rank, Name, Score, Region, University }) => {
     return (
         <IonRow className='ind_leaderboard_header'>
             <IonCol>{Rank}</IonCol>
             <IonCol>{Name}</IonCol>
+            <IonCol>{Region}</IonCol>
+            <IonCol>{University}</IonCol>
             <IonCol>{Score}</IonCol>
         </IonRow>
     );
 };
 
-export const TeamLeaderContainer: React.FC<TeamContainerProps> = ({ Rank, Score, Team }) => {
+export const UnivLeaderContainer: React.FC<UnivContainerProps> = ({ Rank, University, Score }) => {
     return (
-        <IonRow className='uni_leaderboard_header'>
+        <IonRow className='univ_leaderboard_header'>
             <IonCol>{Rank}</IonCol>
-            <IonCol>{Team}</IonCol>
+            <IonCol>{University}</IonCol>
             <IonCol>{Score}</IonCol>
         </IonRow>
     );

@@ -40,6 +40,7 @@ h5 {
 
 * {
   font-family: 'CS-Body', Arial, Helvetica, sans-serif !important;
+  font-size: small;
 }
 
 /* CS components */
@@ -62,3 +63,5 @@ ul {
 ul li {
   border-bottom: 1px solid #dadada !important;
 }
+  
+
