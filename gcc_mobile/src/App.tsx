@@ -30,6 +30,7 @@ import Questions from './pages/Questions';
 import HowToPlay from './pages/HowToPlay';
 import Profile from './pages/Profile';
 import TeamLeaderboard from './pages/TeamLeaderboard';
+import IndividualLeaderboard from './pages/IndividualLeaderboard';
 
 import { UserContextInit } from './context/user';
 
@@ -58,7 +59,7 @@ import NewsTabDetail from './pages/NewsTabDetail';
 
 
 /* Screen orientation fixed to landscape*/
-window.screen.orientation.lock('landscape');
+//window.screen.orientation.lock('landscape');
 
 const App: React.FC = () => (
   <UserContextInit>
@@ -70,7 +71,7 @@ const App: React.FC = () => (
             <Route path="/profile" component={Profile} exact={true} />
             <Route
               path="/leaderboard"
-              component={TeamLeaderboard}
+              component={IndividualLeaderboard}
               exact={true}
             />
             <Route path="/faqs" component={FaqTab} exact={true} />
@@ -87,6 +88,7 @@ const App: React.FC = () => (
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom" >
+           
             <IonTabButton tab="profile" href="/profile">
               <IonIcon icon={person} />
               <IonLabel>My profile</IonLabel>
@@ -111,6 +113,7 @@ const App: React.FC = () => (
               <IonIcon icon={alertCircle} />
               <IonLabel>How to play</IonLabel>
             </IonTabButton>
+          
           </IonTabBar>
         </IonTabs>
       </IonReactRouter>
