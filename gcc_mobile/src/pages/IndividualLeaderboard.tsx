@@ -141,14 +141,14 @@ const IndLeaderboard: React.FC = () => {
 
         <div hidden={!(leaderboardType === "University")} >    
         <div className="filter-column">
-      <IonLabel>Select Filter Column:</IonLabel>
+      <IonLabel>Filter By:</IonLabel>
           <IonSelect placeholder = 'University' onIonChange={(e) => setUnivFilterColumn(e.detail.value)}>
             <IonSelectOption value="pos">Rank</IonSelectOption>
             <IonSelectOption value="teamName">University</IonSelectOption>
           </IonSelect>
         
         
-          <IonInput value={UnivFilterBy} placeholder="Enter Filter" onIonChange={e => setUnivFilterBy(e.detail.value!) }>Filter By:</IonInput>
+          <IonInput value={UnivFilterBy} placeholder="Search" onIonChange={e => setUnivFilterBy(e.detail.value!) }>Search:</IonInput>
         </div>
         <IonGrid>
           <IonRow className="leaderboard_header">
@@ -175,7 +175,7 @@ const IndLeaderboard: React.FC = () => {
 
         <div hidden={!(leaderboardType === "Engagement")} >    
       <div className="filter-column">
-      <IonLabel>Select Filter Column:</IonLabel>
+      <IonLabel>Filter By:</IonLabel>
           <IonSelect placeholder = 'Name' onIonChange={(e) => setEngagementFilterColumn(e.detail.value)}>
             <IonSelectOption value="pos">Rank</IonSelectOption>
             <IonSelectOption value="name">Name</IonSelectOption>
@@ -184,7 +184,7 @@ const IndLeaderboard: React.FC = () => {
           </IonSelect>
         
         
-          <IonInput value={EngagementFilterBy} placeholder="Enter Filter" onIonChange={e => setEngagementFilterBy(e.detail.value!) }>Filter By:</IonInput>
+          <IonInput value={EngagementFilterBy} placeholder="Search" onIonChange={e => setEngagementFilterBy(e.detail.value!) }>Search:</IonInput>
         </div>
         <IonGrid>
           <IonRow className="leaderboard_header">
