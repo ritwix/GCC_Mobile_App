@@ -15,9 +15,17 @@ interface UnivContainerProps {
     Score: string;
 }
 
+interface EngagementContainerProps {
+    Rank: number;
+    Name: string;
+    Region: string;
+    University: string;
+    NumberOfBadges: string;
+    Score: string;
+}
 export const IndLeaderContainer: React.FC<IndContainerProps> = ({ Rank, Name, Score, Region, University }) => {
     return (
-        <IonRow className='ind_leaderboard_header'>
+        <IonRow className='leaderboard_header'>
             <IonCol>{Rank}</IonCol>
             <IonCol>{Name}</IonCol>
             <IonCol>{Region}</IonCol>
@@ -29,7 +37,7 @@ export const IndLeaderContainer: React.FC<IndContainerProps> = ({ Rank, Name, Sc
 
 export const UnivLeaderContainer: React.FC<UnivContainerProps> = ({ Rank, University, Score }) => {
     return (
-        <IonRow className='univ_leaderboard_header'>
+        <IonRow className='leaderboard_header'>
             <IonCol>{Rank}</IonCol>
             <IonCol>{University}</IonCol>
             <IonCol>{Score}</IonCol>
@@ -37,3 +45,15 @@ export const UnivLeaderContainer: React.FC<UnivContainerProps> = ({ Rank, Univer
     );
 };
 
+export const EngagementLeaderContainer: React.FC<EngagementContainerProps> = ({ Rank, Name, Score, Region, NumberOfBadges, University }) => {
+    return (
+        <IonRow className='leaderboard_header'>
+            <IonCol>{Rank}</IonCol>
+            <IonCol>{Name}</IonCol>
+            <IonCol>{Region}</IonCol>
+            <IonCol>{University}</IonCol>
+            <IonCol>{NumberOfBadges}</IonCol>
+            <IonCol>{Score}</IonCol>
+        </IonRow>
+    );
+};
