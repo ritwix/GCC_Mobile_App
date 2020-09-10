@@ -4,13 +4,10 @@ import { Route, Redirect } from 'react-router-dom';
 import {
   IonApp,
   IonIcon,
-  IonLabel,
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
   IonTabs,
-  IonImg,
-  IonContent,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
@@ -23,13 +20,10 @@ import {
   alertCircle,
 } from 'ionicons/icons';
 
-
-
 import ReferAFriend from './pages/ReferAFriend';
 import Questions from './pages/Questions';
 import HowToPlay from './pages/HowToPlay';
 import Profile from './pages/Profile';
-import TeamLeaderboard from './pages/TeamLeaderboard';
 import IndividualLeaderboard from './pages/IndividualLeaderboard';
 
 import { UserContextInit } from './context/user';
@@ -57,13 +51,11 @@ import FaqTab from './pages/FaqTab';
 import NewsTab from './pages/NewsTab';
 import NewsTabDetail from './pages/NewsTabDetail';
 
-
 /* Screen orientation fixed to landscape*/
 //window.screen.orientation.lock('landscape');
 
 const App: React.FC = () => (
   <UserContextInit>
-    
     <IonApp>
       <IonReactRouter>
         <IonTabs>
@@ -87,33 +79,25 @@ const App: React.FC = () => (
             />
           </IonRouterOutlet>
 
-          <IonTabBar slot="bottom" >
-           
+          <IonTabBar slot="bottom">
             <IonTabButton tab="profile" href="/profile">
               <IonIcon icon={person} />
-              <IonLabel>My profile</IonLabel>
             </IonTabButton>
             <IonTabButton tab="leaderboard" href="/leaderboard">
               <IonIcon icon={ribbon} />
-              <IonLabel>Leaderboard</IonLabel>
             </IonTabButton>
             <IonTabButton tab="faqs" href="/faqs">
               <IonIcon icon={helpCircle} />
-              <IonLabel>F.A.Q.</IonLabel>
             </IonTabButton>
             <IonTabButton tab="news" href="/news">
               <IonIcon icon={newspaperOutline} />
-              <IonLabel>News</IonLabel>
             </IonTabButton>
             <IonTabButton tab="Questions" href="/questions">
               <IonIcon icon={trophy} />
-              <IonLabel>Questions</IonLabel>
             </IonTabButton>
             <IonTabButton tab="HowToPlay" href="/howToPlay">
               <IonIcon icon={alertCircle} />
-              <IonLabel>How to play</IonLabel>
             </IonTabButton>
-          
           </IonTabBar>
         </IonTabs>
       </IonReactRouter>
