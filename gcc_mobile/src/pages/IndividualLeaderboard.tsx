@@ -77,7 +77,7 @@ const IndLeaderboard: React.FC = () => {
     <IonPage>
       <PageHeader title="Leaderboard" />
       <IonLoading isOpen={IconLoading} ></IonLoading>
-      <div className="filter-column">
+      <div className="button-row">
       
           
         
@@ -117,7 +117,7 @@ const IndLeaderboard: React.FC = () => {
           <IonInput  value={IndFilterBy} placeholder="Search" onIonChange={e => setIndFilterBy(e.detail.value!) }>Search:</IonInput>
         </div>
         <IonGrid>
-          <IonRow className="leaderboard_header">
+          <IonRow className="leaderboard_header" >
             <IonCol >Rank</IonCol>
             <IonCol>Name</IonCol>
             <IonCol>Region</IonCol>
