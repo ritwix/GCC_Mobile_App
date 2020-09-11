@@ -14,10 +14,13 @@
   padding: 0 1rem;
 }
 
-.filter-column button {
-  width: 33%;
-  font-size: 3.5vw;
+
+.button-row {
+  display: flex;
+  align-items: center;
+  padding: 0 0rem;
 }
+
 
 .buttons {
   align-self: center;

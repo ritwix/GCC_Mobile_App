@@ -61,17 +61,13 @@ const App: React.FC = () => (
         <IonTabs>
           <IonRouterOutlet>
             <Route path="/profile" component={Profile} exact={true} />
-            <Route
-              path="/leaderboard"
-              component={IndividualLeaderboard}
-              exact={true}
-            />
-            <Route path="/faqs" component={FaqTab} exact={true} />
+            <Route path="/leaderboard" component={IndividualLeaderboard} exact={true} />
+            <Route path="/questions" component={Questions} exact={true} />
             <Route path="/:tab(news)" component={NewsTab} exact={true} />
             <Route path="/:tab(news)/:id" component={NewsTabDetail} />
             <Route path="/referAFriend" component={ReferAFriend} exact={true} />
-            <Route path="/questions" component={Questions} exact={true} />
-            <Route path="/howToPlay" component={HowToPlay} />
+            <Route path="/howToPlay" component={HowToPlay} exact={true}/>
+            <Route path="/faqs" component={FaqTab}  />
             <Route
               path="/"
               render={() => <Redirect to="/profile" />}
@@ -79,24 +75,33 @@ const App: React.FC = () => (
             />
           </IonRouterOutlet>
 
+
           <IonTabBar slot="bottom">
+           
             <IonTabButton tab="profile" href="/profile">
-              <IonIcon icon={person} />
+              <IonIcon size="large" icon={person} />
+              <IonLabel></IonLabel>
             </IonTabButton>
             <IonTabButton tab="leaderboard" href="/leaderboard">
-              <IonIcon icon={ribbon} />
-            </IonTabButton>
-            <IonTabButton tab="faqs" href="/faqs">
-              <IonIcon icon={helpCircle} />
-            </IonTabButton>
-            <IonTabButton tab="news" href="/news">
-              <IonIcon icon={newspaperOutline} />
+              <IonIcon size="large" icon={ribbon} />
+              <IonLabel></IonLabel>
             </IonTabButton>
             <IonTabButton tab="Questions" href="/questions">
-              <IonIcon icon={trophy} />
+              <IonIcon size="large" icon={helpCircle} />
+              <IonLabel></IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="news" href="/news">
+              <IonIcon size="large" icon={newspaperOutline} />
+              <IonLabel></IonLabel>
             </IonTabButton>
             <IonTabButton tab="HowToPlay" href="/howToPlay">
-              <IonIcon icon={alertCircle} />
+              <IonIcon size="large" icon={trophy} />
+              <IonLabel></IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="faqs" href="/faqs">
+              <IonIcon size="large" icon={alertCircle} />
+              <IonLabel></IonLabel>
+
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
