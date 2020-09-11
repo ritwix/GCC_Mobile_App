@@ -9,7 +9,7 @@ import ReactMarkdown from 'react-markdown';
 import { IonIcon } from '@ionic/react';
 import PageHeader from '../components/PageHeader';
 
-import CSBlue from '../CSBlue.png'
+import CSBlue from '../CSBlue.png';
 
 type Question = {
   active: boolean;
@@ -40,7 +40,7 @@ const Question: React.FC<{ question: Question }> = (props) => {
       }}
     >
       <div className="question-number">
-        <h3>Question {question.questionNumber}</h3>
+        <h4>Question {question.questionNumber}</h4>
         <IonIcon icon={arrowDown} hidden={!visible} />
         <IonIcon icon={arrowForward} hidden={visible} />
       </div>
@@ -59,7 +59,6 @@ const Questions: React.FC = () => {
 
   return (
     <IonPage>
-
       <PageHeader title="Questions" />
 
       <IonContent>

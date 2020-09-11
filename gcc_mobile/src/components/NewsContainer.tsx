@@ -20,8 +20,8 @@ const HeadlineContainer: React.FC<HeadlineProps> = ({ headline }) => {
       }}
     >
       <div>
-        <h2>{headline.title}</h2>
-        <h3>Author: {headline.author}</h3>
+        <h3>{headline.title}</h3>
+        <h4>Author: {headline.author}</h4>
         <p>{headline.blurb}</p>
       </div>
       <img src={SmallTrendIcon} alt="right arrow icon" />

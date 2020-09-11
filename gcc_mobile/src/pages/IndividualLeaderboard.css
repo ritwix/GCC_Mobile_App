@@ -1,6 +1,5 @@
 .leaderboard_header {
   border-bottom: 1px solid black;
-  
 }
 
 .leaderboard_content {
@@ -11,14 +10,18 @@
 .filter-column {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0 1rem;
 }
+
 
 .button-row {
   display: flex;
   align-items: center;
   padding: 0 0rem;
 }
+
+
 .buttons {
   align-self: center;
 }

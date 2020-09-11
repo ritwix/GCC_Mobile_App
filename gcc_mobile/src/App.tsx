@@ -4,13 +4,10 @@ import { Route, Redirect } from 'react-router-dom';
 import {
   IonApp,
   IonIcon,
-  IonLabel,
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
   IonTabs,
-  IonImg,
-  IonContent,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
@@ -23,13 +20,10 @@ import {
   alertCircle,
 } from 'ionicons/icons';
 
-
-
 import ReferAFriend from './pages/ReferAFriend';
 import Questions from './pages/Questions';
 import HowToPlay from './pages/HowToPlay';
 import Profile from './pages/Profile';
-import TeamLeaderboard from './pages/TeamLeaderboard';
 import IndividualLeaderboard from './pages/IndividualLeaderboard';
 
 import { UserContextInit } from './context/user';
@@ -57,13 +51,11 @@ import FaqTab from './pages/FaqTab';
 import NewsTab from './pages/NewsTab';
 import NewsTabDetail from './pages/NewsTabDetail';
 
-
 /* Screen orientation fixed to landscape*/
 //window.screen.orientation.lock('landscape');
 
 const App: React.FC = () => (
   <UserContextInit>
-    
     <IonApp>
       <IonReactRouter>
         <IonTabs>
@@ -83,7 +75,8 @@ const App: React.FC = () => (
             />
           </IonRouterOutlet>
 
-          <IonTabBar slot="bottom" style={{width:'100%',allign:'right'}}>
+
+          <IonTabBar slot="bottom">
            
             <IonTabButton tab="profile" href="/profile">
               <IonIcon size="large" icon={person} />
@@ -108,8 +101,8 @@ const App: React.FC = () => (
             <IonTabButton tab="faqs" href="/faqs">
               <IonIcon size="large" icon={alertCircle} />
               <IonLabel></IonLabel>
+
             </IonTabButton>
-          
           </IonTabBar>
         </IonTabs>
       </IonReactRouter>
