@@ -7,8 +7,8 @@ import PageHeader from '../components/PageHeader';
 import { table } from 'console';
 import { getClassName } from '@ionic/react/dist/types/components/utils';
 
-const GetIndLeader = (lowerLim: number, upperLim: number, region: string) => {
-  var urlWithLimit = "https://gcc-global-dev.herokuapp.com/leaderboard/" + region + "?from="+ String(lowerLim) + "&limit=" + String(upperLim);
+const GetIndLeader = (lowerLim: number, numberOfRows: number, region: string) => {
+  var urlWithLimit = "https://gcc-global.herokuapp.com/leaderboard/" + region + "?from="+ String(lowerLim) + "&limit=" + String(numberOfRows);
   return axios({
    url : urlWithLimit, 
    method: 'get',
@@ -18,8 +18,8 @@ const GetIndLeader = (lowerLim: number, upperLim: number, region: string) => {
   });
 };
 
-const GetUnivLeader = (lowerLim: number, upperLim: number, region: string) => {
-  var urlWithLimit = "https://gcc-global-dev.herokuapp.com/teamleaderboard/" + region + "?from="+ String(lowerLim) + "&limit=" + String(upperLim);
+const GetUnivLeader = (lowerLim: number, numberOfRows: number, region: string) => {
+  var urlWithLimit = "https://gcc-global.herokuapp.com/teamleaderboard/" + region + "?from="+ String(lowerLim) + "&limit=" + String(numberOfRows);
   return axios({
    url : urlWithLimit, 
    method: 'get',
@@ -29,8 +29,8 @@ const GetUnivLeader = (lowerLim: number, upperLim: number, region: string) => {
   });
 };
 
-const GetEngagementLeader = (lowerLim: number, upperLim: number, region: string) => {
-  var urlWithLimit = "https://gcc-global-dev.herokuapp.com/engagementLeaderboard/" + region + "?from="+ String(lowerLim) + "&limit=" + String(upperLim);
+const GetEngagementLeader = (lowerLim: number, numberOfRows: number, region: string) => {
+  var urlWithLimit = "https://gcc-global.herokuapp.com/engagementLeaderboard/" + region + "?from="+ String(lowerLim) + "&limit=" + String(numberOfRows);
   return axios({
    url : urlWithLimit, 
    method: 'get',
@@ -39,26 +39,36 @@ const GetEngagementLeader = (lowerLim: number, upperLim: number, region: string)
     return response.data;
   });
 };
+
 
 const IndLeaderboard: React.FC = () => {
 
   //default region = GLOBAL
   const [Region, setRegion] = React.useState<string>("GLOBAL");
+  const [lowerLim, setLowerLim] = React.useState(1);
+  const numberOfRows = 30;
 
   const [IndItems, setIndItems] = React.useState([]);
   React.useEffect(() => {
-    GetIndLeader(1,10000,Region).then((data) => setIndItems(data.contestants));
+    GetIndLeader(lowerLim,numberOfRows,Region).then((data) => setIndItems( data.contestants));
   }, [Region]);
 
   const [UnivItems, setUnivItems] = React.useState([]);
   React.useEffect(() => {
-    GetUnivLeader(1,10000,Region).then((data) => setUnivItems(data.contestants));
+    GetUnivLeader(lowerLim,numberOfRows,Region).then((data) => setUnivItems(data.contestants));
   }, [Region]);
  
   const [EngagementItems, setEngagementItems] = React.useState([]);
   React.useEffect(() => {
-    GetEngagementLeader(1,10000,Region).then((data) => setEngagementItems(data.contestants));
+    GetEngagementLeader(lowerLim,numberOfRows,Region).then((data) => setEngagementItems(data.contestants));
   }, [Region]);
+
+
+  const getMoreData = (lowerLim:number) => {    
+      GetIndLeader(lowerLim+numberOfRows,numberOfRows,Region).then((data) => setIndItems(IndItems.concat(data.contestants) ));
+      GetUnivLeader(lowerLim+numberOfRows,numberOfRows,Region).then((data) => setUnivItems(UnivItems.concat(data.contestants) ));
+      GetEngagementLeader(lowerLim+numberOfRows,numberOfRows,Region).then((data) => setEngagementItems(EngagementItems.concat(data.contestants) ));
+  }
 
   const [IndFilterColumn, setIndFilterColumn] = React.useState<string>("name");
   const [IndFilterBy, setIndFilterBy] = React.useState<string>("");
@@ -210,7 +220,9 @@ const IndLeaderboard: React.FC = () => {
           })}
         </IonGrid>
         </div>
-          
+        <div style= {{textAlign:"center"}}>
+        <button  className="buttons" onClick = {()=> {setLowerLim(lowerLim + numberOfRows);  getMoreData(lowerLim)}}>Load More...</button>  
+        </div>
       </IonContent>
     </IonPage>
   );
