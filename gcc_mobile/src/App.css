@@ -20,7 +20,7 @@ h1 {
 }
 
 h2 {
-  font-size: 34px !important;
+  font-size: 30px !important;
 }
 
 h3 {
@@ -39,9 +39,15 @@ h5 {
   font-family: 'CS-Body' !important;
 }
 
-* {
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
   font-family: 'CS-Body', Arial, Helvetica, sans-serif !important;
   font-size: small;
+  color: black;
 }
 
 /* CS components */
