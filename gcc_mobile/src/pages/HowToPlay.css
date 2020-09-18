@@ -17,6 +17,7 @@
 
 .Points {
   padding-left: 20px;
+  font-size: 16px;
 }
 
 .GreyBar {
@@ -39,14 +40,14 @@
 
 .GreyBarColumn {
   display: block;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 
 .Prizes{
   padding-left: 20px;
   font-weight: bold;
-  font-size: larger;
+  font-size: 16px;
 }
 
 .question-number {
@@ -57,16 +58,32 @@
 }
 
 .extra-info{
-  width: 50%;
-  background-color: #f1f2f2;
-  border-radius: .25rem;
-  border-style: solid;
-  border-color: #f1f2f2;
+  width: 100%;
+  font-size: 16px;
   
+  border: 0 solid transparent;
+  
+  margin: 0 .125em;
+  padding: 1em 1.5em;
+  position: relative;
+  min-height: 1em;
+  margin: 1em 0;
+  line-height: 1.4285em;
+  border-width: thin;
+  border-style: solid;
 }
 
 .buttn{
   text-transform: none;
-  padding-inline-start: 0px;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 16px;
+  color: #000;
+  vertical-align: baseline;
+  margin: 0 .125em;
+  background-color: #ffffff;
+  padding: .5833em .233em;
+  border-style: none;
+  height: 40px;
+  border: 0 solid transparent;
+  outline: none;
 }
