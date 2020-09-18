@@ -4,6 +4,11 @@ import { IonAvatar, IonContent, IonPage } from '@ionic/react';
 import { useUserContext } from '../context/user';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import PageHeader from '../components/PageHeader';
+import {
+  RegistrationForm,
+  RegistrationFormFields,
+  Region,
+} from '../components/RegistrationForm';
 
 const CLIENT_ID = {
   LOCAL: '3a4fd05f700987052d1e', // GCC-2020-Local Client ID
@@ -11,6 +16,77 @@ const CLIENT_ID = {
 };
 const GITHUB_OAUTH_URL = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID.TEST}`;
 const GCC_BASE_URL = `https://gcc-global-dev.herokuapp.com`;
+const regionNameMap: { [x in Region]: string } = {
+  [Region.SEA]: 'SEA',
+  [Region.INDIA]: 'INDIA',
+  [Region.EUROPE]: 'EUROPE',
+  [Region.SWITZERLAND]: 'SWIS',
+  [Region.UK]: 'UK',
+  [Region.AMC]: 'AMC',
+  [Region.ROW]: 'ROW',
+  [Region.GLOBAL]: 'GLOBAL',
+  [Region.DEFAULT]: 'GLOBAL',
+};
+
+const authorizeWithBackend = (code: string) => {
+  return axios
+    .get<any>(`${GCC_BASE_URL}/github/login/${code}`, {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Accept: 'application/json',
+      },
+    })
+    .then((response) => {
+      const qrCodeLink = `https://credit-suisse.com/pwp/hr/en/codingchallenge/#/howtoplay?promocode=${response?.data?.login}`;
+      return {
+        loggedInGitHub: true,
+        githubUsername: response?.data?.login,
+        qrCodeLink: qrCodeLink,
+        contestantId: response?.data?.contestantId,
+        githubAvatar: response?.data?.avatar_url,
+      };
+    });
+};
+
+const getContestant = (githubUsername: string) => {
+  if (!githubUsername) {
+    return {
+      hasUserSignedUp: false,
+    };
+  }
+
+  return axios
+    .get<any>(`${GCC_BASE_URL}/contestant/git/${githubUsername}`, {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Accept: 'application/json',
+      },
+    })
+    .then((response) => {
+      return {
+        contestantId: response.data.id,
+        contestantName: response.data.name,
+        contestantEmail: response.data.email,
+        level: response.data.level == null ? 'easy' : response.data.level,
+        hasUserSignedUp: true,
+      };
+    })
+    .catch((error) => {
+      if (error.response.status == 404) {
+        return {
+          hasUserSignedUp: false,
+        };
+      } else {
+        throw error;
+      }
+    });
+};
+
+const registerContestant = (body: any) => {
+  return axios.post<any>(`${GCC_BASE_URL}/challenge/signup`, body);
+};
 
 const Profile: React.FC = () => {
   const { user, setUser } = useUserContext();
@@ -20,45 +96,72 @@ const Profile: React.FC = () => {
     const browser = InAppBrowser.create(GITHUB_OAUTH_URL, '_blank', {
       location: 'yes',
     });
-    browser.on('loadstart').subscribe((info) => {
+    browser.on('loadstart').subscribe(async (info) => {
       const match = /\?code=(\w*)#\/gitsignin$/.exec(info.url);
       if (match) {
         browser.close();
         const code = match[1];
-        authorizeWithBackend(code);
+
+        setLoading(true);
+        const githubUser = await authorizeWithBackend(code);
+        const contestant = await getContestant(githubUser?.githubUsername);
+        setLoading(false);
+
+        console.log('user:', {
+          ...githubUser,
+          ...contestant,
+        });
+
+        setUser({
+          ...githubUser,
+          ...contestant,
+        });
       }
     });
   };
 
-  const authorizeWithBackend = (code: string) => {
-    if (!code) return;
+  const handleRegistrationFormSubmit = (fields: RegistrationFormFields) => {
+    // let promocode = getState().user.promoCode ? getState().user.promoCode : "";
+    const {
+      title,
+      firstName,
+      lastName,
+      email,
+      region,
+      university,
+      course,
+      graduationYear,
+      privacyChecked,
+      marketingChecked,
+    } = fields;
 
-    const access_token_url = `${GCC_BASE_URL}/github/login/${code}`;
+    const body = {
+      course,
+      disclaimers: {
+        marketing: marketingChecked,
+        privacy: privacyChecked,
+      },
+      email,
+      gitUsername: user?.githubUsername,
+      name: `${firstName} ${lastName}`,
+      region: regionNameMap[region as Region],
+      team: university,
+      graduationYear,
+      title,
+      gitAvatar: user?.githubAvatar,
+    };
 
     setLoading(true);
-
-    axios
-      .get<any>(access_token_url, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/x-www-form-urlencoded',
-          Accept: 'application/json',
-        },
-      })
+    console.log('registering contestant');
+    registerContestant(body)
       .then((response) => {
         if (response.status == 200) {
-          const qrCodeLink = `https://credit-suisse.com/pwp/hr/en/codingchallenge/#/howtoplay?promocode=${response?.data?.login}`;
-          setUser({
-            loggedInGitHub: true,
-            githubUsername: response?.data?.login,
-            qrCodeLink: qrCodeLink,
-            contestantId: response?.data?.contestantId,
-            githubAvatar: response?.data?.avatar_url,
-          });
+          console.log('registered contestant:', response.data);
+          setUser(response.data);
         }
       })
-      .catch((error) => {
-        console.error('error', error);
+      .catch((err) => {
+        console.log('failed to register contestant', err);
       })
       .finally(() => {
         setLoading(false);
@@ -73,15 +176,8 @@ const Profile: React.FC = () => {
     <IonPage>
       <PageHeader title="Profile" />
       <IonContent>
-        <div className="container">
-          {user?.loggedInGitHub ? (
-            <>
-              <IonAvatar>
-                <img src={user.githubAvatar} />
-              </IonAvatar>
-              <strong>{`Welcome, ${user?.githubUsername}!`}</strong>
-            </>
-          ) : (
+        {!user?.loggedInGitHub && (
+          <div className="container">
             <button
               className="cs-button"
               style={{ fontSize: 20 }}
@@ -89,8 +185,24 @@ const Profile: React.FC = () => {
             >
               Login via Github
             </button>
-          )}
-        </div>
+          </div>
+        )}
+        {user?.loggedInGitHub && !user.hasUserSignedUp && (
+          <RegistrationForm
+            githubUsername={user.githubUsername}
+            onSubmit={handleRegistrationFormSubmit}
+          />
+        )}
+        {user?.loggedInGitHub && user.hasUserSignedUp && (
+          <div className="container">
+            <>
+              <IonAvatar>
+                <img src={user.githubAvatar} />
+              </IonAvatar>
+              <strong>{`Welcome, ${user?.githubUsername}!`}</strong>
+            </>
+          </div>
+        )}
       </IonContent>
     </IonPage>
   );

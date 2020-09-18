@@ -54,6 +54,17 @@ h5 {
   width: 34%;
 }
 
+input {
+  border-radius: 0;
+  border-width: 1px;
+  padding: 0.5rem 0.7rem;
+  width: 100%;
+}
+
+select {
+  width: 100%;
+}
+
 ul {
   list-style-type: none;
   padding: 0;
