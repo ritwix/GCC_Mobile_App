@@ -20,7 +20,7 @@ h1 {
 }
 
 h2 {
-  font-size: 34px !important;
+  font-size: 30px !important;
 }
 
 h3 {
@@ -39,9 +39,15 @@ h5 {
   font-family: 'CS-Body' !important;
 }
 
-* {
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
   font-family: 'CS-Body', Arial, Helvetica, sans-serif !important;
   font-size: small;
+  color: black;
 }
 
 /* CS components */
@@ -53,6 +59,17 @@ h5 {
   font-weight: bold;
   font-size: 16px;
   width: 34%;
+}
+
+input {
+  border-radius: 0;
+  border-width: 1px;
+  padding: 0.5rem 0.7rem;
+  width: 100%;
+}
+
+select {
+  width: 100%;
 }
 
 ul {

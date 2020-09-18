@@ -14,19 +14,29 @@
   padding: 0 1rem;
 }
 
-
 .button-row {
   display: flex;
-  align-items: center;
-  padding: 0 0rem;
+  
 }
 
-
-.buttons {
-  background-color: black;
-  color: white;
-  height: 20px;
+.button-tab {
+  background-color: white;
+  border: black solid 1px;
+  height: 40px;
+  width: 34%;
   font-weight: normal;
   font-size: 16px;
-  min-width: fit-content;
+}
+
+.button-tab:focus {
+  outline: none;
+}
+
+.button-tab:nth-child(2){
+  margin: 0 -1px;
+}
+
+.selected-button-tab {
+  background-color: black;
+  color: white;
 }

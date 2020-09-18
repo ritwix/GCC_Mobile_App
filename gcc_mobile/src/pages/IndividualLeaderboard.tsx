@@ -4,8 +4,6 @@ import { IonContent, IonPage, IonGrid, IonRow, IonCol, IonInput, IonSelect, IonS
 import './IndividualLeaderboard.css';
 import { IndLeaderContainer , UnivLeaderContainer, EngagementLeaderContainer} from '../components/LeaderboardContainer';
 import PageHeader from '../components/PageHeader';
-import { table } from 'console';
-import { getClassName } from '@ionic/react/dist/types/components/utils';
 
 const GetIndLeader = (lowerLim: number, numberOfRows: number, region: string) => {
   var urlWithLimit = "https://gcc-global.herokuapp.com/leaderboard/" + region + "?from="+ String(lowerLim) + "&limit=" + String(numberOfRows);
@@ -88,16 +86,16 @@ const IndLeaderboard: React.FC = () => {
       <PageHeader title="Leaderboard" />
       <IonLoading isOpen={IconLoading} ></IonLoading>
       <div className="button-row">
-      
-          
-        
-          <button className="cs-button" onClick = {()=> {setLeaderboardType ("Individual")}}>Individual</button>
-        
-          <button className="cs-button" onClick = {()=> {setLeaderboardType ("University")}}>University</button>
-          
-          <button className="cs-button" onClick = {()=> {setLeaderboardType ("Engagement")}}>Engagement</button>
-
-          </div>
+        {
+          ["Individual", "University", "Engagement"].map(type => {
+            const styles = leaderboardType === type ? {
+              backgroundColor: 'black',
+              color: 'white',
+            } : {};
+            return <button key={type} className="button-tab" style={styles} onClick = {()=> {setLeaderboardType(type)}}>{type}</button>
+          })
+        }
+      </div>
   
       <IonContent >
       <div className="filter-column">
