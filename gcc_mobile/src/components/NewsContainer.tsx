@@ -85,9 +85,9 @@ const NewsContainer: React.FC = () => {
         </IonContent>
       )}
 
-      {(mockHeadlines || []).length > 0 && (
+      {(headlines || []).length > 0 && (
         <ul>
-          {mockHeadlines?.map((h) => (
+          {headlines?.map((h) => (
             <HeadlineContainer key={h.id} headline={h} />
           ))}
         </ul>
