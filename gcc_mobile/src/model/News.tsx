@@ -20,6 +20,7 @@ export interface Headline {
 
 export interface Article extends Headline {
     body: string
+    paragraphs: string[]
     prettyPrintedTime: string
 }
 // TODO: Add correct region keys @im-pratham

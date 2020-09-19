@@ -4,6 +4,8 @@ import { IonContent, IonSelect, IonSelectOption, IonLabel } from '@ionic/react';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import SmallTrendIcon from '../assets/icons/icons_small_trend/icons_small_trend.png';
+
 interface HeadlineProps {
   headline: Headline;
 }
@@ -17,9 +19,12 @@ const HeadlineContainer: React.FC<HeadlineProps> = ({ headline }) => {
         history.push(`/news/${headline.id}`);
       }}
     >
-      <h2>{headline.title}</h2>
-      <h3>Author: {headline.author}</h3>
-      <p>{headline.blurb}</p>
+      <div>
+        <h3>{headline.title}</h3>
+        <h4>Author: {headline.author}</h4>
+        <p>{headline.blurb}</p>
+      </div>
+      <img src={SmallTrendIcon} alt="right arrow icon" />
     </li>
   );
 };
@@ -28,6 +33,17 @@ const NewsContainer: React.FC = () => {
   const regions = Object.keys(Region);
   const [region, setRegion] = useState<string>(Region.UK);
   const [headlines, setHeadlines] = useState<Headline[]>();
+
+  const mockHeadlines = [
+    {
+      id: '1',
+      title: 'Title 1',
+      imageUrl: '1',
+      blurb: 'blurb 1',
+      author: 'author 1',
+      timestamp: new Date().toDateString(),
+    },
+  ];
 
   useEffect(() => {
     onRegionChanged(Region.UK);
@@ -40,10 +56,10 @@ const NewsContainer: React.FC = () => {
     // TODO: change to pagination @im-pratham
     axios
       .get<Headlines>(
-        `https://gcc-global-dev.herokuapp.com/news/headlines/${value}?from=0&limit=100`
+        `https://gcc-backend-dev-temp.herokuapp.com/news/headlines/${value}?from=0&limit=100`
       )
       .then(({ data }) => {
-        console.log('Got headlines: ' + data);
+        console.log('Got headlines: ', data);
         setHeadlines(data.headlines);
       });
   };

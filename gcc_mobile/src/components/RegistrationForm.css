@@ -1,0 +1,32 @@
+.form-container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-container p {
+  margin-bottom: 1rem;
+}
+
+.form-fields {
+  width: 60vw;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  justify-content: space-between;
+}
+
+.checkbox-group {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.checkbox-group label {
+  text-align: left;
+  width: 400vw;
+}

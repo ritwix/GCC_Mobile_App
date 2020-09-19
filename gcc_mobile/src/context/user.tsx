@@ -6,6 +6,7 @@ export type User = {
   qrCodeLink: string;
   contestantId: string;
   githubAvatar: string;
+  hasUserSignedUp: boolean;
 };
 
 interface UserContextType {

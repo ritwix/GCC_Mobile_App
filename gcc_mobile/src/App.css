@@ -20,11 +20,11 @@ h1 {
 }
 
 h2 {
-  font-size: 34px !important;
+  font-size: 30px !important;
 }
 
 h3 {
-  font-size: 18px !important;
+  font-size: 24px !important;
   font-family: 'CS-Body' !important;
   font-weight: 700;
 }
@@ -32,14 +32,22 @@ h3 {
 h4 {
   font-family: 'CS-Body' !important;
   font-size: 16px !important;
+  font-weight: bold;
 }
 
 h5 {
   font-family: 'CS-Body' !important;
 }
 
-* {
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
   font-family: 'CS-Body', Arial, Helvetica, sans-serif !important;
+  font-size: small;
+  color: black;
 }
 
 /* CS components */
@@ -50,7 +58,18 @@ h5 {
   height: 40px;
   font-weight: bold;
   font-size: 16px;
-  padding: 0 1rem;
+  width: 34%;
+}
+
+input {
+  border-radius: 0;
+  border-width: 1px;
+  padding: 0.5rem 0.7rem;
+  width: 100%;
+}
+
+select {
+  width: 100%;
 }
 
 ul {
