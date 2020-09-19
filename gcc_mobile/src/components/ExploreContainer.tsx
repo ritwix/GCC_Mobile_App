@@ -23,7 +23,7 @@ const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
     PushNotifications.addListener('registration',
       (token: PushNotificationToken) => {
         console.log('Push registration success, token: ' + token.value);
-        alert('Push registration success, token: ' + token.value);
+        // alert('Push registration success, token: ' + token.value);
       }
     );
 
@@ -31,7 +31,7 @@ const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
     PushNotifications.addListener('registrationError',
       (error: any) => {
         console.log('Error on registration: ' + JSON.stringify(error));
-        alert('Error on registration: ' + JSON.stringify(error));
+        // alert('Error on registration: ' + JSON.stringify(error));
       }
     );
 
@@ -41,7 +41,7 @@ const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
         console.log('Push Notification: ' + JSON.stringify(notification))
         const notif = notifications;
         notif.push(notification)
-        alert('Got' + JSON.stringify(notification))
+        // alert('Got' + JSON.stringify(notification))
         // setNotifications(notif)
       }
     );
@@ -52,7 +52,7 @@ const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
         console.log('Push Notification: ' + JSON.stringify(notification))
         const notif = notifications;
         notif.push(notification.notification)
-        alert('Got' + JSON.stringify(notification))
+        // alert('Got' + JSON.stringify(notification))
         // setNotifications(notif)
       }
     );
@@ -67,7 +67,8 @@ const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
     //   <strong>{name}</strong>
     //   <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
     // </div>
-    <IonButton expand="full" onClick={() => push()}>Register for Push Notification</IonButton>
+    // <IonButton expand="full" onClick={() => push()}>Register for Push Notification</IonButton>
+    <div></div>
   );
 };
 

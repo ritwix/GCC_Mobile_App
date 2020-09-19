@@ -1,6 +1,6 @@
 {
   "appId": "com.creditsuisse.gcc",
-  "appName": "GCC_React",
+  "appName": "GCC Mobile",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",
