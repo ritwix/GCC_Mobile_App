@@ -4,9 +4,10 @@ import { IonContent, IonPage, IonGrid, IonRow, IonCol, IonInput, IonSelect, IonS
 import './IndividualLeaderboard.css';
 import { IndLeaderContainer , UnivLeaderContainer, EngagementLeaderContainer} from '../components/LeaderboardContainer';
 import PageHeader from '../components/PageHeader';
+import { codingChallengeStarted } from '../CompetitionTimer';
 
 const GetIndLeader = (lowerLim: number, numberOfRows: number, region: string) => {
-  var urlWithLimit = "https://gcc-global.herokuapp.com/leaderboard/" + region + "?from="+ String(lowerLim) + "&limit=" + String(numberOfRows);
+  var urlWithLimit = "https://gcc-backend-dev-temp.herokuapp.com/leaderboard/" + region + "?from="+ String(lowerLim) + "&limit=" + String(numberOfRows);
   return axios({
    url : urlWithLimit, 
    method: 'get',
@@ -17,7 +18,7 @@ const GetIndLeader = (lowerLim: number, numberOfRows: number, region: string) =>
 };
 
 const GetUnivLeader = (lowerLim: number, numberOfRows: number, region: string) => {
-  var urlWithLimit = "https://gcc-global.herokuapp.com/teamleaderboard/" + region + "?from="+ String(lowerLim) + "&limit=" + String(numberOfRows);
+  var urlWithLimit = "https://gcc-backend-dev-temp.herokuapp.com/teamleaderboard/" + region + "?from="+ String(lowerLim) + "&limit=" + String(numberOfRows);
   return axios({
    url : urlWithLimit, 
    method: 'get',
@@ -28,7 +29,7 @@ const GetUnivLeader = (lowerLim: number, numberOfRows: number, region: string) =
 };
 
 const GetEngagementLeader = (lowerLim: number, numberOfRows: number, region: string) => {
-  var urlWithLimit = "https://gcc-global.herokuapp.com/engagementLeaderboard/" + region + "?from="+ String(lowerLim) + "&limit=" + String(numberOfRows);
+  var urlWithLimit = "https://gcc-backend-dev-temp.herokuapp.com/engagementLeaderboard/" + region + "?from="+ String(lowerLim) + "&limit=" + String(numberOfRows);
   return axios({
    url : urlWithLimit, 
    method: 'get',
@@ -41,6 +42,7 @@ const GetEngagementLeader = (lowerLim: number, numberOfRows: number, region: str
 
 const IndLeaderboard: React.FC = () => {
 
+  
   //default region = GLOBAL
   const [Region, setRegion] = React.useState<string>("GLOBAL");
   const [lowerLim, setLowerLim] = React.useState(1);

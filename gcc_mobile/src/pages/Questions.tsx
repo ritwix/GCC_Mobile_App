@@ -21,7 +21,7 @@ type Question = {
 const fetchQuestions = () => {
   return axios({
     //url: "https://cscc-gl.herokuapp.com/allquestions", //last year questions
-    url: 'https://gcc-global.herokuapp.com/allquestions', //  this year questions
+    url: 'https://gcc-backend-dev-temp.herokuapp.com/allquestions', //  this year questions
     method: 'get',
   }).then((response) => {
     console.log(response);
@@ -32,7 +32,7 @@ const fetchQuestions = () => {
 const fetchContestantProfile = () => {
   return axios({
     //url: "https://cscc-gl.herokuapp.com/allquestions", //last year questions
-    url: 'https://gcc-global.herokuapp.com/contestant/git/sahmad14', //  this year questions
+    url: 'https://gcc-backend-dev-temp.herokuapp.com/contestant/git/sahmad14', //  this year questions
     method: 'get',
   }).then((response) => {
     console.log(response.data.level);

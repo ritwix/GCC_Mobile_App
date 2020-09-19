@@ -17,6 +17,8 @@ import globe from '../image/brandnet/icons_large_global.png';
 import calendar from '../image/icons_large_calendar.png';
 import PageHeader from '../components/PageHeader';
 import { arrowDown, arrowForward, caretDown , caretForward} from 'ionicons/icons';
+import { codingChallengeStarted } from '../CompetitionTimer';
+
 
 
 const Buttn: React.FC<{ val: String; visible: boolean; txt: String }> = (
@@ -24,6 +26,7 @@ const Buttn: React.FC<{ val: String; visible: boolean; txt: String }> = (
 ) => {
   const [visib, setVisib] = useState(props.visible);
 
+  
   return (
     <>
     <br />
