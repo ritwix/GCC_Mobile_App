@@ -10,6 +10,7 @@ import { IonIcon } from '@ionic/react';
 import PageHeader from '../components/PageHeader';
 
 import CSBlue from '../CSBlue.png';
+import { codingChallengeStarted } from '../CompetitionTimer';
 
 type Question = {
   active: boolean;
@@ -55,19 +56,20 @@ const Question: React.FC<{ question: Question, levelRank: number}> = (props) => 
       <div className="question-number">
     <h4>Question {question.questionNumber}  {question.questionNumber <= 3 ? "(Easy)": question.questionNumber <=6 ? "(Med)":"(Hard)"}</h4>
         
-        <div hidden={(question.questionNumber <= 3*levelRank ? false:true)}>  Active <IonIcon icon={lockOpenOutline} /> </div>
-        <div hidden={!(question.questionNumber <= 3*levelRank ? false:true)}> Locked <IonIcon icon={lockClosedSharp}/> </div>
+        <div hidden={(question.questionNumber <= 3*levelRank ? false:true) ||  !codingChallengeStarted()}>  Active <IonIcon icon={lockOpenOutline} /> </div>
+        <div hidden={!(question.questionNumber <= 3*levelRank ? false:true) && codingChallengeStarted()}> Locked <IonIcon icon={lockClosedSharp}/> </div>
           
         <IonIcon icon={arrowDown} hidden={!visible} />
         <IonIcon icon={arrowForward} hidden={visible}  />
       </div>
 
-      {(visible && question.questionNumber<=3*levelRank) && <ReactMarkdown source={question.questionText} /> }
+      {(visible && question.questionNumber<=3*levelRank && codingChallengeStarted()) && <ReactMarkdown source={question.questionText} /> }
     </li>
   );
 };
 
 const Questions: React.FC = () => {
+  console.log(codingChallengeStarted())
   const [questions, setQuestions] = useState<Question[]>([]);
   const [levelRank, setLevelRank]  = useState(1);
 
