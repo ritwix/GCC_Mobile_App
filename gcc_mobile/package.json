@@ -27,6 +27,7 @@
     "cordova-plugin-screen-orientation": "^3.0.2",
     "es6-promise-plugin": "^4.2.2",
     "ionicons": "^5.0.0",
+    "moment-timezone": "^0.5.31",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-markdown": "^4.3.1",
