@@ -1,5 +1,5 @@
 {
-  "appId": "io.ionic.starter",
+  "appId": "com.creditsuisse.gcc",
   "appName": "GCC_React",
   "bundledWebRuntime": false,
   "npmClient": "npm",
@@ -7,7 +7,14 @@
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 0
+    },
+    "PushNotifications": {
+      "presentationOptions": ["sound", "alert"]
     }
   },
-  "cordova": {}
+  "cordova": {},
+  "server": {
+    "url": "http://192.168.0.101:8100"
+  },
+  "windowsAndroidStudioPath": "C:\\Users\\im-pratham\\AppData\\Local\\JetBrains\\Toolbox\\apps\\AndroidStudio\\ch-0\\193.6626763\\bin\\studio64.exe"
 }
