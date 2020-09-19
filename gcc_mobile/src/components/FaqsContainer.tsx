@@ -41,7 +41,7 @@ const FaqsContainer: React.FC = () => {
             })
     }, [])
 
-    if (faqs?.length > 0) {
+    if (faqs && faqs?.length > 0) {
         return (
             <IonContent>
                 {

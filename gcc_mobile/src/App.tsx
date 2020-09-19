@@ -49,6 +49,7 @@ import './theme/variables.css';
 import FaqTab from './pages/FaqTab';
 import NewsTab from './pages/NewsTab';
 import NewsTabDetail from './pages/NewsTabDetail';
+import ExploreContainer from './components/ExploreContainer';
 
 const App: React.FC = () => (
   <UserContextInit>
@@ -103,6 +104,7 @@ const App: React.FC = () => (
           </IonTabBar>
         </IonTabs>
       </IonReactRouter>
+      <ExploreContainer name='dummy'/>
     </IonApp>
   </UserContextInit>
 );

@@ -54,6 +54,7 @@ const NewsContainer: React.FC = () => {
         <IonLabel>Select Region: </IonLabel>
         <IonSelect
           value={region}
+          interface="popover"
           placeholder="Select Region"
           onIonChange={(e) => onRegionChanged(e.detail.value)}
         >
