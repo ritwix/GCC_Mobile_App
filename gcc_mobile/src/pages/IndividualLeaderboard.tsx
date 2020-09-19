@@ -39,6 +39,27 @@ const GetEngagementLeader = (lowerLim: number, numberOfRows: number, region: str
   });
 };
 
+const RegionMapper = (region: string) => {
+    var mappedRegion: string;
+    if(region==="GLOBAL")
+      mappedRegion = "GLOBAL";
+    else if(region==="INDIA")
+      mappedRegion = "India";
+    else if(region==="EUROPE")
+      mappedRegion = "Europe";
+    else if(region==="AMC")
+      mappedRegion = "USA & Canada";
+    else if(region==="SEA")
+      mappedRegion = "South East Asia";
+    else if(region==="SWIS")
+    mappedRegion = "Switzerland";
+    else if(region==="UK")
+      mappedRegion = "UK and Ireland";
+    else
+      mappedRegion = "Rest of the world";
+
+    return mappedRegion;
+}
 
 const IndLeaderboard: React.FC = () => {
 
@@ -81,12 +102,10 @@ const IndLeaderboard: React.FC = () => {
 
   const [leaderboardType,setLeaderboardType] = React.useState<string>("Individual");
 
-  const [IconLoading,setIconLoading] = React.useState<boolean>(false);
  
   return (
     <IonPage>
       <PageHeader title="Leaderboard" />
-      <IonLoading isOpen={IconLoading} ></IonLoading>
       <div className="button-row">
         {
           ["Individual", "University", "Engagement"].map(type => {
@@ -135,11 +154,12 @@ const IndLeaderboard: React.FC = () => {
             <IonCol>Score</IonCol>
           </IonRow>
           {IndItems.map((item) => {
-            return ( IndFilterBy== undefined || IndFilterBy== '' || String(item[IndFilterColumn]).toLocaleLowerCase().indexOf(IndFilterBy.toLowerCase())!== -1 ?
+            
+            return ( IndFilterBy== undefined || IndFilterBy== '' || (IndFilterColumn=='region'? String(RegionMapper(item[IndFilterColumn])).toLocaleLowerCase().indexOf(IndFilterBy.toLowerCase())!== -1 : String(item[IndFilterColumn]).toLocaleLowerCase().indexOf(IndFilterBy.toLowerCase())!== -1 ) ?
               <IndLeaderContainer
                 Rank={item['pos']}
                 Name={item['name']}
-                Region={item['region']} 
+                Region={RegionMapper(item['region'])} 
                 University={item['teamName']}
                 Score= {Number(item['total']).toFixed(2)}
               />
@@ -206,11 +226,11 @@ const IndLeaderboard: React.FC = () => {
             <IonCol>Score</IonCol>
           </IonRow>
           {EngagementItems.map((item) => {
-            return ( EngagementFilterBy== undefined || EngagementFilterBy== '' || String(item[EngagementFilterColumn]).toLocaleLowerCase().indexOf(EngagementFilterBy.toLowerCase())!== -1 ?
+            return ( EngagementFilterBy== undefined || EngagementFilterBy== '' || (EngagementFilterColumn=='region'? String(RegionMapper(item[EngagementFilterColumn])).toLocaleLowerCase().indexOf(EngagementFilterBy.toLowerCase())!== -1 : String(item[EngagementFilterColumn]).toLocaleLowerCase().indexOf(EngagementFilterBy.toLowerCase())!== -1) ?
               <EngagementLeaderContainer
                 Rank={item['pos']}
                 Name={item['name']}
-                Region={item['region']} 
+                Region={RegionMapper(item['region'])} 
                 University={item['teamName']}
                 NumberOfBadges={"0"}
                 Score= {Number(item['total']).toFixed(2)}
@@ -221,7 +241,7 @@ const IndLeaderboard: React.FC = () => {
         </IonGrid>
         </div>
         <div style= {{textAlign:"center"}}>
-        <button  className="buttons" onClick = {()=> {setLowerLim(lowerLim + numberOfRows);  getMoreData(lowerLim)}}>Load More...</button>  
+        <button  className="button-tab" onClick = {()=> {setLowerLim(lowerLim + numberOfRows);  getMoreData(lowerLim)}}>Load More...</button>  
         </div>
       </IonContent>
     </IonPage>

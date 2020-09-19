@@ -1,7 +1,7 @@
 import moment from 'moment-timezone';
 
 const REACT_APP_CHALLENGE_START_TIME='2020-09-15T14:00:00'
-const REACT_APP_CHALLENGE_END_TIME='2020-09-19T14:00:00'
+const REACT_APP_CHALLENGE_END_TIME='2020-09-17T14:00:00'
 
 export const start = "2020-01-08T16:00:00Z"
 export const end = "2020-02-18T10:00:00Z"
