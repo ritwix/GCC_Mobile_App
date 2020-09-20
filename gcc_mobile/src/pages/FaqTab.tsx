@@ -4,7 +4,7 @@ import {
   IonHeader,
   IonToolbar,
   IonTitle,
-  IonContent,
+  IonContent, IonGrid, IonRow, IonCol
 } from '@ionic/react';
 import './FaqTab.css';
 import FaqsContainer from '../components/FaqsContainer';
@@ -15,7 +15,13 @@ const FaqTab: React.FC = () => {
     <IonPage>
       <PageHeader title="FAQs" />
       <IonContent>
-        <FaqsContainer />
+        {/* <IonGrid>
+          <IonRow>
+            <IonCol> */}
+              <FaqsContainer />
+            {/* </IonCol>
+          </IonRow>
+        </IonGrid> */}
       </IonContent>
     </IonPage>
   );
