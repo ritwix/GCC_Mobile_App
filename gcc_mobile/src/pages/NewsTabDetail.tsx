@@ -50,12 +50,12 @@ const NewsTabDetail: React.FC<NewsDetailProps> = ({ match }) => {
             // <IonContent>
             //     User {match.params.id}
             // </IonContent>
-            // <div dangerouslySetInnerHTML={{ __html: news.article.body }} />
-            <div>
-              {news.article.paragraphs.map((p) => (
-                <p className="paragraph">{p}</p>
-              ))}
-            </div>
+            <div className='paragraph' dangerouslySetInnerHTML={{ __html: news.article.body }} />
+            // <div>
+            //   {news.article.paragraphs.map((p) => (
+            //     <p className="paragraph">{p}</p>
+            //   ))}
+            // </div>
           )}
         </IonContent>
       </IonPage>
