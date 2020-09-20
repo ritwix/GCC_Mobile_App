@@ -33,28 +33,33 @@ const FaqsContainer: React.FC = () => {
   const API_URL = 'https://gcc-backend-dev-temp.herokuapp.com/faqs';
   const [faqs, setFaqs] = useState<Faq[]>();
 
-  useEffect(() => {
-    getFaqs();
-  }, []);
+    useEffect(() => {
+        axios.get<Faq[]>(API_URL)
+            .then(({ data }) => {
+                setFaqs(data)
+                console.log(data)
+            })
+    }, [])
 
-  const getFaqs = () => {
-    setFaqs([]);
+    if (faqs && faqs?.length > 0) {
+        return (
+            <IonContent>
+                {
+                    faqs?.map((faq) => (
+                        <FaqContainer faq={faq}>
 
-    axios.get<Faq[]>(API_URL).then(({ data }) => {
-      setFaqs(data);
-      console.log(data);
-    });
-  };
-
-  return (
-    <IonContent>
-      <ul>
-        {faqs?.map((faq) => (
-          <FaqContainer faq={faq}></FaqContainer>
-        ))}
-      </ul>
-    </IonContent>
-  );
+                        </FaqContainer>
+                    ))
+                }
+            </IonContent>
+        );
+    } else {
+        return (
+            <IonContent>
+                <IonLabel>No FAQs found. Please try after some time...</IonLabel>
+            </IonContent>
+        )
+    }
 };
 
 export default FaqsContainer;

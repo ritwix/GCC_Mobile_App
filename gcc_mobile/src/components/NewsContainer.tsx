@@ -53,7 +53,7 @@ const NewsContainer: React.FC = () => {
     console.log('Region changed: ' + value);
     setRegion(value);
     setHeadlines([]);
-    // TODO: change to pagination
+    // TODO: change to pagination @im-pratham
     axios
       .get<Headlines>(
         `https://gcc-backend-dev-temp.herokuapp.com/news/headlines/${value}?from=0&limit=100`
@@ -70,6 +70,7 @@ const NewsContainer: React.FC = () => {
         <IonLabel>Select Region: </IonLabel>
         <IonSelect
           value={region}
+          interface="popover"
           placeholder="Select Region"
           onIonChange={(e) => onRegionChanged(e.detail.value)}
         >
@@ -85,9 +86,9 @@ const NewsContainer: React.FC = () => {
         </IonContent>
       )}
 
-      {(mockHeadlines || []).length > 0 && (
+      {(headlines || []).length > 0 && (
         <ul>
-          {mockHeadlines?.map((h) => (
+          {headlines?.map((h) => (
             <HeadlineContainer key={h.id} headline={h} />
           ))}
         </ul>

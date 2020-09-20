@@ -20,9 +20,10 @@ export interface Headline {
 
 export interface Article extends Headline {
     body: string
+    paragraphs: string[]
     prettyPrintedTime: string
 }
-// TODO: Add correct region keys
+// TODO: Add correct region keys @im-pratham
 export enum Region {
     UK = 'UK',
     AMC = 'AMC',
