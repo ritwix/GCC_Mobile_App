@@ -1,15 +1,27 @@
 import React, { useState, useEffect } from 'react';
 
-import { IonContent, IonPage } from '@ionic/react';
+import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonImg, IonInfiniteScroll, IonLabel, IonModal, IonPage } from '@ionic/react';
 
 import './Questions.css';
 import axios from 'axios';
-import { chevronDown, chevronForward ,lockClosedSharp , lockOpenOutline } from 'ionicons/icons';
+import { lockClosedSharp , lockOpenOutline } from 'ionicons/icons';
 import ReactMarkdown from 'react-markdown';
 import { IonIcon } from '@ionic/react';
 import PageHeader from '../components/PageHeader';
-
+import stockImage1 from '../image/questions/stock-list.jpg';
+import volatilityImage from '../image/questions/stock-volatility.jpg';
+import serverImage from '../image/questions/server.jpg';
+import riskImage from '../image/questions/risk-benefit.jpg';
+import meetingImage from '../image/questions/meeting.jpg';
+import plan from '../image/questions/plan.jpg';
+import secretCode from '../image/questions/codepad.jpg';
+import dollars from '../image/questions/dollars.jpg';
+import stockImage from '../image/questions/stock-list-2.jpg';
 import { codingChallengeStarted } from '../CompetitionTimer';
+import { h } from 'ionicons/dist/types/stencil-public-runtime';
+import HowToPlay from './HowToPlay';
+
+
 
 type Question = {
   active: boolean;
@@ -17,6 +29,64 @@ type Question = {
   questionNumber: number;
   questionText: string;
 };
+
+const questionDetails = [
+  {
+      caption:"Make as much money as possible with only a single purchase",
+      img: stockImage1,
+      subtitle: "Profit Maximization Basic"
+  },
+  {
+      caption:"Make as much money as possible with as few trades as possible",
+      img: volatilityImage,
+      subtitle: "Profit Maximization Advanced"
+  },
+  {
+      caption:"Help John make the profit he wants as quickly as possible",
+      img: serverImage,
+      subtitle: "Achieving Desired Profit Quickly"
+  },
+  {
+      caption:"Plan a series of trades to make max profit while considering the risk",
+      img: riskImage,
+      subtitle: "Calculating Risk Vs Profit"
+  },
+  {
+      caption:"Match the bankers and participants in the fewest sessions possible",
+      img: meetingImage,
+      subtitle: "Matching Bankers and Participants"
+  },
+  {
+      caption:"Encrypt English text to protect data from theft",
+      img: plan,
+      subtitle: "Encrypting Secret Messages"
+  },
+  {
+      caption:"Automatically flag suspicious users on a Q&A board to be checked for cheating",
+      img: secretCode,
+      subtitle: "Checking Q&A for Cheaters"
+  },
+  {
+      caption:"Find the number of ways you can make change on a purchase with a variety of coins",
+      img: dollars,
+      subtitle: "Making Change Using Coins"
+  },
+  {
+      caption:"Sort transactions by fraud probability to detect credit card fraud",
+      img: stockImage,
+      subtitle: "Sorting Fraudulent Transactions"
+  },
+  {
+    caption:"Sort transactions by fraud probability to detect credit card fraud",
+    img: stockImage,
+    subtitle: "Sorting Fraudulent Transactions"
+},
+{
+  caption:"Sort transactions by fraud probability to detect credit card fraud",
+  img: stockImage,
+  subtitle: "Sorting Fraudulent Transactions"
+},
+]
 
 const fetchQuestions = () => {
   return axios({
@@ -40,6 +110,10 @@ const fetchContestantProfile = () => {
   });
 };
 
+var questionCardVisib : boolean;
+questionCardVisib = false;
+
+
 const Question: React.FC<{ question: Question, levelRank: number}> = (props) => {
   const { question } = props;
   const { levelRank } = props;
@@ -50,19 +124,32 @@ const Question: React.FC<{ question: Question, levelRank: number}> = (props) => 
       className="question-item"
       onClick={() => {
         setVisible((visible) => !visible);
+        questionCardVisib = !questionCardVisib;
       }}
     >
-      <div className="question-number">
-    <h4>Question {question.questionNumber}  {question.questionNumber <= 3 ? "(Easy)": question.questionNumber <=6 ? "(Med)":"(Hard)"}</h4>
-        
-        <div hidden={(question.questionNumber <= 3*levelRank ? false:true) ||  !codingChallengeStarted()}>  Active <IonIcon icon={lockOpenOutline} /> </div>
-        <div hidden={!(question.questionNumber <= 3*levelRank ? false:true) && codingChallengeStarted()}> Locked <IonIcon icon={lockClosedSharp}/> </div>
-          
-        <IonIcon icon={chevronDown} hidden={!visible} />
-        <IonIcon icon={chevronForward} hidden={visible}  />
-      </div>
-
-      {(visible && question.questionNumber<=3*levelRank && codingChallengeStarted()) && <ReactMarkdown source={question.questionText} /> }
+        <IonCard > 
+        <img src={questionDetails[question.questionNumber -1].img} />
+        <IonCardHeader>
+          <IonCardSubtitle> {questionDetails[question.questionNumber -1].subtitle}</IonCardSubtitle>
+          <IonCardTitle>Question {question.questionNumber} {question.questionNumber <= 3 ? "(Easy)": question.questionNumber <=6 ? "(Medium)":"(Hard)"}
+            <div style={{float:'right'}} hidden={(question.questionNumber <= 3*levelRank ? false:true) ||  !codingChallengeStarted()}>  Active <IonIcon icon={lockOpenOutline} /> </div>
+            <div style={{float:'right'}} hidden={!(question.questionNumber <= 3*levelRank ? false:true) && codingChallengeStarted()}> Locked <IonIcon icon={lockClosedSharp}/> </div>
+          </IonCardTitle>
+          </IonCardHeader>
+        <IonCardContent>
+          {questionDetails[question.questionNumber -1].caption}
+          </IonCardContent>
+        </IonCard>
+        <IonModal isOpen={visible} >
+         <IonContent >
+            <h1 className="content">Question {question.questionNumber}</h1>
+            <IonImg src={questionDetails[question.questionNumber -1].img}></IonImg>
+           <div >
+          <ReactMarkdown source={question.questionText} className="content"/>
+          </div>
+          </IonContent> 
+        </IonModal>
+      
     </li>
   );
 };
@@ -86,6 +173,7 @@ const Questions: React.FC = () => {
       <PageHeader title="Questions" />
 
       <IonContent>
+      
         <ul>
           {questions.map((question) => (
             <Question key={question.id} question={question} levelRank={levelRank}/>
