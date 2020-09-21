@@ -13,7 +13,7 @@ interface HeadlineProps {
 const HeadlineContainer: React.FC<HeadlineProps> = ({ headline }) => {
   const history = useHistory();
   return (
-    <li
+    <div
       className="news-item"
       onClick={() => {
         history.push(`/news/${headline.id}`);
@@ -25,7 +25,7 @@ const HeadlineContainer: React.FC<HeadlineProps> = ({ headline }) => {
         <p>{headline.blurb}</p>
       </div>
       <img src={SmallTrendIcon} alt="right arrow icon" />
-    </li>
+    </div>
   );
 };
 
@@ -76,11 +76,9 @@ const NewsContainer: React.FC = () => {
       )}
 
       {(headlines || []).length > 0 && (
-        <ul>
-          {headlines?.map((h) => (
-            <HeadlineContainer key={h.id} headline={h} />
-          ))}
-        </ul>
+        headlines?.map((h) => (
+          <HeadlineContainer key={h.id} headline={h} />
+        ))
       )}
     </IonContent>
   );

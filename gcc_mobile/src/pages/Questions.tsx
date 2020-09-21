@@ -21,8 +21,6 @@ import { codingChallengeStarted } from '../CompetitionTimer';
 import { h } from 'ionicons/dist/types/stencil-public-runtime';
 import HowToPlay from './HowToPlay';
 
-
-
 type Question = {
   active: boolean;
   id: string;
@@ -120,14 +118,14 @@ const Question: React.FC<{ question: Question, levelRank: number}> = (props) => 
   const [visible, setVisible] = useState(false);
   
   return (
-    <li
+    <div
       className="question-item"
       onClick={() => {
         setVisible((visible) => !visible);
         questionCardVisib = !questionCardVisib;
       }}
     >
-        <IonCard > 
+        <IonCard style={{borderRadius: 0, boxShadow: 'none', border: '#a8a8a7 1px solid'}}> 
         <img src={questionDetails[question.questionNumber -1].img} />
         <IonCardHeader>
           <IonCardSubtitle> {questionDetails[question.questionNumber -1].subtitle}</IonCardSubtitle>
@@ -150,7 +148,7 @@ const Question: React.FC<{ question: Question, levelRank: number}> = (props) => 
           </IonContent> 
         </IonModal>
       
-    </li>
+    </div>
   );
 };
 
@@ -167,18 +165,13 @@ const Questions: React.FC = () => {
     fetchContestantProfile().then((level) => level=="easy" ? setLevelRank(1): level =="medium" ? setLevelRank(2):setLevelRank(3));   
   }, []);
 
-
   return (
     <IonPage>
       <PageHeader title="Questions" />
-
       <IonContent>
-      
-        <ul>
           {questions.map((question) => (
             <Question key={question.id} question={question} levelRank={levelRank}/>
           ))}
-        </ul>
       </IonContent>
     </IonPage>
   );
