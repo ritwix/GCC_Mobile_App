@@ -84,7 +84,7 @@ const SupportQueryContainer: React.FC = () => {
           placeholder="Name"
           type="text"
           ref={register({ required: true })}
-          onIonChange={(e) => setFullName(e.detail.value)}
+          onIonChange={(e) => setFullName(e.detail.value || '')}
         />
       </IonItem>
 
@@ -92,7 +92,7 @@ const SupportQueryContainer: React.FC = () => {
         <IonLabel position="stacked">Email</IonLabel>
         <IonInput
           name="email"
-          onIonChange={(e) => setEmail(e.detail.value)}
+          onIonChange={(e) => setEmail(e.detail.value || '')}
           value={email}
           clearInput={true}
           placeholder="Email"
@@ -105,7 +105,7 @@ const SupportQueryContainer: React.FC = () => {
         <IonLabel position="stacked">Query</IonLabel>
         <IonInput
           name="query"
-          onIonChange={(e) => setQuery(e.detail.value)}
+          onIonChange={(e) => setQuery(e.detail.value || '')}
           clearInput={false}
           value={query}
           placeholder="Describe your query"

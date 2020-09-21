@@ -13,7 +13,7 @@ interface HeadlineProps {
 const HeadlineContainer: React.FC<HeadlineProps> = ({ headline }) => {
   const history = useHistory();
   return (
-    <li
+    <div
       className="news-item"
       onClick={() => {
         history.push(`/news/${headline.id}`);
@@ -25,7 +25,7 @@ const HeadlineContainer: React.FC<HeadlineProps> = ({ headline }) => {
         <p>{headline.blurb}</p>
       </div>
       <img src={SmallTrendIcon} alt="right arrow icon" />
-    </li>
+    </div>
   );
 };
 
@@ -33,17 +33,6 @@ const NewsContainer: React.FC = () => {
   const regions = Object.keys(Region);
   const [region, setRegion] = useState<string>(Region.UK);
   const [headlines, setHeadlines] = useState<Headline[]>();
-
-  const mockHeadlines = [
-    {
-      id: '1',
-      title: 'Title 1',
-      imageUrl: '1',
-      blurb: 'blurb 1',
-      author: 'author 1',
-      timestamp: new Date().toDateString(),
-    },
-  ];
 
   useEffect(() => {
     onRegionChanged(Region.UK);
@@ -87,11 +76,9 @@ const NewsContainer: React.FC = () => {
       )}
 
       {(headlines || []).length > 0 && (
-        <ul>
-          {headlines?.map((h) => (
-            <HeadlineContainer key={h.id} headline={h} />
-          ))}
-        </ul>
+        headlines?.map((h) => (
+          <HeadlineContainer key={h.id} headline={h} />
+        ))
       )}
     </IonContent>
   );
