@@ -3,29 +3,25 @@ import './App.css';
 import { Route, Redirect } from 'react-router-dom';
 import {
   IonApp,
-  IonIcon,
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
   IonTabs,
-  IonLabel,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-
-import {
-  helpCircle,
-  newspaperOutline,
-  trophy,
-  person,
-  ribbon,
-  alertCircle,
-} from 'ionicons/icons';
 
 import ReferAFriend from './pages/ReferAFriend';
 import Questions from './pages/Questions';
 import HowToPlay from './pages/HowToPlay';
 import Profile from './pages/Profile';
 import IndividualLeaderboard from './pages/IndividualLeaderboard';
+
+import SmallInfoIcon from './assets/icons/icons_small_info_2/icons_small_info_2.png';
+import SmallProfileIcon from './assets/icons/icons_small_profile/icons_small_profile.png';
+import SmallChatIcon from './assets/icons/icons_small_chat/icons_small_chat.png';
+import SmallStarIcon from './assets/icons/icons_small_favourite_filled/icons_small_favourite_filled.png';
+import SmallAlertIcon from './assets/icons/icons_small_alert1/icons_small_alert1.png';
+import LargeTrophyIcon from './assets/icons/icons_large_trophy/icons_large_trophy.png';
 
 import { UserContextInit } from './context/user';
 
@@ -77,33 +73,24 @@ const App: React.FC = () => (
             />
           </IonRouterOutlet>
 
-
           <IonTabBar slot="bottom">
-           
             <IonTabButton tab="profile" href="/profile">
-              <IonIcon size="large" icon={person} />
-              <IonLabel></IonLabel>
+              <img src={SmallProfileIcon} alt="right arrow icon" />
             </IonTabButton>
             <IonTabButton tab="leaderboard" href="/leaderboard">
-              <IonIcon size="large" icon={ribbon} />
-              <IonLabel></IonLabel>
+              <img src={SmallStarIcon} alt="right arrow icon" />
             </IonTabButton>
             <IonTabButton tab="Questions" href="/questions">
-              <IonIcon size="large" icon={helpCircle} />
-              <IonLabel></IonLabel>
+              <img src={SmallInfoIcon} alt="right arrow icon" />
             </IonTabButton>
             <IonTabButton tab="news" href="/news">
-              <IonIcon size="large" icon={newspaperOutline} />
-              <IonLabel></IonLabel>
+              <img src={SmallChatIcon} alt="right arrow icon" />
             </IonTabButton>
             <IonTabButton tab="HowToPlay" href="/howToPlay">
-              <IonIcon size="large" icon={trophy} />
-              <IonLabel></IonLabel>
+              <img src={LargeTrophyIcon} height="22" alt="right arrow icon" />
             </IonTabButton>
             <IonTabButton tab="faqs" href="/faqs">
-              <IonIcon size="large" icon={alertCircle} />
-              <IonLabel></IonLabel>
-
+              <img src={SmallAlertIcon} alt="right arrow icon" />
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
