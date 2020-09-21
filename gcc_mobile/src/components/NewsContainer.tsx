@@ -34,17 +34,6 @@ const NewsContainer: React.FC = () => {
   const [region, setRegion] = useState<string>(Region.UK);
   const [headlines, setHeadlines] = useState<Headline[]>();
 
-  const mockHeadlines = [
-    {
-      id: '1',
-      title: 'Title 1',
-      imageUrl: '1',
-      blurb: 'blurb 1',
-      author: 'author 1',
-      timestamp: new Date().toDateString(),
-    },
-  ];
-
   useEffect(() => {
     onRegionChanged(Region.UK);
   }, []);

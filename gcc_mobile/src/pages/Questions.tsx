@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
-import { IonContent, IonLabel, IonPage } from '@ionic/react';
+import { IonContent, IonPage } from '@ionic/react';
 
 import './Questions.css';
 import axios from 'axios';
-import { arrowDown, arrowForward ,lockClosedSharp , lockOpenOutline} from 'ionicons/icons';
+import { chevronDown, chevronForward ,lockClosedSharp , lockOpenOutline } from 'ionicons/icons';
 import ReactMarkdown from 'react-markdown';
 import { IonIcon } from '@ionic/react';
 import PageHeader from '../components/PageHeader';
 
-import CSBlue from '../CSBlue.png';
 import { codingChallengeStarted } from '../CompetitionTimer';
 
 type Question = {
@@ -59,8 +58,8 @@ const Question: React.FC<{ question: Question, levelRank: number}> = (props) => 
         <div hidden={(question.questionNumber <= 3*levelRank ? false:true) ||  !codingChallengeStarted()}>  Active <IonIcon icon={lockOpenOutline} /> </div>
         <div hidden={!(question.questionNumber <= 3*levelRank ? false:true) && codingChallengeStarted()}> Locked <IonIcon icon={lockClosedSharp}/> </div>
           
-        <IonIcon icon={arrowDown} hidden={!visible} />
-        <IonIcon icon={arrowForward} hidden={visible}  />
+        <IonIcon icon={chevronDown} hidden={!visible} />
+        <IonIcon icon={chevronForward} hidden={visible}  />
       </div>
 
       {(visible && question.questionNumber<=3*levelRank && codingChallengeStarted()) && <ReactMarkdown source={question.questionText} /> }
