@@ -1,9 +1,30 @@
 .faq-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
+  text-transform: none;
+  font-weight: 700;
+  font-size: 16px;
+  color: #000;
+  vertical-align: baseline;
+  margin: 0 0.125em;
+  /* background-color: #ffffff; */
+  padding: 0.5833em 0.233em;
+  border-style: none;
+  height: 40px;
+  border: 0 solid transparent;
+  outline: none;
 }
 
-.faq-item__hidden {
-  padding: 1rem;
+.faq-item-hidden {
+  width: 100%;
+  font-size: 16px;
+
+  border: 0 solid transparent;
+
+  margin: 0 0.125em;
+  padding: 1em 1.5em;
+  position: relative;
+  min-height: 1em;
+  margin: 1em 0;
+  line-height: 1.4285em;
+  border-width: thin;
+  border-style: solid;
 }
