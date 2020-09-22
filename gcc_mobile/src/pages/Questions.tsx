@@ -18,8 +18,7 @@ import secretCode from '../image/questions/codepad.jpg';
 import dollars from '../image/questions/dollars.jpg';
 import stockImage from '../image/questions/stock-list-2.jpg';
 import { codingChallengeStarted } from '../CompetitionTimer';
-import { h } from 'ionicons/dist/types/stencil-public-runtime';
-import HowToPlay from './HowToPlay';
+import { Parser, HtmlRenderer } from 'commonmark';
 
 type Question = {
   active: boolean;
@@ -114,9 +113,14 @@ questionCardVisib = false;
 
 const Question: React.FC<{ question: Question, levelRank: number}> = (props) => {
   const { question } = props;
+  console.log('question', question);
   const { levelRank } = props;
   const [visible, setVisible] = useState(false);
   
+  const reader = new Parser();
+  const writer = new HtmlRenderer();
+  const parsed = reader.parse(question.questionText);
+
   return (
     <div
       className="question-item"
@@ -129,7 +133,7 @@ const Question: React.FC<{ question: Question, levelRank: number}> = (props) => 
         <img src={questionDetails[question.questionNumber -1].img} />
         <IonCardHeader>
           <IonCardSubtitle> {questionDetails[question.questionNumber -1].subtitle}</IonCardSubtitle>
-          <IonCardTitle>Question {question.questionNumber} {question.questionNumber <= 3 ? "(Easy)": question.questionNumber <=6 ? "(Medium)":"(Hard)"}
+          <IonCardTitle style={{fontSize: 20}}> Question {question.questionNumber} {question.questionNumber <= 3 ? "(Easy)": question.questionNumber <=6 ? "(Medium)":"(Hard)"}
             <div style={{float:'right'}} hidden={(question.questionNumber <= 3*levelRank ? false:true) ||  !codingChallengeStarted()}>  Active <IonIcon icon={lockOpenOutline} /> </div>
             <div style={{float:'right'}} hidden={!(question.questionNumber <= 3*levelRank ? false:true) && codingChallengeStarted()}> Locked <IonIcon icon={lockClosedSharp}/> </div>
           </IonCardTitle>
@@ -142,9 +146,11 @@ const Question: React.FC<{ question: Question, levelRank: number}> = (props) => 
          <IonContent >
             <h1 className="content">Question {question.questionNumber}</h1>
             <IonImg src={questionDetails[question.questionNumber -1].img}></IonImg>
-           <div >
-          <ReactMarkdown source={question.questionText} className="content"/>
-          </div>
+            <div
+              className="codingViewMarkDown"
+              id="markdown"
+              dangerouslySetInnerHTML={{ __html: writer.render(parsed)}}
+            />
           </IonContent> 
         </IonModal>
       

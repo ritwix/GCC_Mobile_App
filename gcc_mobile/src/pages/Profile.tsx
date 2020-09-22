@@ -9,6 +9,7 @@ import {
   RegistrationFormFields,
   Region,
 } from '../components/RegistrationForm';
+import "./Profile.css";
 
 const CLIENT_ID = {
   LOCAL: '3a4fd05f700987052d1e', // GCC-2020-Local Client ID
@@ -180,7 +181,6 @@ const Profile: React.FC = () => {
           <div className="container">
             <button
               className="cs-button"
-              style={{ fontSize: 20 }}
               onClick={githubLogin}
             >
               Login via Github
