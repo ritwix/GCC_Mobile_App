@@ -16,23 +16,18 @@ import questions from '../image/icons_large_question.png';
 import globe from '../image/brandnet/icons_large_global.png';
 import calendar from '../image/icons_large_calendar.png';
 import PageHeader from '../components/PageHeader';
-import { arrowDown, arrowForward, caretDown , caretForward} from 'ionicons/icons';
-import { codingChallengeStarted } from '../CompetitionTimer';
-
-
+import { chevronDown , chevronForward} from 'ionicons/icons';
 
 const Buttn: React.FC<{ val: String; visible: boolean; txt: String }> = (
   props
 ) => {
   const [visib, setVisib] = useState(props.visible);
 
-  
   return (
     <>
     <br />
-    <IonIcon icon={caretDown} hidden={!visib} />
-     <IonIcon icon={caretForward} hidden={visib} />
-      
+    <IonIcon icon={chevronDown} hidden={!visib} />
+     <IonIcon icon={chevronForward} hidden={visib} />
       <button  
         onClick={() => {
           setVisib((visib) => !visib);
@@ -193,7 +188,7 @@ const HowToPlay: React.FC = () => {
           <h2 style={{ paddingLeft: 20}}>About the Coding Challenge</h2>
         </IonText>
         <IonText>
-          <p style={{ paddingLeft: 20, fontSize: '16px' }}>
+          <p style={{ paddingLeft: 20, paddingRight: 20, fontSize: '16px' }}>
             The Global Coding Challenge is an online coding competition between
             TAs across the globe. Over 1 week, between August 31st and September
             7th, TAs will be able to attempt solutions to nine coding problems.
@@ -209,7 +204,7 @@ const HowToPlay: React.FC = () => {
             announced.
           </p>
 
-          <p style={{ paddingLeft: 20 ,fontSize: '16px'  }}>
+          <p style={{ paddingLeft: 20 , paddingRight: 20, fontSize: '16px'  }}>
             The competition has been entirely designed, built and run by our
             fellow TAs.
           </p>

@@ -75,22 +75,22 @@ const App: React.FC = () => (
 
           <IonTabBar slot="bottom">
             <IonTabButton tab="profile" href="/profile">
-              <img src={SmallProfileIcon} alt="right arrow icon" />
+              <img src={SmallProfileIcon} />
             </IonTabButton>
             <IonTabButton tab="leaderboard" href="/leaderboard">
-              <img src={SmallStarIcon} alt="right arrow icon" />
+            <img src={LargeTrophyIcon} height="22" />
             </IonTabButton>
             <IonTabButton tab="Questions" href="/questions">
-              <img src={SmallInfoIcon} alt="right arrow icon" />
+              <img src={SmallInfoIcon} />
             </IonTabButton>
             <IonTabButton tab="news" href="/news">
-              <img src={SmallChatIcon} alt="right arrow icon" />
+              <img src={SmallChatIcon} />
             </IonTabButton>
             <IonTabButton tab="HowToPlay" href="/howToPlay">
-              <img src={LargeTrophyIcon} height="22" alt="right arrow icon" />
+              <img src={SmallStarIcon} />
             </IonTabButton>
             <IonTabButton tab="faqs" href="/faqs">
-              <img src={SmallAlertIcon} alt="right arrow icon" />
+              <img src={SmallAlertIcon} />
             </IonTabButton>
           </IonTabBar>
         </IonTabs>

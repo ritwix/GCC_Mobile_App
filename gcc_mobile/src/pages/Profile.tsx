@@ -7,26 +7,15 @@ import PageHeader from '../components/PageHeader';
 import {
   RegistrationForm,
   RegistrationFormFields,
-  Region,
 } from '../components/RegistrationForm';
+import './Profile.css';
+import { Region, GCC_BASE_URL, regionNameMap } from '../constants';
 
 const CLIENT_ID = {
   LOCAL: '3a4fd05f700987052d1e', // GCC-2020-Local Client ID
   TEST: '17add43b05758bd00913', // GCC-2020-Test Client ID
 };
 const GITHUB_OAUTH_URL = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID.TEST}`;
-const GCC_BASE_URL = `https://gcc-global-dev.herokuapp.com`;
-const regionNameMap: { [x in Region]: string } = {
-  [Region.SEA]: 'SEA',
-  [Region.INDIA]: 'INDIA',
-  [Region.EUROPE]: 'EUROPE',
-  [Region.SWITZERLAND]: 'SWIS',
-  [Region.UK]: 'UK',
-  [Region.AMC]: 'AMC',
-  [Region.ROW]: 'ROW',
-  [Region.GLOBAL]: 'GLOBAL',
-  [Region.DEFAULT]: 'GLOBAL',
-};
 
 const authorizeWithBackend = (code: string) => {
   return axios
@@ -157,7 +146,10 @@ const Profile: React.FC = () => {
       .then((response) => {
         if (response.status == 200) {
           console.log('registered contestant:', response.data);
-          setUser(response.data);
+          setUser({
+            ...response.data,
+            hasUserSignedUp: true,
+          });
         }
       })
       .catch((err) => {
@@ -178,11 +170,8 @@ const Profile: React.FC = () => {
       <IonContent>
         {!user?.loggedInGitHub && (
           <div className="container">
-            <button
-              className="cs-button"
-              style={{ fontSize: 20 }}
-              onClick={githubLogin}
-            >
+            <h3>Welcome to the Global Coding Challenge!</h3>
+            <button className="cs-button" onClick={githubLogin}>
               Login via Github
             </button>
           </div>
