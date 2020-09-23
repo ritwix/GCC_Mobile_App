@@ -39,7 +39,7 @@ export const IndLeaderContainer: React.FC<IndContainerProps> = ({
   University,
 }) => {
   return (
-    <IonRow className="leaderboard_header">
+    <IonRow className="leaderboard_content">
       <IonCol size="1">{Rank}</IonCol>
       <IonCol size="3">{Name}</IonCol>
       <IonCol size="2.5">{Region}</IonCol>
@@ -55,7 +55,7 @@ export const UnivLeaderContainer: React.FC<UnivContainerProps> = ({
   Score,
 }) => {
   return (
-    <IonRow className="leaderboard_header">
+    <IonRow className="leaderboard_content">
       <IonCol size="2">{Rank}</IonCol>
       <IonCol size="5">{University}</IonCol>
       <IonCol size="5">{Score}</IonCol>
@@ -71,7 +71,7 @@ export const EngagementLeaderContainer: React.FC<EngagementContainerProps> = ({
   University,
 }) => {
   return (
-    <IonRow className="leaderboard_header">
+    <IonRow className="leaderboard_content">
       <IonCol size="1">{Rank}</IonCol>
       <IonCol size="3">{Name}</IonCol>
       <IonCol size="2.5">{Region}</IonCol>
