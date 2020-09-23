@@ -142,7 +142,7 @@ const Question: React.FC<{ question: Question, levelRank: number}> = (props) => 
           {questionDetails[question.questionNumber -1].caption}
           </IonCardContent>
         </IonCard>
-        <IonModal isOpen={visible} >
+        <IonModal isOpen={visible && (question.questionNumber <= 3*levelRank ? true:false) && codingChallengeStarted()} >
          <IonContent >
             <h1 className="content">Question {question.questionNumber}</h1>
             <IonImg src={questionDetails[question.questionNumber -1].img}></IonImg>
@@ -161,7 +161,7 @@ const Question: React.FC<{ question: Question, levelRank: number}> = (props) => 
 const Questions: React.FC = () => {
   console.log(codingChallengeStarted())
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [levelRank, setLevelRank]  = useState(1);
+  const [levelRank, setLevelRank]  = useState(0);
 
   useEffect(() => {
     fetchQuestions().then((questions) => setQuestions(questions));
