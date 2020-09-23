@@ -51,7 +51,8 @@ p {
 }
 
 /* CS components */
-input {
+input,
+textarea {
   border-radius: 0;
   border-width: 1px;
   padding: 0.5rem 0.7rem;

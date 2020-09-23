@@ -10,7 +10,7 @@
 }
 
 .form-fields {
-  width: 60vw;
+  width: 80vw;
 }
 
 .form-field {
@@ -19,6 +19,10 @@
   align-items: flex-start;
   margin-bottom: 1rem;
   justify-content: space-between;
+}
+
+.form-field div {
+  margin-bottom: 0.5rem;
 }
 
 .checkbox-group {

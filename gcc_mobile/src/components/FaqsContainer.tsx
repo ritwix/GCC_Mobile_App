@@ -1,15 +1,10 @@
-import { Faq } from "../model/Faq";
-import axios from "axios";
-import { useState, useEffect } from "react";
-import { IonContent, IonIcon, IonLabel } from "@ionic/react";
-import React from "react";
-import {
-  arrowDown,
-  arrowForward,
-  caretDown,
-  caretForward,
-} from "ionicons/icons";
-import "./FaqsContainer.css";
+import { Faq } from '../model/Faq';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { IonContent, IonIcon, IonLabel } from '@ionic/react';
+import React from 'react';
+import { chevronDown, chevronForward } from 'ionicons/icons';
+import './FaqsContainer.css';
 
 interface FaqContainerProps {
   faq: Faq;
@@ -17,23 +12,23 @@ interface FaqContainerProps {
 
 const FaqContainer: React.FC<FaqContainerProps> = ({ faq }) => {
   const [isShown, setIsShown] = useState(false);
-
   return (
-    <>
-      <br />
-      <IonIcon icon={caretDown} hidden={!isShown} />
-      <IonIcon icon={caretForward} hidden={isShown} />
-      <IonLabel className="faq-item" onClick={() => setIsShown(!isShown)}>
-        {faq.question}
-      </IonLabel>
+    <div className="faq-item">
+      <div
+        className="faq-question"
+        onClick={() => setIsShown((isShown) => !isShown)}
+      >
+        <h4>{faq.question}</h4>
+        <IonIcon icon={chevronDown} hidden={!isShown} />
+        <IonIcon icon={chevronForward} hidden={isShown} />
+      </div>
       {isShown && <div className="faq-item-hidden">{faq.answer}</div>}
-      <br />
-    </>
+    </div>
   );
 };
 
 const FaqsContainer: React.FC = () => {
-  const API_URL = "https://gcc-backend-dev-temp.herokuapp.com/faqs";
+  const API_URL = 'https://gcc-backend-dev-temp.herokuapp.com/faqs';
   const [faqs, setFaqs] = useState<Faq[]>();
 
   useEffect(() => {

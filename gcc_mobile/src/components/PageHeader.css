@@ -6,6 +6,6 @@
 }
 
 .cs-toolbar img {
-  height: 28px;
+  max-height: 28px;
   margin-bottom: 4px;
 }
