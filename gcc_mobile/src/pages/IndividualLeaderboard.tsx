@@ -103,7 +103,7 @@ const IndLeaderboard: React.FC = () => {
   //default region = GLOBAL
   const [Region, setRegion] = React.useState<string>('GLOBAL');
   const [lowerLim, setLowerLim] = React.useState(1);
-  const numberOfRows = 30;
+  const numberOfRows = 10;
 
   const [IndItems, setIndItems] = React.useState([]);
   React.useEffect(() => {

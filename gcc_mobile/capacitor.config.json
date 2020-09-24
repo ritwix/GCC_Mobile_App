@@ -9,7 +9,10 @@
       "launchShowDuration": 0
     },
     "PushNotifications": {
-      "presentationOptions": ["sound", "alert"]
+      "presentationOptions": [
+        "sound",
+        "alert"
+      ]
     }
   },
   "cordova": {}

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { Route, Redirect } from 'react-router-dom';
 import {
   IonApp,
+  IonLabel,
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
@@ -52,7 +53,11 @@ import ExploreContainer from './components/ExploreContainer';
 /* Screen orientation fixed to landscape*/
 //window.screen.orientation.lock('landscape');
 
+
+
 const App: React.FC = () => (
+
+  
   <UserContextInit>
     <IonApp>
       <IonReactRouter>
@@ -76,21 +81,27 @@ const App: React.FC = () => (
           <IonTabBar slot="bottom">
             <IonTabButton tab="profile" href="/profile">
               <img src={SmallProfileIcon} />
+              
             </IonTabButton>
-            <IonTabButton tab="leaderboard" href="/leaderboard">
+            <IonTabButton tab="leaderboard" href="/leaderboard" >
             <img src={LargeTrophyIcon} height="22" />
+            
             </IonTabButton>
             <IonTabButton tab="Questions" href="/questions">
               <img src={SmallInfoIcon} />
+              
             </IonTabButton>
             <IonTabButton tab="news" href="/news">
               <img src={SmallChatIcon} />
+              
             </IonTabButton>
             <IonTabButton tab="HowToPlay" href="/howToPlay">
               <img src={SmallStarIcon} />
+              
             </IonTabButton>
             <IonTabButton tab="faqs" href="/faqs">
               <img src={SmallAlertIcon} />
+              
             </IonTabButton>
           </IonTabBar>
         </IonTabs>

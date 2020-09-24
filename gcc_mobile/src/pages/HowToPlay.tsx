@@ -73,7 +73,7 @@ const HowToPlay: React.FC = () => {
               <br />
               <IonText>
                 <div className="BulletPoints">
-                  2. Solve Questions
+                  2. Solve questions
                 </div>
                 <br />
                 <div className="Points">
@@ -90,7 +90,7 @@ const HowToPlay: React.FC = () => {
               <br />
               <br />
               <IonText>
-                <div className="BulletPoints">3. Submit you code</div>
+                <div className="BulletPoints">3. Submit your code</div>
                 <br />
                 <div className="Points">
                   Push your code back to the Github repository, so that our
@@ -105,7 +105,7 @@ const HowToPlay: React.FC = () => {
               <br />
               <br />
               <IonText>
-                <div className="BulletPoints">4. Earn Points</div>
+                <div className="BulletPoints">4. Earn points</div>
                 <br />
                 <div className="Points">
                   Earn points by submitting efficient and quality code, and earn
@@ -148,14 +148,14 @@ const HowToPlay: React.FC = () => {
         <IonText>
           <h3 style={{ paddingLeft: 20, backgroundColor: '#f1f2f2' }}>
             {' '}
-            Global Prizes
+            Global prizes
           </h3>
-          <div style={{ paddingLeft: 20 }}> Global Challenge Winner: </div>
+          <div style={{ paddingLeft: 20 }}> Global Challenge winner: </div>
           <br></br>
           <div className="Prizes">1. Macbook Pro </div>
 
           <h3 style={{ paddingLeft: 20, backgroundColor: '#f1f2f2' }}>
-            Regional Prizes
+            Regional prizes
           </h3>
           <div style={{ paddingLeft: 20 }}>
             The top three coders from each region will win the following prizes:
@@ -167,7 +167,7 @@ const HowToPlay: React.FC = () => {
 
           <h3 style={{ paddingLeft: 20, backgroundColor: '#f1f2f2' }}>
             {' '}
-            Engagement Badges
+            Engagement badges
           </h3>
           <div style={{ paddingLeft: 20 }}>
             {' '}
@@ -185,7 +185,7 @@ const HowToPlay: React.FC = () => {
         <IonText
           style={{ display: 'block', fontWeight: '600', fontSize: '230%' }}
         >
-          <h2 style={{ paddingLeft: 20}}>About the Coding Challenge</h2>
+          <h2 style={{ paddingLeft: 20}}>About Global Coding Challenge</h2>
         </IonText>
         <IonText>
           <p style={{ paddingLeft: 20, paddingRight: 20, fontSize: '16px' }}>

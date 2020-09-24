@@ -38,6 +38,7 @@ const authorizeWithBackend = (code: string) => {
     });
 };
 
+
 const getContestant = (githubUsername: string) => {
   if (!githubUsername) {
     return {
@@ -78,6 +79,9 @@ const registerContestant = (body: any) => {
 };
 
 const Profile: React.FC = () => {
+   const getGithubUserName = () => {
+    return "sahmad14"
+  } 
   const { user, setUser } = useUserContext();
   const [loading, setLoading] = useState(false);
 

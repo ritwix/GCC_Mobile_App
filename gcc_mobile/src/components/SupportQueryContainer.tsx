@@ -72,7 +72,7 @@ const SupportQueryContainer: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h3>Submit a Query</h3>
+      <h3>Submit a query</h3>
       <FormField label="Full Name">
         <input
           placeholder="Full Name"
