@@ -244,6 +244,7 @@ const IndLeaderboard: React.FC = () => {
                       .toLocaleLowerCase()
                       .indexOf(IndFilterBy.toLowerCase()) !== -1) ? (
                 <IndLeaderContainer
+                  key={JSON.stringify(item)}
                   Rank={item['pos']}
                   Name={item['name']}
                   Region={RegionMapper(item['region'])}
@@ -285,6 +286,7 @@ const IndLeaderboard: React.FC = () => {
                   .toLocaleLowerCase()
                   .indexOf(UnivFilterBy.toLowerCase()) !== -1 ? (
                 <UnivLeaderContainer
+                  key={JSON.stringify(item)}
                   Rank={item['pos']}
                   University={item['teamName']}
                   Score={Number(item['total']).toFixed(2)}
@@ -332,6 +334,7 @@ const IndLeaderboard: React.FC = () => {
                       .toLocaleLowerCase()
                       .indexOf(EngagementFilterBy.toLowerCase()) !== -1) ? (
                 <EngagementLeaderContainer
+                  key={JSON.stringify(item)}
                   Rank={item['pos']}
                   Name={item['name']}
                   Region={RegionMapper(item['region'])}
