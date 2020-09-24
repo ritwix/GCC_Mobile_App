@@ -1,11 +1,11 @@
 select.filter-select {
-  width: 35%;
+  width: 130px;
 }
 
 input.minimal {
   border: none;
   border-bottom: 1px solid black;
-  width: 40%;
+  width: 130px;
 }
 
 .leaderboard_header {
