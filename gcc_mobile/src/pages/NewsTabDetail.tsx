@@ -29,7 +29,7 @@ const NewsTabDetail: React.FC<NewsDetailProps> = ({ match }) => {
     setNews(undefined);
     axios
       .get<News>(
-        `https://gcc-backend-dev-temp.herokuapp.com/news/${match.params.id}`
+        `https://gcc-global-dev.herokuapp.com/news/${match.params.id}`
       )
       .then(({ data }) => {
         console.log("paragraphs: " + JSON.stringify(data.article.paragraphs));

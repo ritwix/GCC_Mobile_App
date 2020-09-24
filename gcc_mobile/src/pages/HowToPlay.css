@@ -17,7 +17,6 @@
 
 .Points {
   padding-left: 20px;
-  font-size: 16px;
 }
 
 .GreyBar {
@@ -47,6 +46,7 @@
 .Prizes{
   padding-left: 20px;
   font-size: 16px;
+  font-family: 'CS-Body' !important;
 }
 
 .question-number {
@@ -59,7 +59,7 @@
 .extra-info{
   width: 100%;
   font-size: 16px;
-  
+  font-family: 'CS-Body' !important;
   border: 0 solid transparent;
   
   margin: 0 .125em;
@@ -74,15 +74,17 @@
 
 .buttn{
   text-transform: none;
-  font-weight: 700;
-  font-size: 16px;
   color: #000;
   vertical-align: baseline;
   margin: 0 .125em;
   background-color: #ffffff;
   padding: .5833em .233em;
   border-style: none;
-  height: 40px;
+  
   border: 0 solid transparent;
   outline: none;
+  font-size: 16px !important;
+  font-family: 'CS-Body' !important;
+  font-weight: 700;
+  
 }
