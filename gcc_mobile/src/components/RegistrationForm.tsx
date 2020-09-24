@@ -107,7 +107,12 @@ export const RegistrationForm: React.FC<Props> = (props) => {
 
       <div className="form-fields">
         <FormField label="Title">
-          <select value={title} onChange={(e) => setTitle(e.target.value)}>
+          <select
+            className="filter-select"
+            style={{ width: '100%' }}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          >
             {titleOptions.map(({ text, value }) => (
               <option value={value} key={value}>
                 {text}
@@ -143,6 +148,8 @@ export const RegistrationForm: React.FC<Props> = (props) => {
 
         <FormField label="Region">
           <select
+            className="filter-select"
+            style={{ width: '100%' }}
             value={region}
             onChange={(e) => {
               const region = e.target.value as Region;
@@ -164,6 +171,8 @@ export const RegistrationForm: React.FC<Props> = (props) => {
 
         <FormField label="University">
           <select
+            className="filter-select"
+            style={{ width: '100%' }}
             value={university}
             onChange={(e) => setUniversity(e.target.value)}
           >
