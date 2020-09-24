@@ -93,7 +93,7 @@ const questionDetails = [
 const fetchQuestions = () => {
   return axios({
     //url: "https://cscc-gl.herokuapp.com/allquestions", //last year questions
-    url: 'https://gcc-backend-dev-temp.herokuapp.com/allquestions', //  this year questions
+    url: 'https://gcc-global-dev.herokuapp.com/allquestions', //  this year questions
     method: 'get',
   }).then((response) => {
     console.log(response);
@@ -105,7 +105,7 @@ const fetchQuestions = () => {
 const fetchContestantProfile = (user:any) => {
   return axios({
     //url: "https://cscc-gl.herokuapp.com/allquestions", //last year questions
-    url: 'https://gcc-backend-dev-temp.herokuapp.com/contestant/git/'+  user?.githubUsername,  //  this year questions
+    url: 'https://gcc-global-dev.herokuapp.com/contestant/git/sahmad14'+  user?.githubUsername,  //  this year questions
     method: 'get',
   }).then((response) => {
     console.log(response.data.level);
@@ -179,8 +179,8 @@ const Questions: React.FC = () => {
   }, [user]);
 
   return (
-    <IonPage>
-      <PageHeader title="Questions" />
+    <IonPage >
+      <PageHeader title="Questions"/>
       <IonContent>
           {questions.map((question) => (
             <Question key={question.id} question={question} levelRank={levelRank}/>

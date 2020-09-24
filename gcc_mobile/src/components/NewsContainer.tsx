@@ -45,7 +45,7 @@ const NewsContainer: React.FC = () => {
     // TODO: change to pagination @im-pratham
     axios
       .get<Headlines>(
-        `https://gcc-backend-dev-temp.herokuapp.com/news/headlines/${value}?from=0&limit=100`
+        `https://gcc-global-dev.herokuapp.com/news/headlines/${value}?from=0&limit=100`
       )
       .then(({ data }) => {
         console.log('Got headlines: ', data);

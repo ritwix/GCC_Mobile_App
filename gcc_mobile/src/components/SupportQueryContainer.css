@@ -1,11 +1,13 @@
 form {
   padding: 1rem;
+  font-family: 'CS-Body' !important;
 }
 
 .title-class {
   margin: 0 0.125em;
   /* background-color: #ffffff; */
   padding: 0.5833em 0.233em;
+  font-family: 'CS-Body' !important;
 }
 
 .cs-button {
@@ -13,6 +15,7 @@ form {
   background-color: black;
   color: white;
   height: 40px;
+  font-family: 'CS-Body' !important;
   font-weight: bold;
   font-size: 16px;
   padding: 10px;

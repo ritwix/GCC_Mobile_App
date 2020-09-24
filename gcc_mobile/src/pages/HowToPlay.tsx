@@ -52,17 +52,17 @@ const HowToPlay: React.FC = () => {
         <IonGrid>
           <IonRow>
             <IonCol>
-              <p style={{fontSize:"16px"}}>
+              <h4>
                 Follow five simple steps to successfully complete the Coding
                 Challenge:
-              </p>
+              </h4>
               <IonText>
-                <div className="BulletPoints">1. Register with GitHub</div>
+                <h3>1. Register with GitHub</h3>
                 <br />
-                <div className="Points">
+                <h4 className="Points">
                   Sign up for the Global Coding Challenge using your GitHub
                   username in order to be able to submit code.
-                </div>
+                </h4>
                 <Buttn
                   val="Where can I sign up?"
                   visible={false}
@@ -72,13 +72,13 @@ const HowToPlay: React.FC = () => {
               <br />
               <br />
               <IonText>
-                <div className="BulletPoints">
+                <h3>
                   2. Solve questions
-                </div>
+                </h3>
                 <br />
                 <div className="Points">
-                  Work on your solutions using Java, Python, C#, C++, or
-                  JavaScript. You can use any available language for any
+                  Work on your solutions using java, python, c#, c++, or
+                  javascript. You can use any available language for any
                   question.
                 </div>
                 <Buttn
@@ -90,7 +90,7 @@ const HowToPlay: React.FC = () => {
               <br />
               <br />
               <IonText>
-                <div className="BulletPoints">3. Submit your code</div>
+                <h3>3. Submit your code</h3>
                 <br />
                 <div className="Points">
                   Push your code back to the Github repository, so that our
@@ -105,7 +105,7 @@ const HowToPlay: React.FC = () => {
               <br />
               <br />
               <IonText>
-                <div className="BulletPoints">4. Earn points</div>
+                <h3>4. Earn points</h3>
                 <br />
                 <div className="Points">
                   Earn points by submitting efficient and quality code, and earn
@@ -120,10 +120,10 @@ const HowToPlay: React.FC = () => {
               <br />
               <br />
               <IonText>
-                <div className="BulletPoints">5. Win prizes</div>
+                <h3>5. Win prizes</h3>
                 <br />
                 <div className="Points">
-                  At the end of the competition, September 7th, the top
+                  At the end of the competition, October 28th, the top
                   performing coders will receive various prizes!
                 </div>
                 <Buttn
@@ -146,7 +146,7 @@ const HowToPlay: React.FC = () => {
         </IonText>
 
         <IonText>
-          <h3 style={{ paddingLeft: 20, backgroundColor: '#f1f2f2' }}>
+          <h3 style={{ paddingLeft: 20 }}>
             {' '}
             Global prizes
           </h3>
@@ -154,7 +154,7 @@ const HowToPlay: React.FC = () => {
           <br></br>
           <div className="Prizes">1. Macbook Pro </div>
 
-          <h3 style={{ paddingLeft: 20, backgroundColor: '#f1f2f2' }}>
+          <h3 style={{ paddingLeft: 20}}>
             Regional prizes
           </h3>
           <div style={{ paddingLeft: 20 }}>
@@ -165,7 +165,7 @@ const HowToPlay: React.FC = () => {
           <div className="Prizes">2. Smart Watch</div>
           <div className="Prizes">3. Portable Bluetooth Speaker</div>
 
-          <h3 style={{ paddingLeft: 20, backgroundColor: '#f1f2f2' }}>
+          <h3 style={{ paddingLeft: 20}}>
             {' '}
             Engagement badges
           </h3>
@@ -189,17 +189,17 @@ const HowToPlay: React.FC = () => {
         </IonText>
         <IonText>
           <p style={{ paddingLeft: 20, paddingRight: 20, fontSize: '16px' }}>
-            The Global Coding Challenge is an online coding competition between
-            TAs across the globe. Over 1 week, between August 31st and September
-            7th, TAs will be able to attempt solutions to nine coding problems.
+            The Global Coding Challenge is an online coding competition
+            across the globe. Over 3 weeks, between October 7th and October
+            28th, participants will be able to attempt solutions to nine coding problems.
             Solutions will be evaluated on cyclomatic complexity, and scored
-            proportionally against solutions provided by other students.
+            proportionally against solutions provided by other participants.
             Participants can improve their code as many times as they like
             during the competition. They can also earn points toward their total
             score by earning achievement badges, which are rewarded for
             achieving a variety of accomplishments throughout the competition.
             All possible badges and their conditions are visible on the
-            participant's profile page. At 10am GMT, September 7th 2020, the
+            participant's profile page. At 9am EST, October 28th 2020, the
             Leaderboards will lock and the Global Coding Champion will be
             announced.
           </p>
@@ -215,36 +215,36 @@ const HowToPlay: React.FC = () => {
         <div className="GreyBar">
           <div>
             <IonImg src={calendar} style={{ height: '50px' }} />
-            <div className="header"> 1 Week </div>
-            <div>
-              The challenge will run for 1 week, from August 31st to September
-              7th.
-            </div>
+            <h3> 3 Week </h3>
+            <p style={{fontSize:'16px'}}>
+              The challenge will run for 3 week, from October 7th to October
+              28th.
+            </p>
           </div>
           <div>
             <IonImg src={globe} style={{ height: '50px' }} />
-            <div className="header">7 Regions</div>
-            <div>
+            <h3>7 Regions</h3>
+            <p style={{fontSize:'16px'}}>
               Competition is split across 7 regions: UK, USA & Canada, Europe,
               India, Southeast Asia, Switzerland, and the rest of the world.
-            </div>
+            </p>
           </div>
           <div>
             <IonImg src={questions} style={{ height: '50px' }} />
-            <div className="header">9 Questions</div>
-            <div>
+            <h3>9 Questions</h3>
+            <p style={{fontSize:'16px'}}>
               9 original questions for you to answer using any of 5 popular
               programming languages.
-            </div>
+            </p>
           </div>
           <div>
             <IonImg src={prizes} style={{ height: '50px' }} />
-            <div className="header">23 Prizes</div>
-            <div>
+            <h3>23 Prizes</h3>
+            <p style={{fontSize:'16px'}}>
               There are prizes for the best individual coder globally, the top 3
               coders of all 7 regions, and the coder with the most engagement
               badges.
-            </div>
+            </p>
           </div>
         </div>
       </IonContent>

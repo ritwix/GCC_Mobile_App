@@ -52,7 +52,7 @@ const SupportQueryContainer: React.FC = () => {
     // alert(JSON.stringify(data, null, 2));
     axios
       .post(
-        'https://gcc-backend-dev-temp.herokuapp.com/supportquery',
+        'https://gcc-global-dev.herokuapp.com/supportquery',
         (data = {
           submittedBy: fullName,
           email: email,
