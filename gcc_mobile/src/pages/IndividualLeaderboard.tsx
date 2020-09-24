@@ -6,12 +6,7 @@ import {
   IonGrid,
   IonRow,
   IonCol,
-  IonInput,
-  IonSelect,
-  IonSelectOption,
   IonLabel,
-  IonButton,
-  IonLoading,
 } from '@ionic/react';
 import './IndividualLeaderboard.css';
 import {
@@ -20,7 +15,6 @@ import {
   EngagementLeaderContainer,
 } from '../components/LeaderboardContainer';
 import PageHeader from '../components/PageHeader';
-import { codingChallengeStarted } from '../CompetitionTimer';
 
 const GetIndLeader = (
   lowerLim: number,
@@ -98,6 +92,36 @@ const RegionMapper = (region: string) => {
 
   return mappedRegion;
 };
+
+const regionOptions = [
+  { value: 'GLOBAL', text: 'Global' },
+  { value: 'AMC', text: 'USA & Canada' },
+  { value: 'INDIA', text: 'India' },
+  { value: 'EUROPE', text: 'Europe' },
+  { value: 'SEA', text: 'South East Asia' },
+  { value: 'SWIS', text: 'Switzerland' },
+  { value: 'UK', text: 'UK & Ireland' },
+  { value: 'ROW', text: 'Rest of the World' },
+];
+
+const indFilterColumnOptions = [
+  { value: 'pos', text: 'Rank' },
+  { value: 'name', text: 'Name' },
+  { value: 'region', text: 'Region' },
+  { value: 'teamName', text: 'University' },
+];
+
+const univFilterColumnOptions = [
+  { value: 'pos', text: 'Rank' },
+  { value: 'teamName', text: 'University' },
+];
+
+const engagementFilterColumnOptions = [
+  { value: 'pos', text: 'Rank' },
+  { value: 'name', text: 'Name' },
+  { value: 'region', text: 'Region' },
+  { value: 'teamName', text: 'University' },
+];
 
 const IndLeaderboard: React.FC = () => {
   //default region = GLOBAL
@@ -190,36 +214,36 @@ const IndLeaderboard: React.FC = () => {
 
       <IonContent>
         <div className="filter-column">
-          <IonLabel>Select Region:</IonLabel>
-          <IonSelect
-            placeholder="GLOBAL"
-            onIonChange={(e) => setRegion(e.detail.value)}
+          <div>Select Region:</div>
+          <select
+            className="filter-select"
+            value={Region}
+            onChange={(e) => setRegion(e.target.value)}
           >
-            <IonSelectOption value="GLOBAL">Global</IonSelectOption>
-            <IonSelectOption value="AMC">USA & Canada</IonSelectOption>
-            <IonSelectOption value="INDIA">India</IonSelectOption>
-            <IonSelectOption value="EUROPE">Europe</IonSelectOption>
-            <IonSelectOption value="SEA">South East Asia</IonSelectOption>
-            <IonSelectOption value="SWIS">Switzerland</IonSelectOption>
-            <IonSelectOption value="UK">UK & Ireland</IonSelectOption>
-            <IonSelectOption value="ROW">Rest of the World</IonSelectOption>
-          </IonSelect>
+            {regionOptions.map(({ text, value }) => (
+              <option value={value} key={value}>
+                {text}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div hidden={!(leaderboardType === 'Individual')}>
           <div className="filter-column">
             <IonLabel>Filter By:</IonLabel>
-            <IonSelect
-              placeholder="Name"
-              onIonChange={(e) => setIndFilterColumn(e.detail.value)}
+            <select
+              className="filter-select"
+              value={IndFilterColumn}
+              onChange={(e) => setIndFilterColumn(e.target.value)}
             >
-              <IonSelectOption value="pos">Rank</IonSelectOption>
-              <IonSelectOption value="name">Name</IonSelectOption>
-              <IonSelectOption value="region">Region</IonSelectOption>
-              <IonSelectOption value="teamName">University</IonSelectOption>
-            </IonSelect>
+              {indFilterColumnOptions.map(({ text, value }) => (
+                <option value={value} key={value}>
+                  {text}
+                </option>
+              ))}
+            </select>
             <input
-              style={{width: '45%'}}
+              className="minimal"
               value={IndFilterBy}
               placeholder="Search term"
               onChange={(e) => setIndFilterBy(e.target.value!)}
@@ -244,6 +268,7 @@ const IndLeaderboard: React.FC = () => {
                       .toLocaleLowerCase()
                       .indexOf(IndFilterBy.toLowerCase()) !== -1) ? (
                 <IndLeaderContainer
+                  key={JSON.stringify(item)}
                   Rank={item['pos']}
                   Name={item['name']}
                   Region={RegionMapper(item['region'])}
@@ -258,15 +283,19 @@ const IndLeaderboard: React.FC = () => {
         <div hidden={!(leaderboardType === 'University')}>
           <div className="filter-column">
             <IonLabel>Filter By:</IonLabel>
-            <IonSelect
-              placeholder="University"
-              onIonChange={(e) => setUnivFilterColumn(e.detail.value)}
+            <select
+              className="filter-select"
+              value={UnivFilterColumn}
+              onChange={(e) => setUnivFilterColumn(e.target.value)}
             >
-              <IonSelectOption value="pos">Rank</IonSelectOption>
-              <IonSelectOption value="teamName">University</IonSelectOption>
-            </IonSelect>
+              {univFilterColumnOptions.map(({ text, value }) => (
+                <option value={value} key={value}>
+                  {text}
+                </option>
+              ))}
+            </select>
             <input
-              style={{width: '45%'}}
+              className="minimal"
               value={UnivFilterBy}
               placeholder="Search term"
               onChange={(e) => setUnivFilterBy(e.target.value!)}
@@ -285,6 +314,7 @@ const IndLeaderboard: React.FC = () => {
                   .toLocaleLowerCase()
                   .indexOf(UnivFilterBy.toLowerCase()) !== -1 ? (
                 <UnivLeaderContainer
+                  key={JSON.stringify(item)}
                   Rank={item['pos']}
                   University={item['teamName']}
                   Score={Number(item['total']).toFixed(2)}
@@ -297,17 +327,19 @@ const IndLeaderboard: React.FC = () => {
         <div hidden={!(leaderboardType === 'Engagement')}>
           <div className="filter-column">
             <IonLabel>Filter By:</IonLabel>
-            <IonSelect
-              placeholder="Name"
-              onIonChange={(e) => setEngagementFilterColumn(e.detail.value)}
+            <select
+              className="filter-select"
+              value={EngagementFilterColumn}
+              onChange={(e) => setEngagementFilterColumn(e.target.value)}
             >
-              <IonSelectOption value="pos">Rank</IonSelectOption>
-              <IonSelectOption value="name">Name</IonSelectOption>
-              <IonSelectOption value="region">Region</IonSelectOption>
-              <IonSelectOption value="teamName">University</IonSelectOption>
-            </IonSelect>
+              {engagementFilterColumnOptions.map(({ text, value }) => (
+                <option value={value} key={value}>
+                  {text}
+                </option>
+              ))}
+            </select>
             <input
-              style={{width: '45%'}}
+              className="minimal"
               value={EngagementFilterBy}
               placeholder="Search term"
               onChange={(e) => setEngagementFilterBy(e.target.value!)}
@@ -332,6 +364,7 @@ const IndLeaderboard: React.FC = () => {
                       .toLocaleLowerCase()
                       .indexOf(EngagementFilterBy.toLowerCase()) !== -1) ? (
                 <EngagementLeaderContainer
+                  key={JSON.stringify(item)}
                   Rank={item['pos']}
                   Name={item['name']}
                   Region={RegionMapper(item['region'])}

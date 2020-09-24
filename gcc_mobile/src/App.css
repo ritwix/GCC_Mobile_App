@@ -60,5 +60,19 @@ textarea {
 }
 
 select {
-  width: 100%;
+  border-radius: 0;
+}
+
+select.filter-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+
+  background: no-repeat #ffffff;
+  background-image: url('./assets/icons/icons_small_chevron_down/icons_small_chevron_down.png');
+  background-position: right;
+
+  border: none;
+  border-bottom: 1px solid black;
+  padding: 0.5rem 0.7rem;
 }

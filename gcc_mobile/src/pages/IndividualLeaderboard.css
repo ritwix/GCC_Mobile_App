@@ -1,3 +1,13 @@
+select.filter-select {
+  width: 130px;
+}
+
+input.minimal {
+  border: none;
+  border-bottom: 1px solid black;
+  width: 130px;
+}
+
 .leaderboard_header {
   border-bottom: 1px solid black;
 }
@@ -17,7 +27,6 @@
 
 .button-row {
   display: flex;
-  
 }
 
 .button-tab {
@@ -33,7 +42,7 @@
   outline: none;
 }
 
-.button-tab:nth-child(2){
+.button-tab:nth-child(2) {
   margin: 0 -1px;
 }
 
