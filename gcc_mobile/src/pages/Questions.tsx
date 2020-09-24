@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonImg, IonInfiniteScroll, IonLabel, IonModal, IonPage } from '@ionic/react';
 
 import './Questions.css';
@@ -19,6 +20,8 @@ import dollars from '../image/questions/dollars.jpg';
 import stockImage from '../image/questions/stock-list-2.jpg';
 import { codingChallengeStarted } from '../CompetitionTimer';
 import { Parser, HtmlRenderer } from 'commonmark';
+import { profile } from 'console';
+import { useUserContext } from '../context/user';
 
 type Question = {
   active: boolean;
@@ -85,6 +88,8 @@ const questionDetails = [
 },
 ]
 
+
+
 const fetchQuestions = () => {
   return axios({
     //url: "https://cscc-gl.herokuapp.com/allquestions", //last year questions
@@ -96,10 +101,11 @@ const fetchQuestions = () => {
   });
 };
 
-const fetchContestantProfile = () => {
+
+const fetchContestantProfile = (user:any) => {
   return axios({
     //url: "https://cscc-gl.herokuapp.com/allquestions", //last year questions
-    url: 'https://gcc-backend-dev-temp.herokuapp.com/contestant/git/sahmad14', //  this year questions
+    url: 'https://gcc-backend-dev-temp.herokuapp.com/contestant/git/'+  user?.githubUsername,  //  this year questions
     method: 'get',
   }).then((response) => {
     console.log(response.data.level);
@@ -109,10 +115,9 @@ const fetchContestantProfile = () => {
 
 var questionCardVisib : boolean;
 questionCardVisib = false;
-
-
 const Question: React.FC<{ question: Question, levelRank: number}> = (props) => {
   const { question } = props;
+  
   console.log('question', question);
   const { levelRank } = props;
   const [visible, setVisible] = useState(false);
@@ -151,6 +156,8 @@ const Question: React.FC<{ question: Question, levelRank: number}> = (props) => 
               id="markdown"
               dangerouslySetInnerHTML={{ __html: writer.render(parsed)}}
             />
+            <h4 style={{padding:'2%'}}>
+              <a  style={{color:'black' }} href="https://gcc-global-dev-webapp.herokuapp.com/#/">Click here</a> to visit Global Coding Challenge website on desktop device to answer the question</h4>
           </IonContent> 
         </IonModal>
       
@@ -162,14 +169,14 @@ const Questions: React.FC = () => {
   console.log(codingChallengeStarted())
   const [questions, setQuestions] = useState<Question[]>([]);
   const [levelRank, setLevelRank]  = useState(0);
-
+  const { user, setUser } = useUserContext();
   useEffect(() => {
     fetchQuestions().then((questions) => setQuestions(questions));
   }, []);
 
   useEffect(() => {
-    fetchContestantProfile().then((level) => level=="easy" ? setLevelRank(1): level =="medium" ? setLevelRank(2):setLevelRank(3));   
-  }, []);
+    fetchContestantProfile(user).then((level) => level=="easy" ? setLevelRank(1): level =="medium" ? setLevelRank(2):setLevelRank(3));   
+  }, [user]);
 
   return (
     <IonPage>

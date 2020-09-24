@@ -103,7 +103,7 @@ export const RegistrationForm: React.FC<Props> = (props) => {
   return (
     <div className="form-container">
       <h2>Welcome {githubUsername}!</h2>
-      <p>Sign up to start answering questions!</p>
+      <p>Sign up to view questions!</p>
 
       <div className="form-fields">
         <FormField label="Title">
@@ -192,9 +192,9 @@ export const RegistrationForm: React.FC<Props> = (props) => {
           />
         </FormField>
 
-        <FormField label="Graduation Year">
+        <FormField label="Graduation year">
           <input
-            placeholder="Graduation Year"
+            placeholder="Graduation year"
             value={graduationYear || ''}
             onChange={(e) => setGraduationYear(parseInt(e.target.value) || 0)}
           />
