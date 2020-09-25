@@ -6,7 +6,6 @@ import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, 
 import './Questions.css';
 import axios from 'axios';
 import { lockClosedSharp , lockOpenOutline } from 'ionicons/icons';
-import ReactMarkdown from 'react-markdown';
 import { IonIcon } from '@ionic/react';
 import PageHeader from '../components/PageHeader';
 import stockImage1 from '../image/questions/stock-list.jpg';
@@ -20,8 +19,8 @@ import dollars from '../image/questions/dollars.jpg';
 import stockImage from '../image/questions/stock-list-2.jpg';
 import { codingChallengeStarted } from '../CompetitionTimer';
 import { Parser, HtmlRenderer } from 'commonmark';
-import { profile } from 'console';
 import { useUserContext } from '../context/user';
+import { GCC_BASE_URL } from '../constants';
 
 type Question = {
   active: boolean;
@@ -80,27 +79,32 @@ const questionDetails = [
     caption:"Sort transactions by fraud probability to detect credit card fraud",
     img: stockImage,
     subtitle: "Sorting Fraudulent Transactions"
-},
-{
-  caption:"Sort transactions by fraud probability to detect credit card fraud",
-  img: stockImage,
-  subtitle: "Sorting Fraudulent Transactions"
-},
+  },
+  {
+    caption:"Sort transactions by fraud probability to detect credit card fraud",
+    img: stockImage,
+    subtitle: "Sorting Fraudulent Transactions"
+  },
 ]
 
-
-
 const fetchQuestions = () => {
-  return axios({
-    //url: "https://cscc-gl.herokuapp.com/allquestions", //last year questions
-    url: 'https://gcc-global-dev.herokuapp.com/allquestions', //  this year questions
-    method: 'get',
-  }).then((response) => {
-    console.log(response);
-    return response.data;
-  });
+  return axios
+    .get<any>(`${GCC_BASE_URL}/allquestions`, {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json;charset=UTF-8',
+        Accept: 'application/json',
+      },
+      auth: {
+        username: 'gcc2020webapp',
+        password: 'gcc-2020-webapp-789',
+      },
+    })
+    .then((response) => {
+      console.log(response);
+      return response.data;
+    });
 };
-
 
 const fetchContestantProfile = (user:any) => {
   return axios({
