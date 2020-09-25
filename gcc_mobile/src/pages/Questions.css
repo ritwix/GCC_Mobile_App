@@ -1,3 +1,8 @@
+div.question-name {
+  text-transform: capitalize;
+  color: #a8a8a7;
+}
+
 .question-item {
   padding: 0.5rem 1rem;
   display: flex;

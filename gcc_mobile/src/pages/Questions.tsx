@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
-import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonImg, IonInfiniteScroll, IonLabel, IonModal, IonPage } from '@ionic/react';
+import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonImg, IonInfiniteScroll, IonLabel, IonModal, IonPage } from '@ionic/react';
 
 import './Questions.css';
 import axios from 'axios';
@@ -140,11 +140,11 @@ const Question: React.FC<{ question: Question, levelRank: number}> = (props) => 
         <IonCard style={{borderRadius: 0, boxShadow: 'none', border: '#a8a8a7 1px solid'}}> 
         <img src={questionDetails[question.questionNumber -1].img} />
         <IonCardHeader>
-          <IonCardSubtitle style={{textTransform: 'capitalize'}}> {questionDetails[question.questionNumber -1].subtitle}</IonCardSubtitle>
-          <IonCardTitle style={{fontSize: 20}}> Question {question.questionNumber} {question.questionNumber <= 3 ? "(Easy)": question.questionNumber <=6 ? "(Medium)":"(Hard)"}
+        <IonCardTitle style={{fontSize: 20}}> Question {question.questionNumber} {question.questionNumber <= 3 ? "(Easy)": question.questionNumber <=6 ? "(Medium)":"(Hard)"}
             <div style={{float:'right'}} hidden={(question.questionNumber <= 3*levelRank ? false:true) ||  !codingChallengeStarted()}>  Active <IonIcon icon={lockOpenOutline} /> </div>
             <div style={{float:'right'}} hidden={!(question.questionNumber <= 3*levelRank ? false:true) && codingChallengeStarted()}> Locked <IonIcon icon={lockClosedSharp}/> </div>
           </IonCardTitle>
+          <div className="question-name"> {questionDetails[question.questionNumber -1].subtitle}</div>
           </IonCardHeader>
         <IonCardContent>
           {questionDetails[question.questionNumber -1].caption}
