@@ -188,31 +188,30 @@ const IndLeaderboard: React.FC = () => {
   return (
     <IonPage>
       <PageHeader title="Leaderboard" />
-      <div className="button-row">
-        {['Individual', 'University', 'Engagement'].map((type) => {
-          const styles =
-            leaderboardType === type
-              ? {
-                  backgroundColor: 'black',
-                  color: 'white',
-                }
-              : {};
-          return (
-            <button
-              key={type}
-              className="button-tab"
-              style={styles}
-              onClick={() => {
-                setLeaderboardType(type);
-              }}
-            >
-              {type}
-            </button>
-          );
-        })}
-      </div>
-
       <IonContent>
+        <div className="button-row">
+          {['Individual', 'University', 'Engagement'].map((type) => {
+            const styles =
+              leaderboardType === type
+                ? {
+                    backgroundColor: 'black',
+                    color: 'white',
+                  }
+                : {};
+            return (
+              <button
+                key={type}
+                className="button-tab"
+                style={styles}
+                onClick={() => {
+                  setLeaderboardType(type);
+                }}
+              >
+                {type}
+              </button>
+            );
+          })}
+        </div>
         <div className="filter-column">
           <div>Select Region:</div>
           <select
@@ -255,7 +254,9 @@ const IndLeaderboard: React.FC = () => {
               <IonCol size="3">Name</IonCol>
               <IonCol size="2.5">Region</IonCol>
               <IonCol size="3">University</IonCol>
-              <IonCol size="2.5">Score</IonCol>
+              <IonCol class="ion-text-end" size="2.5">
+                Score
+              </IonCol>
             </IonRow>
             {IndItems.map((item) => {
               return IndFilterBy == undefined ||
@@ -305,7 +306,9 @@ const IndLeaderboard: React.FC = () => {
             <IonRow className="leaderboard_header">
               <IonCol size="2">#</IonCol>
               <IonCol size="5">University</IonCol>
-              <IonCol size="5">Score</IonCol>
+              <IonCol class="ion-text-end" size="5">
+                Score
+              </IonCol>
             </IonRow>
             {UnivItems.map((item) => {
               return UnivFilterBy == undefined ||
@@ -351,7 +354,9 @@ const IndLeaderboard: React.FC = () => {
               <IonCol size="3">Name</IonCol>
               <IonCol size="2.5">Region</IonCol>
               <IonCol size="3.5">University</IonCol>
-              <IonCol size="2">Score</IonCol>
+              <IonCol class="ion-text-end" size="2">
+                Score
+              </IonCol>
             </IonRow>
             {EngagementItems.map((item) => {
               return EngagementFilterBy == undefined ||
@@ -384,6 +389,21 @@ const IndLeaderboard: React.FC = () => {
             }}
           >
             Load More...
+          </div>
+        </div>
+
+        <div id="refresh">
+          <div
+            className="cs-button"
+            style={{ textAlign: 'center' }}
+            onClick={() => {
+              setIndItems([]);
+              setUnivItems([]);
+              setEngagementItems([]);
+              getMoreData(1);
+            }}
+          >
+            Refresh
           </div>
         </div>
       </IonContent>

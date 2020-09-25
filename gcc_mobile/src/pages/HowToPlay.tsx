@@ -7,7 +7,6 @@ import {
   IonRow,
   IonImg,
   IonText,
-  IonButton,
   IonIcon,
 } from '@ionic/react';
 import './HowToPlay.css';
@@ -25,9 +24,9 @@ const Buttn: React.FC<{ val: String; visible: boolean; txt: String }> = (
 
   return (
     <>
-    <br />
-    <IonIcon icon={chevronDown} hidden={!visib} />
-     <IonIcon icon={chevronForward} hidden={visib} />
+      <br />
+      <IonIcon icon={chevronDown} hidden={!visib} />
+      <IonIcon icon={chevronForward} hidden={visib} />
       <button  
         onClick={() => {
           setVisib((visib) => !visib);
@@ -35,8 +34,7 @@ const Buttn: React.FC<{ val: String; visible: boolean; txt: String }> = (
         className="buttn"
       >
         {props.val}
-        
-        </button>
+      </button>
       <div className="extra-info" hidden={!visib}>
         {props.txt}
       </div>
