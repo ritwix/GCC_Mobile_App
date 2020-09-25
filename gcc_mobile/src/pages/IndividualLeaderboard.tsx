@@ -386,17 +386,19 @@ const IndLeaderboard: React.FC = () => {
           </div>
         </div>
 
-        <div
-          className="cs-button"
-          style={{ textAlign: 'center' }}
-          onClick={() => {
-            setIndItems([]);
-            setUnivItems([]);
-            setEngagementItems([]);
-            getMoreData(1);
-          }}
-        >
-          Refresh
+        <div id="refresh">
+          <div
+            className="cs-button"
+            style={{ textAlign: 'center' }}
+            onClick={() => {
+              setIndItems([]);
+              setUnivItems([]);
+              setEngagementItems([]);
+              getMoreData(1);
+            }}
+          >
+            Refresh
+          </div>
         </div>
       </IonContent>
     </IonPage>

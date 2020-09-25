@@ -1,3 +1,7 @@
+#refresh {
+  padding: 1rem;
+}
+
 select.filter-select {
   width: 130px;
 }
