@@ -229,21 +229,41 @@ const ProfileDetails: React.FC<{ user: User }> = (props) => {
       <p>{`#${userStats.globalPosition} in World`}</p>
       <IonGrid>
         <IonRow className="leaderboard_header question-scores-table-header">
-          <IonCol size="2.8">Question</IonCol>
-          <IonCol size="2.4">Correct</IonCol>
-          <IonCol size="2.7">Incorrect</IonCol>
-          <IonCol size="2.1">Timed Out</IonCol>
-          <IonCol size="2">Total</IonCol>
+          <IonCol class="ion-text-end" size="2.8">
+            Question
+          </IonCol>
+          <IonCol class="ion-text-end" size="2.4">
+            Correct
+          </IonCol>
+          <IonCol class="ion-text-end" size="2.7">
+            Incorrect
+          </IonCol>
+          <IonCol class="ion-text-end" size="2.1">
+            Timed Out
+          </IonCol>
+          <IonCol class="ion-text-end" size="2">
+            Total
+          </IonCol>
         </IonRow>
         {userStats.scores.map((item) => {
           const { questionNumber, correct, incorrect, timedOut, total } = item;
           return (
-            <IonRow className="leaderboard_content">
-              <IonCol size="2.8">{questionNumber}</IonCol>
-              <IonCol size="2.4">{correct}</IonCol>
-              <IonCol size="2.7">{incorrect}</IonCol>
-              <IonCol size="2.1">{timedOut}</IonCol>
-              <IonCol size="2">{total}</IonCol>
+            <IonRow className="leaderboard_content" key={JSON.stringify(item)}>
+              <IonCol class="ion-text-end" size="2.8">
+                {questionNumber}
+              </IonCol>
+              <IonCol class="ion-text-end" size="2.4">
+                {correct}
+              </IonCol>
+              <IonCol class="ion-text-end" size="2.7">
+                {incorrect}
+              </IonCol>
+              <IonCol class="ion-text-end" size="2.1">
+                {timedOut}
+              </IonCol>
+              <IonCol class="ion-text-end" size="2">
+                {total}
+              </IonCol>
             </IonRow>
           );
         })}

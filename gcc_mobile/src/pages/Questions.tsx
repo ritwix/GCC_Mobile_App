@@ -122,7 +122,6 @@ questionCardVisib = false;
 const Question: React.FC<{ question: Question, levelRank: number}> = (props) => {
   const { question } = props;
   
-  console.log('question', question);
   const { levelRank } = props;
   const [visible, setVisible] = useState(false);
   
@@ -141,7 +140,7 @@ const Question: React.FC<{ question: Question, levelRank: number}> = (props) => 
         <IonCard style={{borderRadius: 0, boxShadow: 'none', border: '#a8a8a7 1px solid'}}> 
         <img src={questionDetails[question.questionNumber -1].img} />
         <IonCardHeader>
-          <IonCardSubtitle> {questionDetails[question.questionNumber -1].subtitle}</IonCardSubtitle>
+          <IonCardSubtitle style={{textTransform: 'capitalize'}}> {questionDetails[question.questionNumber -1].subtitle}</IonCardSubtitle>
           <IonCardTitle style={{fontSize: 20}}> Question {question.questionNumber} {question.questionNumber <= 3 ? "(Easy)": question.questionNumber <=6 ? "(Medium)":"(Hard)"}
             <div style={{float:'right'}} hidden={(question.questionNumber <= 3*levelRank ? false:true) ||  !codingChallengeStarted()}>  Active <IonIcon icon={lockOpenOutline} /> </div>
             <div style={{float:'right'}} hidden={!(question.questionNumber <= 3*levelRank ? false:true) && codingChallengeStarted()}> Locked <IonIcon icon={lockClosedSharp}/> </div>
@@ -152,7 +151,7 @@ const Question: React.FC<{ question: Question, levelRank: number}> = (props) => 
           </IonCardContent>
         </IonCard>
         <IonModal isOpen={visible && (question.questionNumber <= 3*levelRank ? true:false) && codingChallengeStarted()} >
-         <IonContent >
+         <IonContent>
             <h1 className="content">Question {question.questionNumber}</h1>
             <IonImg src={questionDetails[question.questionNumber -1].img}></IonImg>
             <div
