@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { IonAvatar, IonContent, IonPage } from '@ionic/react';
-import { useUserContext } from '../context/user';
+import {
+  IonAvatar,
+  IonCol,
+  IonContent,
+  IonGrid,
+  IonPage,
+  IonRow,
+} from '@ionic/react';
+import { User, UserStats, useUserContext } from '../context/user';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import PageHeader from '../components/PageHeader';
 import {
@@ -37,7 +44,6 @@ const authorizeWithBackend = (code: string) => {
       };
     });
 };
-
 
 const getContestant = (githubUsername: string) => {
   if (!githubUsername) {
@@ -79,9 +85,6 @@ const registerContestant = (body: any) => {
 };
 
 const Profile: React.FC = () => {
-   const getGithubUserName = () => {
-    return "sahmad14"
-  } 
   const { user, setUser } = useUserContext();
   const [loading, setLoading] = useState(false);
 
@@ -187,18 +190,73 @@ const Profile: React.FC = () => {
           />
         )}
         {user?.loggedInGitHub && user.hasUserSignedUp && (
-          <div className="container">
-            <>
-              <IonAvatar>
-                <img src={user.githubAvatar} />
-              </IonAvatar>
-              <strong>{`Welcome, ${user?.githubUsername}!`}</strong>
-            </>
-          </div>
+          <ProfileDetails user={user} />
         )}
       </IonContent>
     </IonPage>
   );
+};
+
+const ProfileDetails: React.FC<{ user: User }> = (props) => {
+  const { user } = props;
+  const [userStats, setUserStats] = useState<UserStats | null>();
+
+  const loadUserStats = () => {
+    setUserStats(null);
+    axios
+      .get<UserStats>(`${GCC_BASE_URL}/contestant/stats/${user.contestantId}`)
+      .then((response) => {
+        setUserStats(response.data);
+      })
+      .catch(() => {
+        alert(
+          'There was a problem fetching user stats. Please try again later.'
+        );
+      });
+  };
+
+  useEffect(() => {
+    loadUserStats();
+  }, []);
+
+  const profileDetails = userStats ? (
+    <>
+      <IonAvatar>
+        <img src={userStats.gitAvatar} />
+      </IonAvatar>
+      <h3>{`Welcome, ${userStats.name}!`}</h3>
+      <p>{`#${userStats.positionWithinTeam} in ${userStats.team}`}</p>
+      <p>{`#${userStats.globalPosition} in World`}</p>
+      <IonGrid>
+        <IonRow className="leaderboard_header question-scores-table-header">
+          <IonCol size="2.8">Question</IonCol>
+          <IonCol size="2.4">Correct</IonCol>
+          <IonCol size="2.7">Incorrect</IonCol>
+          <IonCol size="2.1">Timed Out</IonCol>
+          <IonCol size="2">Total</IonCol>
+        </IonRow>
+        {userStats.scores.map((item) => {
+          const { questionNumber, correct, incorrect, timedOut, total } = item;
+          return (
+            <IonRow className="leaderboard_content">
+              <IonCol size="2.8">{questionNumber}</IonCol>
+              <IonCol size="2.4">{correct}</IonCol>
+              <IonCol size="2.7">{incorrect}</IonCol>
+              <IonCol size="2.1">{timedOut}</IonCol>
+              <IonCol size="2">{total}</IonCol>
+            </IonRow>
+          );
+        })}
+      </IonGrid>
+      <button className="cs-button" onClick={loadUserStats}>
+        Refresh
+      </button>
+    </>
+  ) : (
+    <h4>Loading...</h4>
+  );
+
+  return <div className="profile-details-container">{profileDetails}</div>;
 };
 
 export default Profile;

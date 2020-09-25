@@ -188,31 +188,30 @@ const IndLeaderboard: React.FC = () => {
   return (
     <IonPage>
       <PageHeader title="Leaderboard" />
-      <div className="button-row">
-        {['Individual', 'University', 'Engagement'].map((type) => {
-          const styles =
-            leaderboardType === type
-              ? {
-                  backgroundColor: 'black',
-                  color: 'white',
-                }
-              : {};
-          return (
-            <button
-              key={type}
-              className="button-tab"
-              style={styles}
-              onClick={() => {
-                setLeaderboardType(type);
-              }}
-            >
-              {type}
-            </button>
-          );
-        })}
-      </div>
-
       <IonContent>
+        <div className="button-row">
+          {['Individual', 'University', 'Engagement'].map((type) => {
+            const styles =
+              leaderboardType === type
+                ? {
+                    backgroundColor: 'black',
+                    color: 'white',
+                  }
+                : {};
+            return (
+              <button
+                key={type}
+                className="button-tab"
+                style={styles}
+                onClick={() => {
+                  setLeaderboardType(type);
+                }}
+              >
+                {type}
+              </button>
+            );
+          })}
+        </div>
         <div className="filter-column">
           <div>Select Region:</div>
           <select
@@ -385,6 +384,19 @@ const IndLeaderboard: React.FC = () => {
           >
             Load More...
           </div>
+        </div>
+
+        <div
+          className="cs-button"
+          style={{ textAlign: 'center' }}
+          onClick={() => {
+            setIndItems([]);
+            setUnivItems([]);
+            setEngagementItems([]);
+            getMoreData(1);
+          }}
+        >
+          Refresh
         </div>
       </IonContent>
     </IonPage>

@@ -35,7 +35,7 @@ input.minimal {
   height: 40px;
   width: 34%;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 4vw;
 }
 
 .button-tab:focus {
