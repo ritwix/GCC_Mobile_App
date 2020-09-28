@@ -121,17 +121,17 @@ export const RegistrationForm: React.FC<Props> = (props) => {
           </select>
         </FormField>
 
-        <FormField label="First Name">
+        <FormField label="First name">
           <input
-            placeholder="First Name"
+            placeholder="First name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
         </FormField>
 
-        <FormField label="Last Name">
+        <FormField label="Last name">
           <input
-            placeholder="Last Name"
+            placeholder="Last name"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
@@ -184,9 +184,9 @@ export const RegistrationForm: React.FC<Props> = (props) => {
           </select>
         </FormField>
 
-        <FormField label="Course Title">
+        <FormField label="Course title">
           <input
-            placeholder="Course Title"
+            placeholder="Course title"
             value={course}
             onChange={(e) => setCourse(e.target.value)}
           />
@@ -224,7 +224,7 @@ export const RegistrationForm: React.FC<Props> = (props) => {
           />
           <label>
             I agree to the processing on my personal data for the direct
-            Marketing Purpose as set out in the
+            Marketing Purpose as set out in the{' '}
             <a href={LINK_TO_PRIVACY_STATEMENT}> Privacy Statement</a>.
           </label>
         </div>
