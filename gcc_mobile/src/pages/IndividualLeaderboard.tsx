@@ -393,7 +393,7 @@ const IndLeaderboard: React.FC = () => {
         </div>
 
         <div id="refresh">
-          <div
+          <button
             className="cs-button"
             style={{ textAlign: 'center' }}
             onClick={() => {
@@ -404,7 +404,7 @@ const IndLeaderboard: React.FC = () => {
             }}
           >
             Refresh
-          </div>
+          </button>
         </div>
       </IonContent>
     </IonPage>
