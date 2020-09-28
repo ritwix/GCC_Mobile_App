@@ -64,7 +64,7 @@ const NewsContainer: React.FC = () => {
           onIonChange={(e) => onRegionChanged(e.detail.value)}
         >
           {regions.map((r) => (
-            <IonSelectOption value={r}>{r}</IonSelectOption>
+            <IonSelectOption key={r} value={r}>{r}</IonSelectOption>
           ))}
         </IonSelect>
       </div>

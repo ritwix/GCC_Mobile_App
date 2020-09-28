@@ -7,10 +7,9 @@ import {
   IonTitle,
   IonContent,
   IonLabel,
-  IonText,
 } from "@ionic/react";
 import React, { useState, useEffect } from "react";
-import { Headline, News } from "../model/News";
+import { News } from "../model/News";
 import axios from "axios";
 
 interface NewsDetailProps
@@ -32,7 +31,6 @@ const NewsTabDetail: React.FC<NewsDetailProps> = ({ match }) => {
         `https://gcc-global-dev.herokuapp.com/news/${match.params.id}`
       )
       .then(({ data }) => {
-        console.log("paragraphs: " + JSON.stringify(data.article.paragraphs));
         setNews(data);
       });
   };
@@ -47,15 +45,7 @@ const NewsTabDetail: React.FC<NewsDetailProps> = ({ match }) => {
         </IonHeader>
         <IonContent>
           {news != null && news.article.body != null && (
-            // <IonContent>
-            //     User {match.params.id}
-            // </IonContent>
-            <div className='paragraph' dangerouslySetInnerHTML={{ __html: news.article.body }} />
-            // <div>
-            //   {news.article.paragraphs.map((p) => (
-            //     <p className="paragraph">{p}</p>
-            //   ))}
-            // </div>
+            <div id="innerHTML" dangerouslySetInnerHTML={{ __html: news.article.body }} />
           )}
         </IonContent>
       </IonPage>
