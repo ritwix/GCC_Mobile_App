@@ -1,12 +1,12 @@
+div.ranking {
+  margin-bottom: 10px;
+}
+
 .question-scores-table-header {
   font-size: 3.9vw;
 }
 
 .profile-details-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   padding: 1rem;
 }
 
