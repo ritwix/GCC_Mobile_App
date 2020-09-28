@@ -109,3 +109,8 @@ div#markdown thead {
   vertical-align: middle;
   border-color: inherit;
 }
+
+div#markdown ol,
+div#markdown ul {
+  padding: 0 1rem;
+}
