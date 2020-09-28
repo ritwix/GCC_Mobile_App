@@ -109,7 +109,7 @@ const fetchQuestions = () => {
 const fetchContestantProfile = (user:any) => {
   return axios({
     //url: "https://cscc-gl.herokuapp.com/allquestions", //last year questions
-    url: 'https://gcc-global-dev.herokuapp.com/contestant/git/sahmad14'+  user?.githubUsername,  //  this year questions
+    url: 'https://gcc-global-dev.herokuapp.com/contestant/git/'+  user?.githubUsername,  //  this year questions
     method: 'get',
   }).then((response) => {
     console.log(response.data.level);
@@ -160,7 +160,7 @@ const Question: React.FC<{ question: Question, levelRank: number}> = (props) => 
               dangerouslySetInnerHTML={{ __html: writer.render(parsed)}}
             />
             <h4 style={{padding:'2%'}}>
-              <a  style={{color:'black' }} href="https://gcc-global-dev-webapp.herokuapp.com/#/">Click here</a> to visit Global Coding Challenge website on desktop device to answer the question</h4>
+              <a  style={{color:'black' }} href="https://gcc-global-dev-webapp.herokuapp.com/#/">Click here</a> to visit Global Coding Challenge website on desktop device to start answering the questions.</h4>
           </IonContent> 
         </IonModal>
       
