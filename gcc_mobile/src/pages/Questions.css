@@ -1,10 +1,10 @@
 div.question-name {
   text-transform: capitalize;
   color: #a8a8a7;
+  margin-top: 5px;
 }
 
 .question-item {
-  padding: 0.5rem 1rem;
   display: flex;
   flex-direction: column;
 }
@@ -21,7 +21,7 @@ div.question-name {
 }
 
 .content {
-  padding: 2%;
+  padding: 0 1rem;
 }
 
 pre code {
@@ -56,10 +56,6 @@ pre {
 
 .linkToWebapp {
   padding: 2%;
-}
-
-div#markdown {
-  padding: 0 1rem 1rem;
 }
 
 /*

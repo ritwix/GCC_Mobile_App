@@ -24,13 +24,13 @@ h2,
 h3,
 h4,
 h5 {
-  color: black !important;
+  color: black;
   font-family: 'CS-Header', Arial, Helvetica, sans-serif !important;
 }
 
 p,
 div {
-  color: black !important;
+  color: black;
   font-family: 'CS-Body', Arial, Helvetica, sans-serif !important;
   font-size: 16px !important;
 }
