@@ -109,7 +109,7 @@ const fetchQuestions = () => {
 const fetchContestantProfile = (user:any) => {
   return axios({
     //url: "https://cscc-gl.herokuapp.com/allquestions", //last year questions
-    url: 'https://gcc-global-dev.herokuapp.com/contestant/git/sahmad14'+  user?.githubUsername,  //  this year questions
+    url: 'https://gcc-global-dev.herokuapp.com/contestant/git/'+  user?.githubUsername,  //  this year questions
     method: 'get',
   }).then((response) => {
     console.log(response.data.level);
@@ -150,7 +150,7 @@ const Question: React.FC<{ question: Question, levelRank: number}> = (props) => 
           {questionDetails[question.questionNumber -1].caption}
           </IonCardContent>
         </IonCard>
-        <IonModal isOpen={visible && (question.questionNumber <= 3*levelRank ? true:false) && codingChallengeStarted()} >
+        <IonModal isOpen={visible && (question.questionNumber <= 3*levelRank ? true:false) && codingChallengeStarted()}>
          <IonContent>
            <div className="content">
             <h1>Question {question.questionNumber}</h1>
