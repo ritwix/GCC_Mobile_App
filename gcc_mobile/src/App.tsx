@@ -3,7 +3,6 @@ import './App.css';
 import { Route, Redirect } from 'react-router-dom';
 import {
   IonApp,
-  IonLabel,
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
@@ -16,13 +15,6 @@ import Questions from './pages/Questions';
 import HowToPlay from './pages/HowToPlay';
 import Profile from './pages/Profile';
 import IndividualLeaderboard from './pages/IndividualLeaderboard';
-
-import SmallInfoIcon from './assets/icons/icons_small_info_2/icons_small_info_2.png';
-import SmallProfileIcon from './assets/icons/icons_small_profile/icons_small_profile.png';
-import SmallChatIcon from './assets/icons/icons_small_chat/icons_small_chat.png';
-import SmallStarIcon from './assets/icons/icons_small_favourite_filled/icons_small_favourite_filled.png';
-import SmallAlertIcon from './assets/icons/icons_small_alert1/icons_small_alert1.png';
-import LargeTrophyIcon from './assets/icons/icons_large_trophy/icons_large_trophy.png';
 
 import { UserContextInit } from './context/user';
 
@@ -50,65 +42,111 @@ import NewsTab from './pages/NewsTab';
 import NewsTabDetail from './pages/NewsTabDetail';
 import ExploreContainer from './components/ExploreContainer';
 
-/* Screen orientation fixed to landscape*/
-//window.screen.orientation.lock('landscape');
+import SvgIconsLargeInfo from './assets/icons/icons_large_info/SvgIconsLargeInfo';
+import SvgIconsLargeNewspaper from './assets/icons/icons_large_newspaper/SvgIconsLargeNewspaper';
+import SvgIconsLargeBulb from './assets/icons/icons_large_bulb/SvgIconsLargeBulb';
+import SvgIconsLargeQuestion from './assets/icons/icons_large_question/SvgIconsLargeQuestion';
+import SvgIconsLargeUser from './assets/icons/icons_large_user/SvgIconsLargeUser';
+import SvgIconsLargeTraphy from './assets/icons/icons_large_trophy/SvgIconsLargeTraphy';
 
+import { COLOR } from './constants';
 
+const DEFAULT_SVG_STYLES = {
+  height: '50',
+  width: '50',
+  viewBox: '5 -60 100 300',
+};
 
-const App: React.FC = () => (
+enum Tab {
+  Profile = 'profile',
+  Leaderboard = 'leaderboard',
+  Questions = 'questions',
+  News = 'news',
+  HowToPlay = 'HowToPlay',
+  Faqs = 'faqs',
+}
 
-  
-  <UserContextInit>
-    <IonApp>
-      <IonReactRouter>
-        <IonTabs>
-          <IonRouterOutlet>
-            <Route path="/profile" component={Profile} exact={true} />
-            <Route path="/leaderboard" component={IndividualLeaderboard} exact={true} />
-            <Route path="/questions" component={Questions} exact={true} />
-            <Route path="/:tab(news)" component={NewsTab} exact={true} />
-            <Route path="/:tab(news)/:id" component={NewsTabDetail} />
-            <Route path="/referAFriend" component={ReferAFriend} exact={true} />
-            <Route path="/howToPlay" component={HowToPlay} exact={true}/>
-            <Route path="/faqs" component={FaqTab}  />
-            <Route
-              path="/"
-              render={() => <Redirect to="/profile" />}
-              exact={true}
-            />
-          </IonRouterOutlet>
+const App: React.FC = () => {
+  // note: initializing to Tab.Profile for now because I haven't found a way to detect current ion tab
+  const [selectedTab, setSelectedTab] = useState<Tab>(Tab.Profile);
 
-          <IonTabBar slot="bottom">
-            <IonTabButton tab="profile" href="/profile">
-              <img src={SmallProfileIcon} />
-              
-            </IonTabButton>
-            <IonTabButton tab="leaderboard" href="/leaderboard" >
-            <img src={LargeTrophyIcon} height="22" />
-            
-            </IonTabButton>
-            <IonTabButton tab="Questions" href="/questions">
-              <img src={SmallInfoIcon} />
-              
-            </IonTabButton>
-            <IonTabButton tab="news" href="/news">
-              <img src={SmallChatIcon} />
-              
-            </IonTabButton>
-            <IonTabButton tab="HowToPlay" href="/howToPlay">
-              <img src={SmallStarIcon} />
-              
-            </IonTabButton>
-            <IonTabButton tab="faqs" href="/faqs">
-              <img src={SmallAlertIcon} />
-              
-            </IonTabButton>
-          </IonTabBar>
-        </IonTabs>
-      </IonReactRouter>
-      <ExploreContainer name='dummy'/>
-    </IonApp>
-  </UserContextInit>
-);
+  return (
+    <UserContextInit>
+      <IonApp>
+        <IonReactRouter>
+          <IonTabs
+            onIonTabsDidChange={(e) => {
+              setSelectedTab(e?.detail?.tab as Tab);
+            }}
+          >
+            <IonRouterOutlet>
+              <Route path="/profile" component={Profile} exact={true} />
+              <Route
+                path="/leaderboard"
+                component={IndividualLeaderboard}
+                exact={true}
+              />
+              <Route path="/questions" component={Questions} exact={true} />
+              <Route path="/:tab(news)" component={NewsTab} exact={true} />
+              <Route path="/:tab(news)/:id" component={NewsTabDetail} />
+              <Route
+                path="/referAFriend"
+                component={ReferAFriend}
+                exact={true}
+              />
+              <Route path="/howToPlay" component={HowToPlay} exact={true} />
+              <Route path="/faqs" component={FaqTab} />
+              <Route
+                path="/"
+                render={() => <Redirect to="/profile" />}
+                exact={true}
+              />
+            </IonRouterOutlet>
+
+            <IonTabBar slot="bottom">
+              <IonTabButton tab={Tab.Profile} href="/profile">
+                <SvgIconsLargeUser
+                  {...DEFAULT_SVG_STYLES}
+                  fill={selectedTab === Tab.Profile ? 'black' : COLOR.gray5}
+                />
+              </IonTabButton>
+              <IonTabButton tab={Tab.Leaderboard} href="/leaderboard">
+                <SvgIconsLargeTraphy
+                  {...DEFAULT_SVG_STYLES}
+                  fill={selectedTab === Tab.Leaderboard ? 'black' : COLOR.gray5}
+                />
+              </IonTabButton>
+              <IonTabButton tab={Tab.Questions} href="/questions">
+                <SvgIconsLargeQuestion
+                  {...DEFAULT_SVG_STYLES}
+                  fill={selectedTab === Tab.Questions ? 'black' : COLOR.gray5}
+                />
+              </IonTabButton>
+              <IonTabButton tab={Tab.News} href="/news">
+                <SvgIconsLargeNewspaper
+                  {...DEFAULT_SVG_STYLES}
+                  fill={selectedTab === Tab.News ? 'black' : COLOR.gray5}
+                />
+              </IonTabButton>
+              <IonTabButton tab={Tab.HowToPlay} href="/howToPlay">
+                <SvgIconsLargeBulb
+                  {...DEFAULT_SVG_STYLES}
+                  fill={selectedTab === Tab.HowToPlay ? 'black' : COLOR.gray5}
+                />
+              </IonTabButton>
+              <IonTabButton tab={Tab.Faqs} href="/faqs">
+                <SvgIconsLargeInfo
+                  {...DEFAULT_SVG_STYLES}
+                  fill={selectedTab === Tab.Faqs ? 'black' : COLOR.gray5}
+                />
+              </IonTabButton>
+            </IonTabBar>
+          </IonTabs>
+        </IonReactRouter>
+        <ExploreContainer name="dummy" />
+      </IonApp>
+    </UserContextInit>
+  );
+};
 
 export default App;
