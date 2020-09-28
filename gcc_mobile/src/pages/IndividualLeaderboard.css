@@ -36,10 +36,9 @@ input.minimal {
 .button-tab {
   background-color: white;
   border: black solid 1px;
-  height: 40px;
   width: 34%;
   font-weight: normal;
-  font-size: 4vw;
+  font-size: 2vw;
 }
 
 .button-tab:focus {
