@@ -23,3 +23,10 @@ export const regionNameMap: { [x in Region]: string } = {
   [Region.GLOBAL]: 'GLOBAL',
   [Region.DEFAULT]: 'GLOBAL',
 };
+
+export const COLOR = {
+  gray3: '#dadada',
+  gray4: '#a8a8a7',
+  gray5: '#7c7c7b',
+  gray6: '#575756',
+};

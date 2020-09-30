@@ -5,8 +5,6 @@ import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHe
 
 import './Questions.css';
 import axios from 'axios';
-import { lockClosedSharp , lockOpenOutline } from 'ionicons/icons';
-import { IonIcon } from '@ionic/react';
 import PageHeader from '../components/PageHeader';
 import stockImage1 from '../image/questions/stock-list.jpg';
 import volatilityImage from '../image/questions/stock-volatility.jpg';
@@ -21,6 +19,8 @@ import { codingChallengeStarted } from '../CompetitionTimer';
 import { Parser, HtmlRenderer } from 'commonmark';
 import { useUserContext } from '../context/user';
 import { GCC_BASE_URL } from '../constants';
+import LockIcon from '../assets/icons/icons_small_lock/icons_small_lock.png';
+import UnlockIcon from '../assets/icons/icons_small_lock_open/icons_small_lock_open.png';
 
 type Question = {
   active: boolean;
@@ -141,26 +141,28 @@ const Question: React.FC<{ question: Question, levelRank: number}> = (props) => 
         <img src={questionDetails[question.questionNumber -1].img} />
         <IonCardHeader>
         <IonCardTitle style={{fontSize: 20}}> Question {question.questionNumber} {question.questionNumber <= 3 ? "(Easy)": question.questionNumber <=6 ? "(Medium)":"(Hard)"}
-            <div style={{float:'right'}} hidden={(question.questionNumber <= 3*levelRank ? false:true) ||  !codingChallengeStarted()}>  Active <IonIcon icon={lockOpenOutline} /> </div>
-            <div style={{float:'right'}} hidden={!(question.questionNumber <= 3*levelRank ? false:true) && codingChallengeStarted()}> Locked <IonIcon icon={lockClosedSharp}/> </div>
-          </IonCardTitle>
-          <div className="question-name"> {questionDetails[question.questionNumber -1].subtitle}</div>
-          </IonCardHeader>
+          <div style={{float:'right'}} hidden={(question.questionNumber <= 3*levelRank ? false:true) ||  !codingChallengeStarted()}>  Active <img style={{marginBottom: -2}} src={UnlockIcon}/> </div>
+          <div style={{float:'right'}} hidden={!(question.questionNumber <= 3*levelRank ? false:true) && codingChallengeStarted()}> Locked <img style={{marginBottom: -2}} src={LockIcon}/>  </div>
+        </IonCardTitle>
+        <div className="question-name"> {questionDetails[question.questionNumber -1].subtitle}</div>
+        </IonCardHeader>
         <IonCardContent>
           {questionDetails[question.questionNumber -1].caption}
           </IonCardContent>
         </IonCard>
-        <IonModal isOpen={visible && (question.questionNumber <= 3*levelRank ? true:false) && codingChallengeStarted()} >
+        <IonModal isOpen={visible && (question.questionNumber <= 3*levelRank ? true:false) && codingChallengeStarted()}>
          <IonContent>
-            <h1 className="content">Question {question.questionNumber}</h1>
+           <div className="content">
+            <h1>Question {question.questionNumber}</h1>
             <IonImg src={questionDetails[question.questionNumber -1].img}></IonImg>
             <div
-              className="codingViewMarkDown"
               id="markdown"
               dangerouslySetInnerHTML={{ __html: writer.render(parsed)}}
             />
-            <h4 style={{padding:'2%'}}>
-              <a  style={{color:'black' }} href="https://gcc-global-dev-webapp.herokuapp.com/#/">Click here</a> to visit Global Coding Challenge website on desktop device to start answering the questions.</h4>
+            <h4>
+              <a href="https://gcc-global-dev-webapp.herokuapp.com/#/">Click here</a> to visit Global Coding Challenge website on desktop device to answer the question
+            </h4>
+           </div>
           </IonContent> 
         </IonModal>
       

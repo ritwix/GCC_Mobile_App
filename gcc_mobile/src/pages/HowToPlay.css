@@ -1,3 +1,7 @@
+.how-to-play-container {
+  padding: 1rem;
+}
+
 .csBold {
   display: block;
   font-family: CS-Body;
@@ -21,12 +25,18 @@
 }
 
 .GreyBar {
-  padding: 10px;
+  margin: 0 -1rem;
+  padding: 1rem;
   background-color: #f1f2f2;
 }
 
-.GreyBar > div {
-  text-align: center;
+.GreyBar .icon-group {
+  display: flex;
+  align-items: center;
+}
+
+.GreyBar .icon-group img{
+  margin-right: 20px;
 }
 
 .GreyBar > div:not(:last-child) {
@@ -45,7 +55,6 @@
 
 
 .Prizes{
-  padding-left: 20px;
   font-size: 16px;
   font-family: 'CS-Body' !important;
 }

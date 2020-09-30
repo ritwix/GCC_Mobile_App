@@ -2,7 +2,7 @@
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: baseline;
 }
 
 .form-container p {
@@ -10,7 +10,8 @@
 }
 
 .form-fields {
-  width: 80vw;
+  width: 100%;
+  margin-top: 10px;
 }
 
 .form-field {
@@ -30,7 +31,12 @@
   margin-bottom: 1rem;
 }
 
+.checkbox-group input {
+  width: auto;
+  margin-top: 3px;
+}
+
 .checkbox-group label {
   text-align: left;
-  width: 400vw;
+  margin-left: 20px;
 }

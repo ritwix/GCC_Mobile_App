@@ -225,8 +225,8 @@ const ProfileDetails: React.FC<{ user: User }> = (props) => {
         <img src={userStats.gitAvatar} />
       </IonAvatar>
       <h3>{`Welcome, ${userStats.name}!`}</h3>
-      <p>{`#${userStats.positionWithinTeam} in ${userStats.team}`}</p>
-      <p>{`#${userStats.globalPosition} in World`}</p>
+      <div className="ranking">{`#${userStats.positionWithinTeam} in ${userStats.team}`}</div>
+      <div className="ranking">{`#${userStats.globalPosition} in World`}</div>
       <IonGrid>
         <IonRow className="leaderboard_header question-scores-table-header">
           <IonCol class="ion-text-end" size="2.8">
