@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Route, Redirect } from 'react-router-dom';
 import {
@@ -51,6 +51,14 @@ import SvgIconsLargeTraphy from './assets/icons/icons_large_trophy/SvgIconsLarge
 
 import { COLOR } from './constants';
 
+import { useIonRouter } from '@ionic/react';
+import { Plugins, Capacitor } from '@capacitor/core';
+
+
+
+
+
+
 const DEFAULT_SVG_STYLES = {
   height: '50',
   width: '50',
@@ -66,11 +74,34 @@ enum Tab {
   Faqs = 'faqs',
 }
 
+
+
+
 const App: React.FC = () => {
   // note: initializing to Tab.Profile for now because I haven't found a way to detect current ion tab
   const [selectedTab, setSelectedTab] = useState<Tab>(Tab.Profile);
+  useEffect(() => {
+    if (Capacitor.isNative) {
+      Plugins.App.addListener("backButton", (e) => {
+        if (window.location.pathname === "/") {
+          // Show A Confirm Box For User to exit app or not
+          let ans = window.confirm("Are you sure you want to exit?");
+          if (ans) {
+            Plugins.App.exitApp();
+          } 
+        } else if (window.location.pathname === "/profile") {
+           // Show A Confirm Box For User to exit app or not
+          let ans = window.confirm("Are you sure you want to exit?");
+          if (ans) {
+            Plugins.App.exitApp();
+          } 
+        } 
+      });
+    }
+  }, []);  
 
   return (
+    
     <UserContextInit>
       <IonApp>
         <IonReactRouter>
@@ -103,38 +134,38 @@ const App: React.FC = () => {
               />
             </IonRouterOutlet>
 
-            <IonTabBar slot="bottom">
-              <IonTabButton tab={Tab.Profile} href="/profile">
+            <IonTabBar slot="bottom" >
+              <IonTabButton tab={Tab.Profile} href="/profile" className='segment-card'>
                 <SvgIconsLargeUser
                   {...DEFAULT_SVG_STYLES}
                   fill={selectedTab === Tab.Profile ? 'black' : COLOR.gray5}
                 />
               </IonTabButton>
-              <IonTabButton tab={Tab.Leaderboard} href="/leaderboard">
+              <IonTabButton tab={Tab.Leaderboard} href="/leaderboard" className='segment-card'>
                 <SvgIconsLargeTraphy
                   {...DEFAULT_SVG_STYLES}
                   fill={selectedTab === Tab.Leaderboard ? 'black' : COLOR.gray5}
                 />
               </IonTabButton>
-              <IonTabButton tab={Tab.Questions} href="/questions">
+              <IonTabButton tab={Tab.Questions} href="/questions" className='segment-card'>
                 <SvgIconsLargeQuestion
                   {...DEFAULT_SVG_STYLES}
                   fill={selectedTab === Tab.Questions ? 'black' : COLOR.gray5}
                 />
               </IonTabButton>
-              <IonTabButton tab={Tab.News} href="/news">
+              <IonTabButton tab={Tab.News} href="/news" className='segment-card'>
                 <SvgIconsLargeNewspaper
                   {...DEFAULT_SVG_STYLES}
                   fill={selectedTab === Tab.News ? 'black' : COLOR.gray5}
                 />
               </IonTabButton>
-              <IonTabButton tab={Tab.HowToPlay} href="/howToPlay">
+              <IonTabButton tab={Tab.HowToPlay} href="/howToPlay" className='segment-card'>
                 <SvgIconsLargeBulb
                   {...DEFAULT_SVG_STYLES}
                   fill={selectedTab === Tab.HowToPlay ? 'black' : COLOR.gray5}
                 />
               </IonTabButton>
-              <IonTabButton tab={Tab.Faqs} href="/faqs">
+              <IonTabButton tab={Tab.Faqs} href="/faqs" className='segment-card'>
                 <SvgIconsLargeInfo
                   {...DEFAULT_SVG_STYLES}
                   fill={selectedTab === Tab.Faqs ? 'black' : COLOR.gray5}

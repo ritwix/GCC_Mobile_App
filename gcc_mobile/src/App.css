@@ -77,3 +77,8 @@ select.filter-select {
   border-bottom: 1px solid black;
   padding: 0.5rem 0.7rem;
 }
+
+.segment-card{
+  display: flex;
+  width: 16%
+}
