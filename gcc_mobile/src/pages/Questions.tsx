@@ -160,7 +160,7 @@ const Question: React.FC<{ question: Question, levelRank: number}> = (props) => 
               dangerouslySetInnerHTML={{ __html: writer.render(parsed)}}
             />
             <h4>
-              <a href="https://gcc-global-dev-webapp.herokuapp.com/#/">Click here</a> to visit Global Coding Challenge website on desktop device to answer the question
+              <a href="https://www.credit-suisse.com/pwp/hr/en/codingchallenge/#/">Click here</a> to visit Global Coding Challenge website on desktop device to answer the question
             </h4>
            </div>
           </IonContent> 

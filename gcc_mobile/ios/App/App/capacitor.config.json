@@ -1,6 +1,6 @@
 {
   "appId": "com.creditsuisse.gcc",
-  "appName": "GCC_React",
+  "appName": "Coding Challenge",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",
