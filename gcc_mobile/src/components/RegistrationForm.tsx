@@ -14,6 +14,10 @@ const titleOptions = [
 
 const regionOptions = [
   {
+    text: 'Region',
+    value: undefined,
+  },
+  {
     text: 'South East Asia (Singapore, Japan and Hong Kong)',
     value: Region.SEA,
   },
@@ -33,7 +37,7 @@ export type RegistrationFormFields = {
   firstName: string;
   lastName: string;
   email: string;
-  region: Region;
+  region?: Region;
   university: string;
   course: string;
   graduationYear: number;
@@ -51,14 +55,18 @@ const searchUniversity = (region: string) => {
   return axios.get<Array<string>>(`${GCC_BASE_URL}/universitylist/${region}`);
 };
 
+const isValidEmail = (email: string) => {
+  return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email);
+}
+
 export const RegistrationForm: React.FC<Props> = (props) => {
   const { githubUsername, onSubmit } = props;
 
-  const [title, setTitle] = useState('mr');
+  const [title, setTitle] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [region, setRegion] = useState(Region.SEA);
+  const [region, setRegion] = useState<Region | undefined>();
 
   const [university, setUniversity] = useState('');
   const [universityOptions, setUniversityOptions] = useState<Array<string>>([]);
@@ -68,22 +76,16 @@ export const RegistrationForm: React.FC<Props> = (props) => {
   const [privacyChecked, setPrivacyChecked] = useState(false);
   const [marketingChecked, setMarketingChecked] = useState(false);
 
-  useEffect(() => {
-    searchUniversity(regionNameMap[Region.SEA])
-      .then((response) => response.data.filter((uni) => uni !== 'Other'))
-      .then(setUniversityOptions);
-  }, []);
-
   const canSubmit =
     githubUsername != '' &&
+    firstName != '' &&
+    lastName != '' &&
+    isValidEmail(email) &&
     privacyChecked &&
-    marketingChecked &&
-    email != '' &&
+    region &&
     university != '' &&
     course != '' &&
-    graduationYear != null &&
-    firstName != '' &&
-    lastName != '';
+    graduationYear != null;
 
   const handleSubmit = () => {
     onSubmit({
@@ -121,7 +123,7 @@ export const RegistrationForm: React.FC<Props> = (props) => {
           </select>
         </FormField>
 
-        <FormField label="First name">
+        <FormField label="* First name">
           <input
             placeholder="First name"
             value={firstName}
@@ -129,7 +131,7 @@ export const RegistrationForm: React.FC<Props> = (props) => {
           />
         </FormField>
 
-        <FormField label="Last name">
+        <FormField label="* Last name">
           <input
             placeholder="Last name"
             value={lastName}
@@ -137,7 +139,7 @@ export const RegistrationForm: React.FC<Props> = (props) => {
           />
         </FormField>
 
-        <FormField label="Email">
+        <FormField label="* Email">
           <input
             type="email"
             value={email}
@@ -146,7 +148,7 @@ export const RegistrationForm: React.FC<Props> = (props) => {
           />
         </FormField>
 
-        <FormField label="Region">
+        <FormField label="* Region">
           <select
             className="filter-select"
             style={{ width: '100%' }}
@@ -158,18 +160,21 @@ export const RegistrationForm: React.FC<Props> = (props) => {
                 .then((response) =>
                   response.data.filter((uni) => uni !== 'Other')
                 )
-                .then(setUniversityOptions);
+                .then(setUniversityOptions)
+                .then(() => {
+                  setUniversity(universityOptions[0]);
+                });
             }}
           >
             {regionOptions.map(({ text, value }) => (
-              <option value={value} key={value}>
+              <option value={value} key={text}>
                 {text}
               </option>
             ))}
           </select>
         </FormField>
 
-        <FormField label="University">
+        <FormField label="* University">
           <select
             className="filter-select"
             style={{ width: '100%' }}
@@ -184,15 +189,15 @@ export const RegistrationForm: React.FC<Props> = (props) => {
           </select>
         </FormField>
 
-        <FormField label="Course title">
+        <FormField label="* Course title/major">
           <input
-            placeholder="Course title"
+            placeholder="Course title/major"
             value={course}
             onChange={(e) => setCourse(e.target.value)}
           />
         </FormField>
 
-        <FormField label="Graduation year">
+        <FormField label="* Graduation year">
           <input
             placeholder="Graduation year"
             value={graduationYear || ''}
@@ -208,7 +213,7 @@ export const RegistrationForm: React.FC<Props> = (props) => {
             onChange={() => setPrivacyChecked((prev) => !prev)}
           />
           <label>
-            I confirm that I have read and understood the{' '}
+            * I confirm that I have read and understood the{' '}
             <a href={LINK_TO_PRIVACY_STATEMENT}>Privacy Statement</a>, and I
             agree to the processing of my personal data for the purpose of
             participation in the Coding Challenge competition.
