@@ -39,10 +39,12 @@ export type RegistrationFormFields = {
   email: string;
   region?: Region;
   university: string;
+  otherUniversity: string;
   course: string;
   graduationYear: number;
   privacyChecked: boolean;
   marketingChecked: boolean;
+  githubUsername: string;
 };
 
 type Props = {
@@ -56,8 +58,10 @@ const searchUniversity = (region: string) => {
 };
 
 const isValidEmail = (email: string) => {
-  return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email);
-}
+  return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+    email
+  );
+};
 
 export const RegistrationForm: React.FC<Props> = (props) => {
   const { githubUsername, onSubmit } = props;
@@ -69,6 +73,7 @@ export const RegistrationForm: React.FC<Props> = (props) => {
   const [region, setRegion] = useState<Region | undefined>();
 
   const [university, setUniversity] = useState('');
+  const [otherUniversity, setOtherUniversity] = useState('');
   const [universityOptions, setUniversityOptions] = useState<Array<string>>([]);
 
   const [course, setCourse] = useState('');
@@ -76,7 +81,7 @@ export const RegistrationForm: React.FC<Props> = (props) => {
   const [privacyChecked, setPrivacyChecked] = useState(false);
   const [marketingChecked, setMarketingChecked] = useState(false);
 
-  const canSubmit =
+  let canSubmit =
     githubUsername != '' &&
     firstName != '' &&
     lastName != '' &&
@@ -87,14 +92,20 @@ export const RegistrationForm: React.FC<Props> = (props) => {
     course != '' &&
     graduationYear != null;
 
+  if (university === 'Other') {
+    canSubmit = canSubmit && otherUniversity != '';
+  }
+
   const handleSubmit = () => {
     onSubmit({
+      githubUsername,
       title,
       firstName,
       lastName,
       email,
       region,
       university,
+      otherUniversity,
       course,
       graduationYear: graduationYear || -1,
       privacyChecked,
@@ -160,8 +171,8 @@ export const RegistrationForm: React.FC<Props> = (props) => {
                 .then((response) =>
                   response.data.filter((uni) => uni !== 'Other')
                 )
-                .then(setUniversityOptions)
-                .then(() => {
+                .then((result) => {
+                  setUniversityOptions([...result, 'Other']);
                   setUniversity(universityOptions[0]);
                 });
             }}
@@ -188,6 +199,16 @@ export const RegistrationForm: React.FC<Props> = (props) => {
             ))}
           </select>
         </FormField>
+
+        {university === 'Other' && (
+          <FormField label="* Add New University">
+            <input
+              value={otherUniversity}
+              placeholder="Enter the name of your University"
+              onChange={(e) => setOtherUniversity(e.target.value)}
+            />
+          </FormField>
+        )}
 
         <FormField label="* Course title/major">
           <input

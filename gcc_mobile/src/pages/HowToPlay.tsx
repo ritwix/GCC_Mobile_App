@@ -164,11 +164,11 @@ const HowToPlay: React.FC = () => {
                 <img src={calendar} style={{ height: '50px' }} />
                 <h3>
                   {' '}
-                  3 <br /> week{' '}
+                  3 <br /> weeks{' '}
                 </h3>
               </div>
               <p style={{ fontSize: '16px' }}>
-                The challenge will run for 3 week, from October 7th to October
+                The challenge will run for 3 weeks, from October 7th to October
                 28th.
               </p>
             </div>

@@ -1,17 +1,8 @@
-import {
-  IonButton,
-  IonInput,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonListHeader,
-  IonTextarea,
-} from '@ionic/react';
 import axios from 'axios';
-import { url } from 'inspector';
 import React from 'react';
 import { useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import { API_AUTHENTICATION, GCC_BASE_URL } from '../constants';
 import { FormField } from './RegistrationForm';
 import './SupportQueryContainer.css';
 
@@ -26,6 +17,18 @@ const GetErrorContent =
 
 const GetSuccessContent =
   'Your ticket has been submitted. Please check your inbox for a confirmation e-mail and ticket ID. Someone from the support team will be in contact with you soon';
+
+export interface Query {
+  contestantId?: string;
+  submittedBy: string;
+  email: string;
+  description: string;
+}
+
+export const submitQuery = (body: Query) =>
+  axios.post<string>(`${GCC_BASE_URL}/supportquery`, body, {
+    auth: API_AUTHENTICATION,
+  });
 
 const SupportQueryContainer: React.FC = () => {
   const [fullName, setFullName] = useState<string>('');
@@ -49,16 +52,12 @@ const SupportQueryContainer: React.FC = () => {
 
   const onSubmit = (data: any) => {
     console.log('Query Submitted: ', data);
-    // alert(JSON.stringify(data, null, 2));
-    axios
-      .post(
-        'https://gcc-global.herokuapp.com/supportquery',
-        (data = {
-          submittedBy: fullName,
-          email: email,
-          description: query,
-        })
-      )
+
+    submitQuery({
+      submittedBy: fullName,
+      email: email,
+      description: query,
+    })
       .then(({ data }) => {
         console.log(JSON.stringify(data));
         alert(GetSuccessContent);
@@ -67,6 +66,7 @@ const SupportQueryContainer: React.FC = () => {
         console.log(JSON.stringify(e));
         alert(GetErrorContent);
       });
+
     resetData();
   };
 
