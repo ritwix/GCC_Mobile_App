@@ -241,7 +241,7 @@ const ProfileDetails: React.FC<{ user: User }> = (props) => {
         <img src={userStats.gitAvatar} />
       </IonAvatar>
       <h3>{`Welcome, ${userStats.name}!`}</h3>
-      <div className="ranking">{`Total score: ${userStats.total}`}</div>
+      <div className="ranking">{`Total score: ${Number(userStats.total).toFixed(2)}`}</div>
       <br />
       <div className="ranking">{`#${userStats.positionWithinTeam} in ${userStats.team}`}</div>
       <div className="ranking">{`#${userStats.globalPosition} in World`}</div>
@@ -280,7 +280,7 @@ const ProfileDetails: React.FC<{ user: User }> = (props) => {
                 {timedOut}
               </IonCol>
               <IonCol class="ion-text-end" size="2">
-                {total}
+                {Number(total).toFixed(2)}
               </IonCol>
             </IonRow>
           );
