@@ -18,7 +18,7 @@ import stockImage from '../image/questions/stock-list-2.jpg';
 import { codingChallengeStarted } from '../CompetitionTimer';
 import { Parser, HtmlRenderer } from 'commonmark';
 import { useUserContext } from '../context/user';
-import { GCC_BASE_URL } from '../constants';
+import { API_AUTHENTICATION, GCC_BASE_URL } from '../constants';
 import LockIcon from '../assets/icons/icons_small_lock/icons_small_lock.png';
 import UnlockIcon from '../assets/icons/icons_small_lock_open/icons_small_lock_open.png';
 
@@ -95,10 +95,7 @@ const fetchQuestions = () => {
         'Content-Type': 'application/json;charset=UTF-8',
         Accept: 'application/json',
       },
-      auth: {
-        username: 'gcc2020webapp',
-        password: 'gcc-2020-webapp-789',
-      },
+      auth: API_AUTHENTICATION,
     })
     .then((response) => {
       console.log(response);

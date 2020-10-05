@@ -16,13 +16,9 @@ import {
   RegistrationFormFields,
 } from '../components/RegistrationForm';
 import './Profile.css';
-import { Region, GCC_BASE_URL, regionNameMap } from '../constants';
+import { Region, GCC_BASE_URL, regionNameMap, GITHUB_OAUTH_CLIENT_ID, API_AUTHENTICATION } from '../constants';
 
-const CLIENT_ID = {
-  LOCAL: '3a4fd05f700987052d1e', // GCC-2020-Local Client ID
-  TEST: '17add43b05758bd00913', // GCC-2020-Test Client ID
-};
-const GITHUB_OAUTH_URL = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID.TEST}`;
+const GITHUB_OAUTH_URL = `https://github.com/login/oauth/authorize?client_id=${GITHUB_OAUTH_CLIENT_ID.PROD}`;
 
 const authorizeWithBackend = (code: string) => {
   return axios
@@ -36,6 +32,7 @@ const authorizeWithBackend = (code: string) => {
     .then((response) => {
       const qrCodeLink = `https://credit-suisse.com/pwp/hr/en/codingchallenge/#/howtoplay?promocode=${response?.data?.login}`;
       return {
+        token: code,
         loggedInGitHub: true,
         githubUsername: response?.data?.login,
         qrCodeLink: qrCodeLink,
@@ -80,8 +77,8 @@ const getContestant = (githubUsername: string) => {
     });
 };
 
-const registerContestant = (body: any) => {
-  return axios.post<any>(`${GCC_BASE_URL}/challenge/signup`, body);
+const registerContestant = (body: any, token: string) => {
+  return axios.post<any>(`${GCC_BASE_URL}/challenge/signup/${token}`, body, { auth: API_AUTHENTICATION });
 };
 
 const Profile: React.FC = () => {
@@ -131,6 +128,8 @@ const Profile: React.FC = () => {
       marketingChecked,
     } = fields;
 
+    const token = user?.token;
+
     const body = {
       course,
       disclaimers: {
@@ -149,7 +148,7 @@ const Profile: React.FC = () => {
 
     setLoading(true);
     console.log('registering contestant');
-    registerContestant(body)
+    registerContestant(body, token || '')
       .then((response) => {
         if (response.status == 200) {
           console.log('registered contestant:', response.data);

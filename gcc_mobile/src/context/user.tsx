@@ -7,6 +7,7 @@ export type User = {
   contestantId: string;
   githubAvatar: string;
   hasUserSignedUp: boolean;
+  token: string;
 };
 
 type QuestionScore = {
