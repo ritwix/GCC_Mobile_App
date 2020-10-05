@@ -22,7 +22,7 @@ const GetIndLeader = (
   region: string
 ) => {
   var urlWithLimit =
-    'https://gcc-global-dev.herokuapp.com/leaderboard/' +
+    'https://gcc-global.herokuapp.com/leaderboard/' +
     region +
     '?from=' +
     String(lowerLim) +
@@ -43,7 +43,7 @@ const GetUnivLeader = (
   region: string
 ) => {
   var urlWithLimit =
-    'https://gcc-global-dev.herokuapp.com/teamleaderboard/' +
+    'https://gcc-global.herokuapp.com/teamleaderboard/' +
     region +
     '?from=' +
     String(lowerLim) +
@@ -64,7 +64,7 @@ const GetEngagementLeader = (
   region: string
 ) => {
   var urlWithLimit =
-    'https://gcc-global-dev.herokuapp.com/engagementLeaderboard/' +
+    'https://gcc-global.herokuapp.com/engagementLeaderboard/' +
     region +
     '?from=' +
     String(lowerLim) +

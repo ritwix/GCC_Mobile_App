@@ -28,7 +28,7 @@ const FaqContainer: React.FC<FaqContainerProps> = ({ faq }) => {
 };
 
 const FaqsContainer: React.FC = () => {
-  const API_URL = 'https://gcc-global-dev.herokuapp.com/faqs';
+  const API_URL = 'https://gcc-global.herokuapp.com/faqs';
   const [faqs, setFaqs] = useState<Faq[]>();
 
   useEffect(() => {
