@@ -16,7 +16,7 @@ import HowToPlay from './pages/HowToPlay';
 import Profile from './pages/Profile';
 import IndividualLeaderboard from './pages/IndividualLeaderboard';
 
-import { UserContextInit } from './context/user';
+import { UserContextInit, useUserContext } from './context/user';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -59,6 +59,7 @@ import { Plugins, Capacitor } from '@capacitor/core';
 
 
 
+
 const DEFAULT_SVG_STYLES = {
   height: '50',
   width: '50',
@@ -78,6 +79,7 @@ enum Tab {
 
 
 const App: React.FC = () => {
+
   // note: initializing to Tab.Profile for now because I haven't found a way to detect current ion tab
   const [selectedTab, setSelectedTab] = useState<Tab>(Tab.Profile);
   useEffect(() => {
@@ -133,9 +135,8 @@ const App: React.FC = () => {
                 exact={true}
               />
             </IonRouterOutlet>
-
             <IonTabBar slot="bottom" >
-              <IonTabButton tab={Tab.Profile} href="/profile" className='segment-card'>
+              <IonTabButton tab={Tab.Profile} href="/profile" className='segment-card' >
                 <SvgIconsLargeUser
                   {...DEFAULT_SVG_STYLES}
                   fill={selectedTab === Tab.Profile ? 'black' : COLOR.gray5}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
-import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonImg, IonInfiniteScroll, IonLabel, IonModal, IonPage } from '@ionic/react';
+import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonImg, IonPopover ,IonInfiniteScroll, IonLabel, IonModal, IonPage } from '@ionic/react';
 
 import './Questions.css';
 import axios from 'axios';
@@ -106,7 +106,7 @@ const fetchQuestions = () => {
 const fetchContestantProfile = (user:any) => {
   return axios({
     //url: "https://cscc-gl.herokuapp.com/allquestions", //last year questions
-    url: 'https://gcc-global.herokuapp.com/contestant/git/'+  user?.githubUsername,  //  this year questions
+    url: 'https://gcc-global.herokuapp.com/contestant/git/' + user?.githubUsername,  //  this year questions
     method: 'get',
   }).then((response) => {
     console.log(response.data.level);
@@ -126,12 +126,15 @@ const Question: React.FC<{ question: Question, levelRank: number}> = (props) => 
   const writer = new HtmlRenderer();
   const parsed = reader.parse(question.questionText);
 
+  const [showPopover, setShowPopover] = useState(false);
+
   return (
     <div
       className="question-item"
       onClick={() => {
         setVisible((visible) => !visible);
         questionCardVisib = !questionCardVisib;
+        setShowPopover((question.questionNumber <= 3*levelRank ? false:true) || !codingChallengeStarted()? !showPopover: showPopover);
       }}
     >
         <IonCard style={{borderRadius: 0, boxShadow: 'none', border: '#a8a8a7 1px solid'}}> 
@@ -141,6 +144,13 @@ const Question: React.FC<{ question: Question, levelRank: number}> = (props) => 
           <div style={{float:'right'}} hidden={(question.questionNumber <= 3*levelRank ? false:true) ||  !codingChallengeStarted()}>  Active <img style={{marginBottom: -2}} src={UnlockIcon}/> </div>
           <div style={{float:'right'}} hidden={!(question.questionNumber <= 3*levelRank ? false:true) && codingChallengeStarted()}> Locked <img style={{marginBottom: -2}} src={LockIcon}/>  </div>
         </IonCardTitle>
+        <IonPopover isOpen={showPopover} >
+          <div style={{padding:'5%'}}>
+            <p>Questions 1 to 3 will be unlocked when the coding challenge starts.</p>
+            <p>Answer first three questions upto 75% correct test cases for each qeustion to unlock question 4 to 6.</p>
+            <p>Answer first six questions upto 75% correct test cases for each qeustion to unlock question 7 to 9.</p>
+          </div>
+        </IonPopover>
         <div className="question-name"> {questionDetails[question.questionNumber -1].subtitle}</div>
         </IonCardHeader>
         <IonCardContent>
