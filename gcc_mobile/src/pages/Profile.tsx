@@ -16,7 +16,14 @@ import {
   RegistrationFormFields,
 } from '../components/RegistrationForm';
 import './Profile.css';
-import { Region, GCC_BASE_URL, regionNameMap, GITHUB_OAUTH_CLIENT_ID, API_AUTHENTICATION } from '../constants';
+import {
+  Region,
+  GCC_BASE_URL,
+  regionNameMap,
+  GITHUB_OAUTH_CLIENT_ID,
+  API_AUTHENTICATION,
+} from '../constants';
+import { submitQuery } from '../components/SupportQueryContainer';
 
 const GITHUB_OAUTH_URL = `https://github.com/login/oauth/authorize?client_id=${GITHUB_OAUTH_CLIENT_ID.PROD}`;
 
@@ -78,7 +85,9 @@ const getContestant = (githubUsername: string) => {
 };
 
 const registerContestant = (body: any, token: string) => {
-  return axios.post<any>(`${GCC_BASE_URL}/challenge/signup/${token}`, body, { auth: API_AUTHENTICATION });
+  return axios.post<any>(`${GCC_BASE_URL}/challenge/signup/${token}`, body, {
+    auth: API_AUTHENTICATION,
+  });
 };
 
 const Profile: React.FC = () => {
@@ -114,7 +123,15 @@ const Profile: React.FC = () => {
   };
 
   const handleRegistrationFormSubmit = (fields: RegistrationFormFields) => {
-    // let promocode = getState().user.promoCode ? getState().user.promoCode : "";
+    if (fields.university === 'Other') {
+      let query = {
+        submittedBy: `${fields.firstName} ${fields.lastName}`,
+        email: fields.email,
+        description: `My GitHub Username is: ${fields.githubUsername}. Please add ${fields.otherUniversity} as a new university for the ${fields.region} region.`,
+      };
+      submitQuery(query);
+    }
+
     const {
       title,
       firstName,
@@ -224,6 +241,8 @@ const ProfileDetails: React.FC<{ user: User }> = (props) => {
         <img src={userStats.gitAvatar} />
       </IonAvatar>
       <h3>{`Welcome, ${userStats.name}!`}</h3>
+      <div className="ranking">{`Total score: ${userStats.total}`}</div>
+      <br />
       <div className="ranking">{`#${userStats.positionWithinTeam} in ${userStats.team}`}</div>
       <div className="ranking">{`#${userStats.globalPosition} in World`}</div>
       <IonGrid>

@@ -27,6 +27,7 @@ input.minimal {
   align-items: center;
   justify-content: space-between;
   padding: 0 1rem;
+  margin-top: 10px;
 }
 
 .button-row {

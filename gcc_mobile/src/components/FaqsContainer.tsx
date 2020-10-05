@@ -33,8 +33,8 @@ const FaqsContainer: React.FC = () => {
 
   useEffect(() => {
     axios.get<Faq[]>(API_URL).then(({ data }) => {
-      setFaqs(data);
-      console.log(data);
+      const faqs = data?.filter(faq => faq?.question && faq?.answer);
+      setFaqs(faqs);
     });
   }, []);
 
