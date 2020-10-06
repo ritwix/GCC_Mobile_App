@@ -2,7 +2,11 @@ import axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { API_AUTHENTICATION, GCC_BASE_URL } from '../constants';
+import {
+  API_AUTHENTICATION,
+  GCC_BASE_URL,
+  LINK_TO_PRIVACY_STATEMENT,
+} from '../constants';
 import { FormField } from './RegistrationForm';
 import './SupportQueryContainer.css';
 
@@ -34,15 +38,14 @@ const SupportQueryContainer: React.FC = () => {
   const [fullName, setFullName] = useState<string>('');
   const [email, setEmail] = useState('');
   const [query, setQuery] = useState('');
+  const [privacyChecked, setPrivacyChecked] = useState(false);
 
-  let isValid = fullName != '' && email != '' && query != '';
+  let isValid = fullName != '' && email != '' && query != '' && privacyChecked;
 
-  const { control, handleSubmit, formState, reset, errors, register } = useForm(
-    {
-      defaultValues: { ...initialValues },
-      mode: 'onChange',
-    }
-  );
+  const { handleSubmit } = useForm({
+    defaultValues: { ...initialValues },
+    mode: 'onChange',
+  });
 
   const resetData = () => {
     setFullName('');
@@ -73,7 +76,7 @@ const SupportQueryContainer: React.FC = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h3>Submit a query</h3>
-      <FormField label="Full Name">
+      <FormField label="* Full Name">
         <input
           placeholder="Full Name"
           value={fullName}
@@ -81,7 +84,7 @@ const SupportQueryContainer: React.FC = () => {
         />
       </FormField>
 
-      <FormField label="Email">
+      <FormField label="* Email">
         <input
           placeholder="Email"
           type="email"
@@ -90,13 +93,28 @@ const SupportQueryContainer: React.FC = () => {
         />
       </FormField>
 
-      <FormField label="Query">
+      <FormField label="* Query">
         <textarea
           placeholder="Query"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
       </FormField>
+
+      <div className="checkbox-group">
+        <input
+          type="checkbox"
+          name="privacyChecked"
+          checked={privacyChecked}
+          onChange={() => setPrivacyChecked((prev) => !prev)}
+        />
+        <label>
+          * I confirm that I have read and understood the{' '}
+          <a href={LINK_TO_PRIVACY_STATEMENT}>Privacy Statement</a>, and I agree
+          to the processing of my personal data for the purpose of participation
+          in the Coding Challenge competition.
+        </label>
+      </div>
 
       <button
         className="cs-button"
