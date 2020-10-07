@@ -42,3 +42,6 @@ export const API_AUTHENTICATION = {
   username: 'gcc2020webapp',
   password: 'gcc-2020-webapp-789',
 };
+
+export const LINK_TO_PRIVACY_STATEMENT =
+  'https://codingchallenge.herokuapp.com/static/media/privacystatement.09d6279c.pdf';

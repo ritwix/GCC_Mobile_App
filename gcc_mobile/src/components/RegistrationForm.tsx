@@ -1,6 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { GCC_BASE_URL, Region, regionNameMap } from '../constants';
+import {
+  GCC_BASE_URL,
+  LINK_TO_PRIVACY_STATEMENT,
+  Region,
+  regionNameMap,
+} from '../constants';
 import './RegistrationForm.css';
 
 const titleOptions = [
@@ -28,9 +33,6 @@ const regionOptions = [
   { text: 'USA & Canada', value: Region.AMC },
   { text: 'Rest of the World', value: Region.ROW },
 ];
-
-const LINK_TO_PRIVACY_STATEMENT =
-  'https://codingchallenge.herokuapp.com/static/media/privacystatement.09d6279c.pdf';
 
 export type RegistrationFormFields = {
   title: string;
