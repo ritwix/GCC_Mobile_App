@@ -53,11 +53,7 @@ import { COLOR } from './constants';
 
 import { useIonRouter } from '@ionic/react';
 import { Plugins, Capacitor } from '@capacitor/core';
-
-
-
-
-
+import axios from 'axios';
 
 
 const DEFAULT_SVG_STYLES = {
@@ -75,6 +71,9 @@ enum Tab {
   Faqs = 'faqs',
 }
 
+export var startDate=''; 
+export var endDate='';
+
 
 
 
@@ -82,6 +81,7 @@ const App: React.FC = () => {
 
   // note: initializing to Tab.Profile for now because I haven't found a way to detect current ion tab
   const [selectedTab, setSelectedTab] = useState<Tab>(Tab.Profile);
+  
   useEffect(() => {
     if (Capacitor.isNative) {
       Plugins.App.addListener("backButton", (e) => {
@@ -100,7 +100,29 @@ const App: React.FC = () => {
         } 
       });
     }
-  }, []);  
+  }, []);
+  
+  useEffect(() => {
+     axios({
+      url: 'https://gccdevtest.herokuapp.com/challenge/getStartDate',
+      method: 'get',
+    }).then((response) => {
+      console.log(response);
+      startDate=response.data;
+      console.log("startDate: " + startDate)
+    });
+
+    axios({
+      url: 'https://gccdevtest.herokuapp.com/challenge/getEndDate',
+      method: 'get',
+    }).then((response) => {
+      console.log(response);
+      endDate=response.data;
+      console.log("EndDate: " + endDate)
+    });
+  }, );
+
+  
 
   return (
     

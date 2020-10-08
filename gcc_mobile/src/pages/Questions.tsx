@@ -109,8 +109,8 @@ const fetchContestantProfile = (user:any) => {
     url: 'https://gcc-global.herokuapp.com/contestant/git/' + user?.githubUsername,  //  this year questions
     method: 'get',
   }).then((response) => {
-    console.log(response.data.level);
-    return response.data.level;
+    console.log(response.data.level + "..level");
+    return response.data.level ?response.data.level : "easy" ;
   });
 };
 
@@ -128,7 +128,8 @@ const Question: React.FC<{ question: Question, levelRank: number}> = (props) => 
 
   const [showPopover, setShowPopover] = useState(false);
 
-  return (
+  return question.questionNumber > 9 ? null : 
+   (
     <div
       className="question-item"
       onClick={() => {
@@ -140,15 +141,15 @@ const Question: React.FC<{ question: Question, levelRank: number}> = (props) => 
         <IonCard style={{borderRadius: 0, boxShadow: 'none', border: '#a8a8a7 1px solid'}}> 
         <img src={questionDetails[question.questionNumber -1].img} />
         <IonCardHeader>
-        <IonCardTitle style={{fontSize: 20}}> Question {question.questionNumber} {question.questionNumber <= 3 ? "(Easy)": question.questionNumber <=6 ? "(Medium)":"(Hard)"}
+        <IonCardTitle style={{fontSize: 20}} > Question {question.questionNumber} {question.questionNumber <= 3 ? "(Easy)": question.questionNumber <=6 ? "(Medium)":"(Hard)"}
           <div style={{float:'right'}} hidden={(question.questionNumber <= 3*levelRank ? false:true) ||  !codingChallengeStarted()}>  Active <img style={{marginBottom: -2}} src={UnlockIcon}/> </div>
           <div style={{float:'right'}} hidden={!(question.questionNumber <= 3*levelRank ? false:true) && codingChallengeStarted()}> Locked <img style={{marginBottom: -2}} src={LockIcon}/>  </div>
         </IonCardTitle>
         <IonPopover isOpen={showPopover} >
           <div style={{padding:'5%'}}>
             <p>Questions 1 to 3 will be unlocked when the coding challenge starts.</p>
-            <p>Answer first three questions upto 75% correct test cases for each qeustion to unlock question 4 to 6.</p>
-            <p>Answer first six questions upto 75% correct test cases for each qeustion to unlock question 7 to 9.</p>
+            <p>Answer first three questions upto 75% correct test cases for each question to unlock question 4 to 6.</p>
+            <p>Answer first six questions upto 75% correct test cases for each question to unlock question 7 to 9.</p>
           </div>
         </IonPopover>
         <div className="question-name"> {questionDetails[question.questionNumber -1].subtitle}</div>
