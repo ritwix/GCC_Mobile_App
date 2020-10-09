@@ -213,9 +213,32 @@ const Profile: React.FC = () => {
   );
 };
 
+type DisplayAlert = {
+  id: string;
+  timestamp: string;
+  active: boolean
+  type: "warning" | "error" | "info" | "maintenance";
+  header: string;
+  content: string;
+}
+
+const getAlertColor = (alertType: string) => {
+  switch(alertType) {
+    case 'warning':
+    case 'maintenance':
+      return '#c9ba9b'; // yellow
+    case 'error':
+      return '#e0b4b4'; // red
+    case 'info':
+    default:
+      return '#a9d5de'; // blue
+  }
+}
+
 const ProfileDetails: React.FC<{ user: User }> = (props) => {
   const { user } = props;
   const [userStats, setUserStats] = useState<UserStats | null>();
+  const [displayAlert, setDisplayAlert] = useState<DisplayAlert>();
 
   const loadUserStats = () => {
     setUserStats(null);
@@ -231,12 +254,33 @@ const ProfileDetails: React.FC<{ user: User }> = (props) => {
       });
   };
 
+  const loadAlert = () => {
+    // TODO: replace with GCC_BASE_URL once the endpoint is available in prod
+    axios.get<Array<DisplayAlert>>('https://gcc-global-dev.herokuapp.com/challenge/getAlert/mobile', {
+      auth: API_AUTHENTICATION,
+    })
+    .then(response => {
+      console.log('alert:', response);
+      const alert = response.data.find(alert => alert.active);
+      setDisplayAlert(alert);
+    })
+  }
+
   useEffect(() => {
     loadUserStats();
+    loadAlert();
   }, []);
 
   const profileDetails = userStats ? (
     <>
+      {
+        displayAlert && (
+          <div className="alert" style={{backgroundColor: getAlertColor(displayAlert.type)}}>
+            <div className="header">{displayAlert.header}</div>
+            <div className="content">{displayAlert.content} (Last updated: {displayAlert.timestamp})</div>
+          </div>
+        )
+      }
       <IonAvatar>
         <img src={userStats.gitAvatar} />
       </IonAvatar>
