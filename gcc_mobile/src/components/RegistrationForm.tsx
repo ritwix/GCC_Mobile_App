@@ -47,6 +47,7 @@ export type RegistrationFormFields = {
   privacyChecked: boolean;
   marketingChecked: boolean;
   githubUsername: string;
+  referralCode: string;
 };
 
 type Props = {
@@ -82,6 +83,7 @@ export const RegistrationForm: React.FC<Props> = (props) => {
   const [graduationYear, setGraduationYear] = useState<number | null>(null);
   const [privacyChecked, setPrivacyChecked] = useState(false);
   const [marketingChecked, setMarketingChecked] = useState(false);
+  const [referralCode, setReferralCode] = useState('');
 
   let canSubmit =
     githubUsername != '' &&
@@ -112,6 +114,7 @@ export const RegistrationForm: React.FC<Props> = (props) => {
       graduationYear: graduationYear || -1,
       privacyChecked,
       marketingChecked,
+      referralCode
     });
   };
 
@@ -225,6 +228,14 @@ export const RegistrationForm: React.FC<Props> = (props) => {
             placeholder="Graduation year"
             value={graduationYear || ''}
             onChange={(e) => setGraduationYear(parseInt(e.target.value) || 0)}
+          />
+        </FormField>
+
+        <FormField label=" Referral Code">
+          <input
+            placeholder="Referral Code"
+            value={graduationYear || ''}
+            onChange={(e) => setReferralCode(e.target.value)}
           />
         </FormField>
 
