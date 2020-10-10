@@ -1,10 +1,11 @@
-import './NewsContainer.css';
-import { Headlines, Region, Headline } from '../model/News';
-import { IonContent, IonSelect, IonSelectOption, IonLabel } from '@ionic/react';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useHistory } from 'react-router-dom';
-import SmallTrendIcon from '../assets/icons/icons_small_trend/icons_small_trend.png';
+import "./NewsContainer.css";
+import { Headlines, Region, RegionOptions, Headline } from "../model/News";
+import { IonContent, IonSelect, IonSelectOption, IonLabel } from "@ionic/react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
+import SmallTrendIcon from "../assets/icons/icons_small_trend/icons_small_trend.png";
+import { GCC_BASE_URL } from "../constants";
 
 interface HeadlineProps {
   headline: Headline;
@@ -30,7 +31,7 @@ const HeadlineContainer: React.FC<HeadlineProps> = ({ headline }) => {
 };
 
 const NewsContainer: React.FC = () => {
-  const regions = Object.keys(Region);
+  // const regions = RegionOptions;
   const [region, setRegion] = useState<string>(Region.UK);
   const [headlines, setHeadlines] = useState<Headline[]>();
 
@@ -39,16 +40,17 @@ const NewsContainer: React.FC = () => {
   }, []);
 
   const onRegionChanged = (value: string) => {
-    console.log('Region changed: ' + value);
+    console.log("Region changed: " + value);
+    const region = value as Region;
     setRegion(value);
     setHeadlines([]);
-    // TODO: change to pagination @im-pratham
+
     axios
       .get<Headlines>(
-        `https://gcc-global.herokuapp.com/news/headlines/${value}?from=0&limit=100`
+        `${GCC_BASE_URL}/news/headlines/${value}?from=0&limit=100`
       )
       .then(({ data }) => {
-        console.log('Got headlines: ', data);
+        console.log("Got headlines: ", data);
         setHeadlines(data.headlines);
       });
   };
@@ -57,16 +59,19 @@ const NewsContainer: React.FC = () => {
     <IonContent>
       <div className="region-select-group">
         <IonLabel>Select Region: </IonLabel>
-        <IonSelect
+        <select
+        className="filter-select"
           value={region}
-          interface="popover"
+          // interface="alert"
           placeholder="Select Region"
-          onIonChange={(e) => onRegionChanged(e.detail.value)}
+          onChange={(e) => onRegionChanged(e.target.value)}
         >
-          {regions.map((r) => (
-            <IonSelectOption key={r} value={r}>{r}</IonSelectOption>
+          {RegionOptions.map(({ text, value }) => (
+            <option key={text} value={value}>
+              {text}
+            </option>
           ))}
-        </IonSelect>
+        </select>
       </div>
 
       {headlines?.length === 0 && (
@@ -75,11 +80,8 @@ const NewsContainer: React.FC = () => {
         </IonContent>
       )}
 
-      {(headlines || []).length > 0 && (
-        headlines?.map((h) => (
-          <HeadlineContainer key={h.id} headline={h} />
-        ))
-      )}
+      {(headlines || []).length > 0 &&
+        headlines?.map((h) => <HeadlineContainer key={h.id} headline={h} />)}
     </IonContent>
   );
 };

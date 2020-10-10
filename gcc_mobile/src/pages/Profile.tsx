@@ -84,8 +84,13 @@ const getContestant = (githubUsername: string) => {
     });
 };
 
-const registerContestant = (body: any, token: string) => {
-  return axios.post<any>(`${GCC_BASE_URL}/challenge/signup/${token}`, body, {
+const getRegisterContestantUrl = (token: string, referralCode: string) => {
+  const url = referralCode ? `${GCC_BASE_URL}/challenge/signup/${token}/${referralCode}` : `${GCC_BASE_URL}/challenge/signup/${token}`;
+  return url;
+}
+
+const registerContestant = (body: any, token: string, referralCode: string) => {
+  return axios.post<any>(getRegisterContestantUrl(token, referralCode), body, {
     auth: API_AUTHENTICATION,
   });
 };
@@ -165,7 +170,7 @@ const Profile: React.FC = () => {
 
     setLoading(true);
     console.log('registering contestant');
-    registerContestant(body, token || '')
+    registerContestant(body, token || '', fields.referralCode)
       .then((response) => {
         if (response.status == 200) {
           console.log('registered contestant:', response.data);
