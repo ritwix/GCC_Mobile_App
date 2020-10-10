@@ -1,3 +1,7 @@
+select.filter-select {
+  width: 130px;
+}
+
 .news-item {
   padding: 0 1rem;
   display: flex;

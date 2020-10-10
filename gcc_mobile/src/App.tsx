@@ -197,7 +197,8 @@ const App: React.FC = () => {
             </IonTabBar>
           </IonTabs>
         </IonReactRouter>
-        <ExploreContainer name="dummy" />
+        {/* commenting to disable push notification */}
+        {/* <ExploreContainer name="dummy" />  */}
       </IonApp>
     </UserContextInit>
   );
