@@ -148,8 +148,8 @@ const Question: React.FC<{ question: Question, levelRank: number}> = (props) => 
         <IonPopover isOpen={showPopover} >
           <div style={{padding:'5%'}}>
             <p>Questions 1 to 3 will be unlocked when the coding challenge starts.</p>
-            <p>Answer first three questions upto 75% correct test cases for each question to unlock question 4 to 6.</p>
-            <p>Answer first six questions upto 75% correct test cases for each question to unlock question 7 to 9.</p>
+            <p>Answer first three questions with 75% correct test cases for each question to unlock question 4 to 6.</p>
+            <p>Answer first six questions with 75% correct test cases for each question to unlock question 7 to 9.</p>
           </div>
         </IonPopover>
         <div className="question-name"> {questionDetails[question.questionNumber -1].subtitle}</div>
