@@ -1,0 +1,8 @@
+#innerHTML {
+  padding: 1rem;
+}
+
+#innerHTML ol,
+#innerHTML ul {
+  padding-left: 1rem;
+}

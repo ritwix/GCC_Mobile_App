@@ -1,0 +1,20 @@
+{
+  "appId": "com.creditsuisse.gcc",
+  "appName": "Coding Challenge",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    },
+    "PushNotifications": {
+      "presentationOptions": ["sound", "alert"]
+    }
+  },
+  "cordova": {},
+  "server": {
+    "url": "http://192.168.0.101:8100"
+  },
+  "windowsAndroidStudioPath": "C:\\Users\\im-pratham\\AppData\\Local\\JetBrains\\Toolbox\\apps\\AndroidStudio\\ch-0\\193.6626763\\bin\\studio64.exe"
+}

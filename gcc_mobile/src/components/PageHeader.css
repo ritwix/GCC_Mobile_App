@@ -1,0 +1,14 @@
+.cs-toolbar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+
+.cs-toolbar h3 {
+  margin: 0;
+}
+
+.cs-toolbar img {
+  max-height: 34px;
+}

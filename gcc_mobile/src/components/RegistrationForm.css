@@ -1,0 +1,42 @@
+.form-container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.form-container p {
+  margin-bottom: 1rem;
+}
+
+.form-fields {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  justify-content: space-between;
+}
+
+.form-field div {
+  margin-bottom: 0.5rem;
+}
+
+.checkbox-group {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.checkbox-group input {
+  width: auto;
+  margin-top: 3px;
+}
+
+.checkbox-group label {
+  text-align: left;
+  margin-left: 20px;
+}

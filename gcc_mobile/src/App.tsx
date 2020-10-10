@@ -1,21 +1,22 @@
-import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import './App.css';
+import { Route, Redirect } from 'react-router-dom';
 import {
   IonApp,
-  IonIcon,
-  IonLabel,
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
-  IonTabs
+  IonTabs,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
-import IndLeaderboard from './pages/IndividualLeaderboard';
-import UniLeaderboard from './pages/TeamLeaderboard';
+
+import ReferAFriend from './pages/ReferAFriend';
+import Questions from './pages/Questions';
+import HowToPlay from './pages/HowToPlay';
+import Profile from './pages/Profile';
+import IndividualLeaderboard from './pages/IndividualLeaderboard';
+
+import { UserContextInit, useUserContext } from './context/user';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -36,38 +37,170 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route path="/tab1" component={Tab1} exact={true} />
-          <Route path="/tab2" component={Tab2} exact={true} />
-          <Route path="/tab3" component={Tab3} />
-          <Route path="/Leaderboard" component={UniLeaderboard} />
-          <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={square} />
-            <IonLabel>Tab 3</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="Leaderboard" href="/Leaderboard">
-            <IonIcon icon={square} />
-            <IonLabel>Leaderboard</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
-  </IonApp>
-);
+import FaqTab from './pages/FaqTab';
+import NewsTab from './pages/NewsTab';
+import NewsTabDetail from './pages/NewsTabDetail';
+import ExploreContainer from './components/ExploreContainer';
+
+import SvgIconsLargeInfo from './assets/icons/icons_large_info/SvgIconsLargeInfo';
+import SvgIconsLargeNewspaper from './assets/icons/icons_large_newspaper/SvgIconsLargeNewspaper';
+import SvgIconsLargeBulb from './assets/icons/icons_large_bulb/SvgIconsLargeBulb';
+import SvgIconsLargeQuestion from './assets/icons/icons_large_question/SvgIconsLargeQuestion';
+import SvgIconsLargeUser from './assets/icons/icons_large_user/SvgIconsLargeUser';
+import SvgIconsLargeTraphy from './assets/icons/icons_large_trophy/SvgIconsLargeTraphy';
+
+import { COLOR } from './constants';
+
+import { useIonRouter } from '@ionic/react';
+import { Plugins, Capacitor } from '@capacitor/core';
+import axios from 'axios';
+
+
+const DEFAULT_SVG_STYLES = {
+  height: '50',
+  width: '50',
+  viewBox: '5 -60 100 300',
+};
+
+enum Tab {
+  Profile = 'profile',
+  Leaderboard = 'leaderboard',
+  Questions = 'questions',
+  News = 'news',
+  HowToPlay = 'HowToPlay',
+  Faqs = 'faqs',
+}
+
+export var startDate=''; 
+export var endDate='';
+
+
+
+
+const App: React.FC = () => {
+
+  // note: initializing to Tab.Profile for now because I haven't found a way to detect current ion tab
+  const [selectedTab, setSelectedTab] = useState<Tab>(Tab.Profile);
+  
+  useEffect(() => {
+    if (Capacitor.isNative) {
+      Plugins.App.addListener("backButton", (e) => {
+        if (window.location.pathname === "/") {
+          // Show A Confirm Box For User to exit app or not
+          let ans = window.confirm("Are you sure you want to exit?");
+          if (ans) {
+            Plugins.App.exitApp();
+          } 
+        } else if (window.location.pathname === "/profile") {
+           // Show A Confirm Box For User to exit app or not
+          let ans = window.confirm("Are you sure you want to exit?");
+          if (ans) {
+            Plugins.App.exitApp();
+          } 
+        } 
+      });
+    }
+  }, []);
+  
+  useEffect(() => {
+     axios({
+      url: 'https://gccdevtest.herokuapp.com/challenge/getStartDate',
+      method: 'get',
+    }).then((response) => {
+      console.log(response);
+      startDate=response.data;
+      console.log("startDate: " + startDate)
+    });
+
+    axios({
+      url: 'https://gccdevtest.herokuapp.com/challenge/getEndDate',
+      method: 'get',
+    }).then((response) => {
+      console.log(response);
+      endDate=response.data;
+      console.log("EndDate: " + endDate)
+    });
+  }, );
+
+  
+
+  return (
+    
+    <UserContextInit>
+      <IonApp>
+        <IonReactRouter>
+          <IonTabs
+            onIonTabsDidChange={(e) => {
+              setSelectedTab(e?.detail?.tab as Tab);
+            }}
+          >
+            <IonRouterOutlet>
+              <Route path="/profile" component={Profile} exact={true} />
+              <Route
+                path="/leaderboard"
+                component={IndividualLeaderboard}
+                exact={true}
+              />
+              <Route path="/questions" component={Questions} exact={true} />
+              <Route path="/:tab(news)" component={NewsTab} exact={true} />
+              <Route path="/:tab(news)/:id" component={NewsTabDetail} />
+              <Route
+                path="/referAFriend"
+                component={ReferAFriend}
+                exact={true}
+              />
+              <Route path="/howToPlay" component={HowToPlay} exact={true} />
+              <Route path="/faqs" component={FaqTab} />
+              <Route
+                path="/"
+                render={() => <Redirect to="/profile" />}
+                exact={true}
+              />
+            </IonRouterOutlet>
+            <IonTabBar slot="bottom" >
+              <IonTabButton tab={Tab.Profile} href="/profile" className='segment-card' >
+                <SvgIconsLargeUser
+                  {...DEFAULT_SVG_STYLES}
+                  fill={selectedTab === Tab.Profile ? 'black' : COLOR.gray5}
+                />
+              </IonTabButton>
+              <IonTabButton tab={Tab.Leaderboard} href="/leaderboard" className='segment-card'>
+                <SvgIconsLargeTraphy
+                  {...DEFAULT_SVG_STYLES}
+                  fill={selectedTab === Tab.Leaderboard ? 'black' : COLOR.gray5}
+                />
+              </IonTabButton>
+              <IonTabButton tab={Tab.Questions} href="/questions" className='segment-card'>
+                <SvgIconsLargeQuestion
+                  {...DEFAULT_SVG_STYLES}
+                  fill={selectedTab === Tab.Questions ? 'black' : COLOR.gray5}
+                />
+              </IonTabButton>
+              <IonTabButton tab={Tab.News} href="/news" className='segment-card'>
+                <SvgIconsLargeNewspaper
+                  {...DEFAULT_SVG_STYLES}
+                  fill={selectedTab === Tab.News ? 'black' : COLOR.gray5}
+                />
+              </IonTabButton>
+              <IonTabButton tab={Tab.HowToPlay} href="/howToPlay" className='segment-card'>
+                <SvgIconsLargeBulb
+                  {...DEFAULT_SVG_STYLES}
+                  fill={selectedTab === Tab.HowToPlay ? 'black' : COLOR.gray5}
+                />
+              </IonTabButton>
+              <IonTabButton tab={Tab.Faqs} href="/faqs" className='segment-card'>
+                <SvgIconsLargeInfo
+                  {...DEFAULT_SVG_STYLES}
+                  fill={selectedTab === Tab.Faqs ? 'black' : COLOR.gray5}
+                />
+              </IonTabButton>
+            </IonTabBar>
+          </IonTabs>
+        </IonReactRouter>
+        <ExploreContainer name="dummy" />
+      </IonApp>
+    </UserContextInit>
+  );
+};
 
 export default App;

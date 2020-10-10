@@ -1,0 +1,17 @@
+.faq-item {
+  padding: 0 1rem;
+  border-bottom: 1px solid #a8a8a7;
+  font-family: 'CS-Body' !important;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'CS-Body' !important;
+  align-items: center;
+}
+
+.faq-item-hidden {
+  padding-bottom: 1rem;
+  font-family: 'CS-Body' !important;
+}

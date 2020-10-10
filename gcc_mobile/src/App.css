@@ -1,0 +1,84 @@
+@font-face {
+  font-family: 'CS-Bold';
+  src: url('assets/fonts/CSTypeEP-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'CS-Body';
+  src: url('assets/fonts/CSTypeEP-Roman.ttf');
+}
+
+@font-face {
+  font-family: 'CS-Header';
+  src: url('assets/fonts/CreditSuisseHeadline-Regular.ttf');
+}
+
+/* default styles */
+a {
+  color: black !important;
+  font-weight: bold;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: black;
+  font-family: 'CS-Header', Arial, Helvetica, sans-serif !important;
+}
+
+p,
+div {
+  color: black;
+  font-family: 'CS-Body', Arial, Helvetica, sans-serif !important;
+  font-size: 16px !important;
+}
+
+h1 {
+  font-size: 38px !important;
+}
+
+h2 {
+  font-size: 30px !important;
+}
+
+h3 {
+  font-size: 24px !important;
+}
+
+h4 {
+  font-size: 16px !important;
+}
+
+/* CS components */
+input,
+textarea {
+  border-radius: 0;
+  border-width: 1px;
+  padding: 0.5rem 0.7rem;
+  width: 100%;
+}
+
+select {
+  border-radius: 0;
+}
+
+select.filter-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+
+  background: no-repeat #ffffff;
+  background-image: url('./assets/icons/icons_small_chevron_down/icons_small_chevron_down.png');
+  background-position: right;
+
+  border: none;
+  border-bottom: 1px solid black;
+  padding: 0.5rem 0.7rem;
+}
+
+.segment-card{
+  display: flex;
+  width: 16%
+}

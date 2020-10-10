@@ -1,0 +1,100 @@
+.how-to-play-container {
+  padding: 1rem;
+}
+
+.csBold {
+  display: block;
+  font-family: CS-Body;
+  font-weight: 700;
+  color: #000;
+}
+
+.title {
+  font-size: 30px;
+}
+
+.BulletPoints {
+  display: block;
+  font-weight: 700;
+  font-size: larger;
+}
+
+.Points {
+  padding-left: 20px;
+  font-family: 'CS-Body' !important;
+}
+
+.GreyBar {
+  margin: 0 -1rem;
+  padding: 1rem;
+  background-color: #f1f2f2;
+}
+
+.GreyBar .icon-group {
+  display: flex;
+  align-items: center;
+}
+
+.GreyBar .icon-group img{
+  margin-right: 20px;
+}
+
+.GreyBar > div:not(:last-child) {
+  margin-bottom: 2em;
+}
+
+.GreyBar .header {
+  font-weight: bold;
+  margin-top: 1em;
+}
+
+.GreyBarColumn {
+  display: block;
+  font-weight: 400;
+}
+
+
+.Prizes{
+  font-size: 16px;
+  font-family: 'CS-Body' !important;
+}
+
+.question-number {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.extra-info{
+  width: 100%;
+  font-size: 16px;
+  font-family: 'CS-Body' !important;
+  border: 0 solid transparent;
+  
+  margin: 0 .125em;
+  padding: 1em 1.5em;
+  position: relative;
+  min-height: 1em;
+  margin: 1em 0;
+  line-height: 1.4285em;
+  border-width: thin;
+  border-style: solid;
+}
+
+.buttn{
+  text-transform: none;
+  color: #000;
+  vertical-align: baseline;
+  margin: 0 .125em;
+  background-color: #ffffff;
+  padding: .5833em .233em;
+  border-style: none;
+  
+  border: 0 solid transparent;
+  outline: none;
+  font-size: 16px !important;
+  font-family: 'CS-Body' !important;
+  font-weight: 700;
+  
+}
