@@ -48,7 +48,7 @@ import SvgIconsLargeBulb from './assets/icons/icons_large_bulb/SvgIconsLargeBulb
 import SvgIconsLargeQuestion from './assets/icons/icons_large_question/SvgIconsLargeQuestion';
 import SvgIconsLargeUser from './assets/icons/icons_large_user/SvgIconsLargeUser';
 import SvgIconsLargeTraphy from './assets/icons/icons_large_trophy/SvgIconsLargeTraphy';
-
+import { API_AUTHENTICATION, GCC_BASE_URL } from './constants';
 import { COLOR } from './constants';
 
 import { useIonRouter } from '@ionic/react';
@@ -104,7 +104,7 @@ const App: React.FC = () => {
   
   useEffect(() => {
      axios({
-      url: 'https://gccdevtest.herokuapp.com/challenge/getStartDate',
+       url: `${GCC_BASE_URL}/challenge/getStartDate`,
       method: 'get',
     }).then((response) => {
       console.log(response);
@@ -113,7 +113,7 @@ const App: React.FC = () => {
     });
 
     axios({
-      url: 'https://gccdevtest.herokuapp.com/challenge/getEndDate',
+      url: `${GCC_BASE_URL}/challenge/getEndDate`,
       method: 'get',
     }).then((response) => {
       console.log(response);
