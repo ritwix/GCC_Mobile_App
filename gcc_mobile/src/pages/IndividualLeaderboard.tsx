@@ -15,6 +15,7 @@ import {
   EngagementLeaderContainer,
 } from '../components/LeaderboardContainer';
 import PageHeader from '../components/PageHeader';
+import { GCC_BASE_URL } from '../constants';
 
 const GetIndLeader = (
   lowerLim: number,
@@ -22,7 +23,7 @@ const GetIndLeader = (
   region: string
 ) => {
   var urlWithLimit =
-    'https://gcc-global.herokuapp.com/leaderboard/' +
+  `${GCC_BASE_URL}/leaderboard/` +
     region +
     '?from=' +
     String(lowerLim) +
@@ -43,7 +44,7 @@ const GetUnivLeader = (
   region: string
 ) => {
   var urlWithLimit =
-    'https://gcc-global.herokuapp.com/teamleaderboard/' +
+    `${GCC_BASE_URL}/teamleaderboard/` +
     region +
     '?from=' +
     String(lowerLim) +
@@ -64,7 +65,7 @@ const GetEngagementLeader = (
   region: string
 ) => {
   var urlWithLimit =
-    'https://gcc-global.herokuapp.com/engagementLeaderboard/' +
+  `${GCC_BASE_URL}/engagementLeaderboard/` +
     region +
     '?from=' +
     String(lowerLim) +

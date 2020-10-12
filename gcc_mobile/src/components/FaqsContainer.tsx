@@ -5,6 +5,7 @@ import { IonContent, IonIcon, IonLabel } from '@ionic/react';
 import React from 'react';
 import { chevronDown, chevronForward } from 'ionicons/icons';
 import './FaqsContainer.css';
+import { GCC_BASE_URL } from '../constants';
 
 interface FaqContainerProps {
   faq: Faq;
@@ -28,7 +29,7 @@ const FaqContainer: React.FC<FaqContainerProps> = ({ faq }) => {
 };
 
 const FaqsContainer: React.FC = () => {
-  const API_URL = 'https://gcc-global.herokuapp.com/faqs';
+  const API_URL = `${GCC_BASE_URL}/faqs`;
   const [faqs, setFaqs] = useState<Faq[]>();
 
   useEffect(() => {

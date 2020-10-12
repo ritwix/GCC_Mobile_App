@@ -106,7 +106,7 @@ const fetchQuestions = () => {
 const fetchContestantProfile = (user:any) => {
   return axios({
     //url: "https://cscc-gl.herokuapp.com/allquestions", //last year questions
-    url: 'https://gcc-global.herokuapp.com/contestant/git/' + user?.githubUsername,  //  this year questions
+    url: `${GCC_BASE_URL}/contestant/git/` + user?.githubUsername,  //  this year questions
     method: 'get',
   }).then((response) => {
     console.log(response.data.level + "..level");

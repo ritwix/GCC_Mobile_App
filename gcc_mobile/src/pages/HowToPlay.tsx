@@ -13,7 +13,7 @@ import { API_AUTHENTICATION, GCC_BASE_URL } from '../constants';
 
 const fetchHowToPlay = () => {
   return axios
-    .get<any>(`https://gccdevtest.herokuapp.com/challenge/getHowToPlay`, {
+    .get<any>(`${GCC_BASE_URL}/challenge/mobile/getHowToPlay`, {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json;charset=UTF-8',
