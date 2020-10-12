@@ -11,6 +11,10 @@
   align-items: center;
 }
 
+.faq-question h4 {
+  max-width: 90%;
+}
+
 .faq-item-hidden {
   padding-bottom: 1rem;
   font-family: 'CS-Body' !important;
