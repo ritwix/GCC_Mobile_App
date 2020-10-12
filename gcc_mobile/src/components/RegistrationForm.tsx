@@ -1,11 +1,13 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   GCC_BASE_URL,
   LINK_TO_PRIVACY_STATEMENT,
+  LINK_TO_TERMS_AND_CONDITIONS,
   Region,
   regionNameMap,
 } from '../constants';
+import { isValidEmail } from '../helpers';
 import './RegistrationForm.css';
 
 const titleOptions = [
@@ -58,12 +60,6 @@ type Props = {
 const searchUniversity = (region: string) => {
   console.log(`calling ${GCC_BASE_URL}/universitylist/${region}`);
   return axios.get<Array<string>>(`${GCC_BASE_URL}/universitylist/${region}`);
-};
-
-const isValidEmail = (email: string) => {
-  return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
-    email
-  );
 };
 
 export const RegistrationForm: React.FC<Props> = (props) => {
@@ -248,7 +244,7 @@ export const RegistrationForm: React.FC<Props> = (props) => {
           />
           <label>
             * I confirm that I have read and understood the{' '}
-            <a href={LINK_TO_PRIVACY_STATEMENT}>Privacy Statement</a>, and I
+            <a href={LINK_TO_PRIVACY_STATEMENT}>Privacy Statement</a> and the <a href={LINK_TO_TERMS_AND_CONDITIONS}>Terms and Conditions</a>, and I
             agree to the processing of my personal data for the purpose of
             participation in the Coding Challenge competition.
           </label>
