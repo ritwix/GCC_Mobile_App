@@ -260,8 +260,7 @@ const ProfileDetails: React.FC<{ user: User }> = (props) => {
   };
 
   const loadAlert = () => {
-    // TODO: replace with GCC_BASE_URL once the endpoint is available in prod
-    axios.get<Array<DisplayAlert>>('https://gcc-global-dev.herokuapp.com/challenge/getAlert/mobile', {
+    axios.get<Array<DisplayAlert>>(`${GCC_BASE_URL}/challenge/getAlert/mobile`, {
       auth: API_AUTHENTICATION,
     })
     .then(response => {

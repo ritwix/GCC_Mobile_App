@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import {
   GCC_BASE_URL,
   LINK_TO_PRIVACY_STATEMENT,
+  LINK_TO_TERMS_AND_CONDITIONS,
   Region,
   regionNameMap,
 } from '../constants';
@@ -243,7 +244,7 @@ export const RegistrationForm: React.FC<Props> = (props) => {
           />
           <label>
             * I confirm that I have read and understood the{' '}
-            <a href={LINK_TO_PRIVACY_STATEMENT}>Privacy Statement</a>, and I
+            <a href={LINK_TO_PRIVACY_STATEMENT}>Privacy Statement</a> and the <a href={LINK_TO_TERMS_AND_CONDITIONS}>Terms and Conditions</a>, and I
             agree to the processing of my personal data for the purpose of
             participation in the Coding Challenge competition.
           </label>
