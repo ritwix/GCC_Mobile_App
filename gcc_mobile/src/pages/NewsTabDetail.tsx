@@ -11,6 +11,7 @@ import {
 import React, { useState, useEffect } from "react";
 import { News } from "../model/News";
 import axios from "axios";
+import { GCC_BASE_URL } from "../constants";
 
 interface NewsDetailProps
   extends RouteComponentProps<{
@@ -28,7 +29,7 @@ const NewsTabDetail: React.FC<NewsDetailProps> = ({ match }) => {
     setNews(undefined);
     axios
       .get<News>(
-        `https://gcc-global.herokuapp.com/news/${match.params.id}`
+        `${GCC_BASE_URL}/${match.params.id}`
       )
       .then(({ data }) => {
         setNews(data);
