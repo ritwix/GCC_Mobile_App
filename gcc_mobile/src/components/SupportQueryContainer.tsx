@@ -7,6 +7,7 @@ import {
   GCC_BASE_URL,
   LINK_TO_PRIVACY_STATEMENT,
 } from '../constants';
+import { isValidEmail } from '../helpers';
 import { FormField } from './RegistrationForm';
 import './SupportQueryContainer.css';
 
@@ -40,7 +41,7 @@ const SupportQueryContainer: React.FC = () => {
   const [query, setQuery] = useState('');
   const [privacyChecked, setPrivacyChecked] = useState(false);
 
-  let isValid = fullName != '' && email != '' && query != '' && privacyChecked;
+  const isValid = fullName != '' && isValidEmail(email) && query != '' && privacyChecked;
 
   const { handleSubmit } = useForm({
     defaultValues: { ...initialValues },

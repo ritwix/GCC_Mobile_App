@@ -84,8 +84,13 @@ const getContestant = (githubUsername: string) => {
     });
 };
 
-const registerContestant = (body: any, token: string) => {
-  return axios.post<any>(`${GCC_BASE_URL}/challenge/signup/${token}`, body, {
+const getRegisterContestantUrl = (token: string, referralCode: string) => {
+  const url = referralCode ? `${GCC_BASE_URL}/challenge/signup/${token}/${referralCode}` : `${GCC_BASE_URL}/challenge/signup/${token}`;
+  return url;
+}
+
+const registerContestant = (body: any, token: string, referralCode: string) => {
+  return axios.post<any>(getRegisterContestantUrl(token, referralCode), body, {
     auth: API_AUTHENTICATION,
   });
 };
@@ -165,7 +170,7 @@ const Profile: React.FC = () => {
 
     setLoading(true);
     console.log('registering contestant');
-    registerContestant(body, token || '')
+    registerContestant(body, token || '', fields.referralCode)
       .then((response) => {
         if (response.status == 200) {
           console.log('registered contestant:', response.data);
@@ -255,8 +260,7 @@ const ProfileDetails: React.FC<{ user: User }> = (props) => {
   };
 
   const loadAlert = () => {
-    // TODO: replace with GCC_BASE_URL once the endpoint is available in prod
-    axios.get<Array<DisplayAlert>>('https://gcc-global-dev.herokuapp.com/challenge/getAlert/mobile', {
+    axios.get<Array<DisplayAlert>>(`${GCC_BASE_URL}/challenge/getAlert/mobile`, {
       auth: API_AUTHENTICATION,
     })
     .then(response => {
