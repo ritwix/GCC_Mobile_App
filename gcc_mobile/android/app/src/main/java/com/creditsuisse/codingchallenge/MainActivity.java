@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.creditsuisse.codingchallenge;
 
 import android.os.Bundle;
 
