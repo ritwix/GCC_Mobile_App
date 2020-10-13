@@ -230,7 +230,7 @@ export const RegistrationForm: React.FC<Props> = (props) => {
         <FormField label=" Referral Code">
           <input
             placeholder="Referral Code"
-            value={graduationYear || ''}
+            value={referralCode || ''}
             onChange={(e) => setReferralCode(e.target.value)}
           />
         </FormField>
