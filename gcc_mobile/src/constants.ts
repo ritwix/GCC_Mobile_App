@@ -47,4 +47,4 @@ export const LINK_TO_PRIVACY_STATEMENT =
   'http://www.credit-suisse.com/pwp/hr/en/codingchallenge/static/media/privacystatement.09d6279c.pdf';
 
 export const LINK_TO_TERMS_AND_CONDITIONS = 
-  'https://www.credit-suisse.com/pwp/hr/en/codingchallenge/static/media/termsandconditions.b3b4a24f.pdf';
+  'https://gcc-global-dev-webapp.herokuapp.com/static/media/termsandconditions.0df76d08.pdf';
