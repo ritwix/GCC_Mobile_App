@@ -1,1 +1,14 @@
-{}
+{
+  "appId": "com.creditsuisse.codingchallenge",
+  "appName": "GCC Mobile",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "plugins": {},
+  "cordova": {},
+  "windowsAndroidStudioPath": "C:\\Users\\im-pratham\\AppData\\Local\\JetBrains\\Toolbox\\apps\\AndroidStudio\\ch-0\\193.6626763\\bin\\studio64.exe",
+  "server": {
+    "url": "http://192.168.1.116:8100",
+    "cleartext": true
+  }
+}
