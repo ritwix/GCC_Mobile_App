@@ -20,12 +20,12 @@ const titleOptions = [
 ];
 
 const years = [
-  {text: '2025', value: '2025'},
-  {text: '2024', value: '2024'},
-  {text: '2023', value: '2023'},
-  {text: '2022', value: '2022'},
-  {text: '2021', value: '2021'},
   {text: '2020', value: '2020'},
+  {text: '2021', value: '2021'},
+  {text: '2022', value: '2022'},
+  {text: '2023', value: '2023'},
+  {text: '2024', value: '2024'},
+  {text: '2025', value: '2025'},
 ]
 
 const regionOptions = [
@@ -292,7 +292,7 @@ export const RegistrationForm: React.FC<Props> = (props) => {
             onChange={() => setGraduationYearChecked((prev) => !prev)}
           />
           <label>
-            * I confirm that I am current universitu student as defined by the{' '}
+            * I confirm that I am current university student as defined by the{' '}
             <a href={LINK_TO_TERMS_AND_CONDITIONS}>Terms and Conditions.</a>
           </label>
         </div>
