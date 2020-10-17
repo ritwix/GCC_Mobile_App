@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Coding Challenge</string>
-    <string name="title_activity_main">Coding Challenge</string>
-    <string name="package_name">com.creditsuisse.gcc</string>
-    <string name="custom_url_scheme">com.creditsuisse.gcc</string>
+    <string name="app_name">GCC Mobile</string>
+    <string name="title_activity_main">GCC Mobile</string>
+    <string name="package_name">com.creditsuisse.codingchallenge</string>
+    <string name="custom_url_scheme">com.creditsuisse.codingchallenge</string>
 </resources>
