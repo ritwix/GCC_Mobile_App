@@ -19,6 +19,15 @@ const titleOptions = [
   { text: 'Dr', value: 'dr' },
 ];
 
+const years = [
+  {text: '2025', value: '2025'},
+  {text: '2024', value: '2024'},
+  {text: '2023', value: '2023'},
+  {text: '2022', value: '2022'},
+  {text: '2021', value: '2021'},
+  {text: '2020', value: '2020'},
+]
+
 const regionOptions = [
   {
     text: 'Region',
@@ -48,6 +57,7 @@ export type RegistrationFormFields = {
   graduationYear: number;
   privacyChecked: boolean;
   marketingChecked: boolean;
+  graduationYearChecked: boolean;
   githubUsername: string;
   referralCode: string;
 };
@@ -79,6 +89,7 @@ export const RegistrationForm: React.FC<Props> = (props) => {
   const [graduationYear, setGraduationYear] = useState<number | null>(null);
   const [privacyChecked, setPrivacyChecked] = useState(false);
   const [marketingChecked, setMarketingChecked] = useState(false);
+  const [graduationYearChecked, setGraduationYearChecked] = useState(false);
   const [referralCode, setReferralCode] = useState('');
 
   let canSubmit =
@@ -87,6 +98,7 @@ export const RegistrationForm: React.FC<Props> = (props) => {
     lastName != '' &&
     isValidEmail(email) &&
     privacyChecked &&
+    graduationYearChecked &&
     region &&
     university != '' &&
     course != '' &&
@@ -110,6 +122,7 @@ export const RegistrationForm: React.FC<Props> = (props) => {
       graduationYear: graduationYear || -1,
       privacyChecked,
       marketingChecked,
+      graduationYearChecked,
       referralCode
     });
   };
@@ -220,11 +233,18 @@ export const RegistrationForm: React.FC<Props> = (props) => {
         </FormField>
 
         <FormField label="* Graduation year">
-          <input
-            placeholder="Graduation year"
+          <select
+            className="filter-select"
+            style={{ width: '100%' }}
             value={graduationYear || ''}
             onChange={(e) => setGraduationYear(parseInt(e.target.value) || 0)}
-          />
+          >
+            {years.map(({ text, value }) => (
+              <option value={value} key={value}>
+                {text}
+              </option>
+            ))}
+          </select>
         </FormField>
 
         <FormField label=" Referral Code">
@@ -263,6 +283,20 @@ export const RegistrationForm: React.FC<Props> = (props) => {
             <a href={LINK_TO_PRIVACY_STATEMENT}> Privacy Statement</a>.
           </label>
         </div>
+        
+        <div className="checkbox-group">
+          <input
+            type="checkbox"
+            name="graduationYearChecked"
+            checked={graduationYearChecked}
+            onChange={() => setGraduationYearChecked((prev) => !prev)}
+          />
+          <label>
+            * I confirm that I am current universitu student as defined by the{' '}
+            <a href={LINK_TO_TERMS_AND_CONDITIONS}>Terms and Conditions.</a>
+          </label>
+        </div>
+
       </div>
       <button
         className="cs-button"
