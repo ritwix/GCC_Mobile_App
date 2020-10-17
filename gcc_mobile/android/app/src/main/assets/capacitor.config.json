@@ -5,9 +5,12 @@
   "npmClient": "npm",
   "webDir": "build",
   "plugins": {
+
+
     "SplashScreen": {
       "launchShowDuration": 0
     }
+
   },
   "cordova": {},
   "windowsAndroidStudioPath": "C:\\Users\\im-pratham\\AppData\\Local\\JetBrains\\Toolbox\\apps\\AndroidStudio\\ch-0\\193.6626763\\bin\\studio64.exe"
