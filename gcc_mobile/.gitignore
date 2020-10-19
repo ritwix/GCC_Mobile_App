@@ -1,3 +1,6 @@
+# Environment file
+src/environment.ts
+
 # Logs
 logs
 *.log
