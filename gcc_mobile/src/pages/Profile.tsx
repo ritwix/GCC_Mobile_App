@@ -25,7 +25,7 @@ import {
 } from '../constants';
 import { submitQuery } from '../components/SupportQueryContainer';
 
-const GITHUB_OAUTH_URL = `https://github.com/login/oauth/authorize?client_id=${GITHUB_OAUTH_CLIENT_ID.PROD}`;
+const GITHUB_OAUTH_URL = `https://github.com/login/oauth/authorize?client_id=${GITHUB_OAUTH_CLIENT_ID}`;
 
 const authorizeWithBackend = (code: string) => {
   return axios
