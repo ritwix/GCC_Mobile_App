@@ -1,5 +1,5 @@
 # Environment file
-/environment.ts
+src/environment.ts
 
 # Logs
 logs
