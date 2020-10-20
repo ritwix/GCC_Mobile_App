@@ -48,7 +48,7 @@ import SvgIconsLargeBulb from './assets/icons/icons_large_bulb/SvgIconsLargeBulb
 import SvgIconsLargeQuestion from './assets/icons/icons_large_question/SvgIconsLargeQuestion';
 import SvgIconsLargeUser from './assets/icons/icons_large_user/SvgIconsLargeUser';
 import SvgIconsLargeTraphy from './assets/icons/icons_large_trophy/SvgIconsLargeTraphy';
-import { API_AUTHENTICATION, GCC_BASE_URL } from './constants';
+import { GCC_BASE_URL } from './constants';
 import { COLOR } from './constants';
 
 import { useIonRouter } from '@ionic/react';
