@@ -29,7 +29,7 @@ const NewsTabDetail: React.FC<NewsDetailProps> = ({ match }) => {
     setNews(undefined);
     axios
       .get<News>(
-        `${GCC_BASE_URL}/${match.params.id}`
+        `${GCC_BASE_URL}/news/${match.params.id}`
       )
       .then(({ data }) => {
         setNews(data);
