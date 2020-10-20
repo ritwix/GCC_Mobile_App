@@ -7,7 +7,7 @@ import questions from '../image/icons_large_question.png';
 import globe from '../image/brandnet/icons_large_global.png';
 import calendar from '../image/icons_large_calendar.png';
 import PageHeader from '../components/PageHeader';
-import { chevronDown, chevronForward, key } from 'ionicons/icons';
+import { chevronDown, chevronForward } from 'ionicons/icons';
 import { API_AUTHENTICATION, GCC_BASE_URL } from '../constants';
 
 
@@ -22,8 +22,11 @@ const fetchHowToPlay = () => {
       auth: API_AUTHENTICATION,
     })
     .then((response) => {
-       console.log(response.data[0]);
+      console.log(response.data[0]);
       return response.data[0];
+    })
+    .catch(() => {
+      alert('Data could not be fetched. Please check your internet connection.');
     });
 };
 

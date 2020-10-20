@@ -292,7 +292,7 @@ export const RegistrationForm: React.FC<Props> = (props) => {
             onChange={() => setGraduationYearChecked((prev) => !prev)}
           />
           <label>
-            * I confirm that I am current university student as defined by the{' '}
+            * I confirm that I am a current university student as defined by the{' '}
             <a href={LINK_TO_TERMS_AND_CONDITIONS}>Terms and Conditions.</a>
           </label>
         </div>
