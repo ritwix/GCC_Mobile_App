@@ -1,3 +1,12 @@
+import {
+  BASIC_AUTH_USERNAME,
+  BASIC_AUTH_PASSWORD,
+} from './environment';
+
+export {
+  GITHUB_OAUTH_CLIENT_ID,
+} from './environment';
+
 export enum Region {
   UK = 'uk',
   AMC = 'ac',
@@ -12,12 +21,6 @@ export enum Region {
 
 // export const GCC_BASE_URL = `https://gcc-global-dev.herokuapp.com`;
 export const GCC_BASE_URL = `https://gcc-global.herokuapp.com`;
-
-export const GITHUB_OAUTH_CLIENT_ID = {
-  LOCAL: '3a4fd05f700987052d1e', // GCC-2020-Local Client ID
-  TEST: '17add43b05758bd00913', // GCC-2020-Test Client ID
-  PROD: '51d651734bea5aaf4da7',
-};
 
 export const regionNameMap: { [x in Region]: string } = {
   [Region.SEA]: 'SEA',
@@ -39,8 +42,8 @@ export const COLOR = {
 };
 
 export const API_AUTHENTICATION = {
-  username: 'gcc2020webapp',
-  password: 'gcc-2020-webapp-789',
+  username: BASIC_AUTH_USERNAME,
+  password: BASIC_AUTH_PASSWORD,
 };
 
 export const LINK_TO_PRIVACY_STATEMENT =
