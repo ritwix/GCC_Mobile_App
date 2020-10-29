@@ -75,7 +75,7 @@ const searchUniversity = (region: string) => {
 export const RegistrationForm: React.FC<Props> = (props) => {
   const { githubUsername, onSubmit } = props;
 
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState('mr');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -86,7 +86,7 @@ export const RegistrationForm: React.FC<Props> = (props) => {
   const [universityOptions, setUniversityOptions] = useState<Array<string>>([]);
 
   const [course, setCourse] = useState('');
-  const [graduationYear, setGraduationYear] = useState<number | null>(null);
+  const [graduationYear, setGraduationYear] = useState<number | null>(2020);
   const [privacyChecked, setPrivacyChecked] = useState(false);
   const [marketingChecked, setMarketingChecked] = useState(false);
   const [graduationYearChecked, setGraduationYearChecked] = useState(false);
@@ -187,7 +187,7 @@ export const RegistrationForm: React.FC<Props> = (props) => {
                 )
                 .then((result) => {
                   setUniversityOptions([...result, 'Other']);
-                  setUniversity(universityOptions[0]);
+                  setUniversity(result[0]);
                 });
             }}
           >

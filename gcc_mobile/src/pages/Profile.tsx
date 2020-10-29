@@ -169,7 +169,7 @@ const Profile: React.FC = () => {
     };
 
     setLoading(true);
-    console.log('registering contestant');
+
     registerContestant(body, token || '', fields.referralCode)
       .then((response) => {
         if (response.status == 200) {
@@ -181,7 +181,7 @@ const Profile: React.FC = () => {
         }
       })
       .catch((err) => {
-        console.log('failed to register contestant', err);
+        alert(err?.response?.data?.message || 'There has been a error registering. Please try again later or try registeering on the web app.');
       })
       .finally(() => {
         setLoading(false);
