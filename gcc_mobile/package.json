@@ -21,7 +21,7 @@
     "@types/react-dom": "^16.9.4",
     "@types/react-router": "^5.1.4",
     "@types/react-router-dom": "^5.1.5",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "commonmark": "^0.29.2",
     "cordova-plugin-inappbrowser": "^4.0.0",
     "cordova-plugin-screen-orientation": "^3.0.2",
